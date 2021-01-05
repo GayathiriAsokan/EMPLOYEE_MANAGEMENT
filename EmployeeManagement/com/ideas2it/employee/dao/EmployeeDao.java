@@ -205,12 +205,15 @@ public class EmployeeDao {
         List <Integer> employeeList = new ArrayList <Integer>();
         int countRow = 0;
         Connection connection = connector.getConnection();
-        String checkQuery = "select count(employee_id) from personal_details where employee_id = ";
-        checkQuery = checkQuery + employeeId + " union all select count(employee_id) from personal_details where  phone_number =  " 
-                     + phoneNumber + " union all select count(employee_id) from personal_details where email_id = " + "'" + emailId + "'";
+        String checkQuery = "select count(employee_id) from personal_details where employee_id = ?";
+        checkQuery = checkQuery + " union all select count(employee_id) from personal_details where  phone_number = ?" 
+                    " union all select count(employee_id) from personal_details where email_id = ?";
         try {
             PreparedStatement preparedStatement = null;
             preparedStatement = connection.prepareStatement(checkQuery);
+            preparedStatement.setInt(1, employeeId);
+            preparedStatement.setLong(2, phoneNumber );
+            preparedStatement.setString(3, emailId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 employeeList.add(resultSet.getInt(1));

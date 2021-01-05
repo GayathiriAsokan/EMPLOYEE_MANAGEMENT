@@ -43,10 +43,9 @@ public class ProjectDao {
                              String projectManager, String projectType) {
         int rowCount = 0;
         Connection connection = connector.getConnection();
-        String insertQuery = "insert into project Values(?,?,?,?,?)"; 
         try {
             PreparedStatement preparedStatement = null;
-			         preparedStatement = connection.prepareStatement(insertQuery);
+			         preparedStatement = connection.prepareStatement("insert into project Values(?,?,?,?,?)");
             preparedStatement.setInt(1, projectId);
 			         preparedStatement.setString(2, projectName);
             preparedStatement.setString(3, technology);
@@ -55,7 +54,7 @@ public class ProjectDao {
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the insert operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
@@ -72,16 +71,15 @@ public class ProjectDao {
     public int insertProjectEmployee(int projectId, int employeeId) {
         int rowCount = 0;
         Connection connection = connector.getConnection();
-        String insertQuery = "insert into project_employee Values(?,?)"; 
         try {
             PreparedStatement preparedStatement = null;
-			         preparedStatement = connection.prepareStatement(insertQuery);
+			         preparedStatement = connection.prepareStatement("insert into project_employee Values(?,?)");
             preparedStatement.setInt(1, projectId);
 			         preparedStatement.setInt(2, employeeId);
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the insert operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
@@ -98,16 +96,15 @@ public class ProjectDao {
     public int updateProject(int employeeId, int projectId) {
         Connection connection = connector.getConnection();
         int updateCount = 0;
-        String updateProject = " update project_employee set employee_id = ";
-        updateProject = updateProject + employeeId + " where project_id = " + projectId;
-        System.out.println(updateProject);
         try {
             PreparedStatement preparedStatement = null;
-            preparedStatement = connection.prepareStatement(updateProject);
+            preparedStatement = connection.prepareStatement(" update project_employee set employee_id = ? where project_id = ?");
+			         preparedStatement.setInt(1, employeeId);
+            preparedStatement.setInt(2, projectId);
             updateCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the update operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
@@ -123,17 +120,16 @@ public class ProjectDao {
     public int isProjectIdExist(int projectId) {
         Connection connection = connector.getConnection();
         int rowCount = 0;
-        String projectIdCount = "select count(*) from project_employee where project_id = ";
-        projectIdCount = projectIdCount + projectId;   
         try {
             PreparedStatement preparedStatement = null;
-            preparedStatement = connection.prepareStatement(projectIdCount);
+            preparedStatement = connection.prepareStatement("select count(project_id) from project_employee where project_id = ?");
+            preparedStatement.setInt(1, projectId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             rowCount = resultSet.getInt(1);
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the project Id exist operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
@@ -149,15 +145,15 @@ public class ProjectDao {
     public int deleteProject(int employeeId, int projectId) {
         Connection connection = connector.getConnection();
         int countDelete = 0; 
-        String addressDeleteQuery = "delete from project_employee where project_id = ";
-        addressDeleteQuery = addressDeleteQuery + projectId + " and employee_id = " + employeeId ;
         try {
             PreparedStatement preparedStatement = null;
-            preparedStatement = connection.prepareStatement(addressDeleteQuery);
+            preparedStatement = connection.prepareStatement("delete from project_employee where project_id = ?  and employee_id = ?");
+            preparedStatement.setInt(1, projectId);
+			         preparedStatement.setInt(2, employeeId);
             countDelete = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the delete operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
@@ -178,12 +174,15 @@ public class ProjectDao {
         .append("project.technology,project.project_manager,projectemp.employee_id from project inner join project_employee")
         .append(" as projectemp on project.project_id = projectemp.project_id");
         if (viewFlag) {
-            viewQuery.append(" where project.project_id=").append(projectId);
+            viewQuery.append(" where project.project_id = ?");
         }
         try {
             PreparedStatement preparedStatement = null;
             String viewProject = viewQuery.toString(); 
 			         preparedStatement = connection.prepareStatement(viewProject);
+            if (viewFlag) {
+                preparedStatement.setInt(1, projectId);
+            }   
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 HashMap <String, Object> projectMap = new HashMap <String, Object> ();  
@@ -200,7 +199,7 @@ public class ProjectDao {
             }
             preparedStatement.close();
         } catch (Exception e) {
-			         System.out.println("sqlexception" + e.getMessage());
+			         System.out.println("Could not load the view operation" + e.getMessage());
 			         e.printStackTrace();
 		      } finally {
             connector.closeConnection(connection);
