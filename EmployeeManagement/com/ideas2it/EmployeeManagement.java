@@ -9,8 +9,8 @@ package com.ideas2it;
 
 import java.util.Scanner;
 
-import com.ideas2it.employee.controller.EmployeeController;
-import com.ideas2it.project.controller.ProjectController;
+import com.ideas2it.employee.view.EmployeeView;
+import com.ideas2it.project.view.ProjectView;
 
 /**
  * @description EmployeeApplication common main class for employee and project 
@@ -25,8 +25,8 @@ public class EmployeeManagement {
      * @param args - Application startup arguments
      */
     public static void main(String [] args) {
-       ProjectController projectController = new ProjectController();
-       EmployeeController employeeController = new EmployeeController();
+        ProjectView projectView = new ProjectView();
+        EmployeeView employeeView = new EmployeeView();
        boolean exitFlag = true;
        Scanner scanner = new Scanner(System.in);
        do {
@@ -36,10 +36,10 @@ public class EmployeeManagement {
            int userOption = scanner.nextInt();
            if (userOption == 1) {
                System.out.println("\nEMPLOYEE DETAILS");
-               employeeController.employeeDetails();
+               employeeView.employeeDetails();
            } else if (userOption == 2) {
-               System.out.println("\nPROJECT DETAILS"); 
-               projectController.projectDetails();
+               System.out.println("\nPROJECT DETAILS");
+               projectView.projectDetails();
            } else if (userOption == 3) {
                System.out.println("EXIT EMPLOYEE  MANAGEMENT");
                exitFlag = false;

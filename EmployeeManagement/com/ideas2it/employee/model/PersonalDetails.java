@@ -1,6 +1,7 @@
 /**
  * Provide the class necessary to create an model class
  * To communicate with service class
+ *
  * @since 1.0
  */
 package com.ideas2it.employee.model;
@@ -20,11 +21,11 @@ public class PersonalDetails {
     private String dateOfBirth;
     private long phoneNumber;
     private Address address;
-    private List <Address> addressList = new ArrayList <Address>();
+    private List<Address> addressList = new ArrayList<Address>();
 
     /**
-    * Default Constructor which creates an empty object of PersonalDetails
-    */
+     * Default Constructor which creates an empty object of PersonalDetails
+     */
     public PersonalDetails() {
     }
 
@@ -37,51 +38,51 @@ public class PersonalDetails {
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
         this.dateOfBirth = dateOfBirth;
-    }   
+    }
 
-    public void setAddressList(Address address) { 
+    public void setAddressList(Address address) {
         addressList.add(address);
     }
-    
-    public List <Address> getAddressList() {
-    return addressList;
+
+    public List<Address> getAddressList() {
+        return addressList;
     }
 
     public String getName() {
-    return name;
+        return name;
     }
-    
+
     public String getDateOfBirth() {
-    return dateOfBirth;
+        return dateOfBirth;
     }
 
     public String getEmailId() {
-    return  emailId;
+        return emailId;
     }
 
     public long getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) { 
-        	this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-    
-    public void setEmailId(String emailId) { 
-       this.emailId = emailId;
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
-    
+
     public void setDateOfBirth(String dateOfBirth) {
-    		this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public void setName(String name) { 
-        this.name =name;  
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-    	return " \n PersonalDetails : \n Name : " + getName() + "\n Phonenumber : " + getPhoneNumber() +"\n EmailId : " + getEmailId() +
-               "\n Date of birth : " + getDateOfBirth() + " " + getAddressList().toString() ;				
+        return " \n PersonalDetails : \n Name : " + getName() + "\n Phonenumber : " + getPhoneNumber() + "\n EmailId : " + getEmailId() +
+                "\n Date of birth : " + getDateOfBirth() + " " + getAddressList().toString();
     }
 }

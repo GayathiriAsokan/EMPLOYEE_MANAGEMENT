@@ -1,6 +1,7 @@
 /**
  * Provide the class necessary to create an model class
  * To communicate with service class
+ *
  * @since 1.0
  */
 package com.ideas2it.employee.model;
@@ -12,17 +13,18 @@ package com.ideas2it.employee.model;
  * @version 1.0
  */
 public class Address {
-    private  int pinCode;
+    private int pinCode;
     private String street;
     private String district;
     private String city;
     private String state;
+
     /**
      * Default Constructor which creates an empty object of Address
      */
     public Address() {
     }
-    
+
     /**
      * Parameterized constructor with parameters  city,district,state
      * Asigning values using this keyword    
@@ -33,52 +35,52 @@ public class Address {
         this.state = state;
         this.street = street;
         this.district = district;
-    }    
+    }
 
     public void setPinCode(int pinCode) {
         this.pinCode = pinCode;
     }
 
     public int getPinCode() {
-    return pinCode;
+        return pinCode;
     }
-  
+
     public void setCity(String city) {
         this.city = city;
     }
-    
+
     public String getCity() {
-    return city;
+        return city;
     }
 
     public void setState(String state) {
         this.state = state;
-    }    
-  
+    }
+
     public String getState() {
-    return state;
-    }  
-    
+        return state;
+    }
+
     public void setStreet(String street) {
         this.street = street;
-    }    
-  
+    }
+
     public String getStreet() {
-    return street;
-    }  
-    
+        return street;
+    }
+
     public void setDistrict(String district) {
         this.district = district;
-    }    
-  
+    }
+
     public String getDistrict() {
-    return district;
-    }  
+        return district;
+    }
 
     @Override
     public String toString() {
-    return "\n Address : PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
-            + "\n District : " + getDistrict() + "\n State : " + getState() ;
+        return "\n Address : PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
+                + "\n District : " + getDistrict() + "\n State : " + getState();
     }
 }
 

@@ -1,6 +1,7 @@
 /**
  * Provide the class necessary to create an model class
  * To communicate with service class
+ *
  * @since 1.0
  */
 package com.ideas2it.project.model;
@@ -20,14 +21,14 @@ public class Project {
     private String technology;
     private String projectManager;
     private String projectType;
-    private List <Integer> projectList = new ArrayList <Integer>();
+    private List<Integer> projectList = new ArrayList<Integer>();
 
     /**
      * Default Constructor which creates an empty object of Address
      */
     public Project() {
     }
-    
+
     /**
      * Parameterized constructor with parameters  projectId,projectName,projectManager,projectType
      * Asigning values using this keyword    
@@ -39,60 +40,60 @@ public class Project {
         this.technology = technology;
         this.projectManager = projectManager;
         this.projectType = projectType;
-    }    
+    }
 
     public void setProjectType(String projectType) {
-        this.projectType = projectType;   
+        this.projectType = projectType;
     }
 
     public String getProjectType() {
-    return projectType;
+        return projectType;
     }
-  
+
     public void setProjectManager(String projectManager) {
         this.projectManager = projectManager;
     }
-    
+
     public String getProjectManager() {
-    return projectManager;
+        return projectManager;
     }
 
     public void setTechnology(String technology) {
         this.technology = technology;
-    }    
-  
+    }
+
     public String getTechnology() {
-    return technology;
-    }  
-    
+        return technology;
+    }
+
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }    
-  
+    }
+
     public String getProjectName() {
-    return projectName;
-    }  
-    
+        return projectName;
+    }
+
     public void setProjectId(int projectId) {
         this.projectId = projectId;
-    }    
-  
+    }
+
     public int getProjectId() {
-    return projectId;
-    }  
-    
+        return projectId;
+    }
+
     public void setEmployeeId(int employeeId) {
         projectList.add(employeeId);
-    }    
-  
-    public List <Integer> getEmployeeId() {
-    return projectList;
     }
-    
+
+    public List<Integer> getEmployeeId() {
+        return projectList;
+    }
+
     @Override
     public String toString() {
-    return "\n Project: ProjectId : " + getProjectId() + "\n EmployeeId : " + getEmployeeId()  + "\n ProjectName  : " + getProjectName() + 
-    "\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : " + getProjectType();
+        return "\n Project: ProjectId : " + getProjectId() + "\n EmployeeId : " + getEmployeeId() + "\n ProjectName  : " + getProjectName() +
+                "\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : " + getProjectType();
     }
 
 }
