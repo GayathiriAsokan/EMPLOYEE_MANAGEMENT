@@ -39,12 +39,12 @@ public class Employee {
         this.designation = designation;
     }
 
-    public PersonalDetails getPersonalDetails() {
-        return personaldetails;
+   public PersonalDetails getPersonalDetails() {
+       return personaldetails;
     }
 
-    public void setPersonalDetails(PersonalDetails personaldetails) {
-        this.personaldetails = personaldetails;
+   public void setPersonalDetails(PersonalDetails personaldetails) {
+       this.personaldetails = personaldetails;
     }
 
     public String getCompanyName() {
@@ -90,7 +90,7 @@ public class Employee {
     @Override
     public String toString() {
         return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "
-                + getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience() + " "
+                + getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience()  + " "
                 + getPersonalDetails().toString();
     }
 }

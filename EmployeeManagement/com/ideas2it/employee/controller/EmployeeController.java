@@ -26,8 +26,7 @@ public class EmployeeController {
 
     /**
      * DeleteData method used to delete the employee data
-     * @param employeeId int - to check employeedata is present or not
-     * @return employeeId int - to print delted or not
+     * @return List<Integer> - to print deleted count
      */
     public List<Integer> deleteEmployee() {
         System.out.println("ENTER EMPLOYEE ID");
@@ -49,8 +48,7 @@ public class EmployeeController {
     /**
      * ViewsingleData method  used to display the employee data
      * It prints a row from a EmployeeMap
-     * @param employeeId int - to display the employee data
-     * @return boolean - to print the employee details
+     * @return List<HashMap<String, Object>>  - to print the employee details
      */
     public List<HashMap<String, Object>> viewSingleEmployee() {
         System.out.println("ENTER EMPLOYEE ID");
@@ -64,8 +62,6 @@ public class EmployeeController {
     public void addEmployee() {
         System.out.println("Enter Your Emloyeeid");
         int employeeId = scanner.nextInt();
-        System.out.println("Enter Your Projectid");
-        int projectId = scanner.nextInt();
         System.out.println("Enter Your Companyname");
         String companyName = scanner.next();
         System.out.println("Enter Your Salary");

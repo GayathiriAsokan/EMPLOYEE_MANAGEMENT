@@ -90,7 +90,7 @@ public class EmployeeService implements EmployeeServiceImpl {
      * ViewsingleData method  used to display the employee data
      * It prints a row from a EmployeeMap
      * @param employeeId int - to display the employee data
-     * @return boolean - to print the employee details
+     * @return List<HashMap<String, Object>> - to print the employee details
      */
     @Override
     public List<HashMap<String, Object>> viewSingleEmployee(int employeeId) {
@@ -100,7 +100,7 @@ public class EmployeeService implements EmployeeServiceImpl {
     /**
      * DeleteData method used to delete the employee data
      * @param employeeId int - to check employeedata is present or not
-     * @return employeeId int - to print delted or not
+     * @return List<Integer>  - to print delted or not
      */
     @Override
     public List<Integer> deleteEmployee(int employeeId, String addressType) {

@@ -8,66 +8,53 @@
 package com.ideas2it.employee.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.ideas2it.Connector;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
-import com.ideas2it.employee.model.PersonalDetails;
 
 /**
+ * @author GAYATHIRI
+ * @version 1.0
  * @description EmployeeDao made jdbc connectivity for the employeeApplication
  * Using database we can insert ,update,select,delete data using sql query
- * @version 1.0
- * @author GAYATHIRI
  */
 public class EmployeeDao implements EmployeeDaoImpl {
-
     Connector connector = new Connector();
 
     /**
      * InsertEmployee is used to insert the employee data using insert query
-     * @param employeeId int 
-     * @param salary String
+     *
+     * @param employeeId  int
+     * @param salary      String
      * @param companyName String
      * @return rowCount int - to find whether the employee data inserted or not
      */
     @Override
     public int insertEmployee(int employeeId, long salary, String companyName, String designation, int experience) {
         System.out.println("EMPLOYEE DATA");
+        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
+        SessionFactory sessionFactory = ;
+        Session session = sessionFactory.openSession();
+        session.save(employee);
         int rowCount = 0;
-        Connection connection = connector.getConnection();
-        try {
-            PreparedStatement preparedStatement = null;
-            preparedStatement = connection.prepareStatement("insert into employee Values(?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, employeeId);
-            preparedStatement.setLong(2, salary);
-            preparedStatement.setString(3, companyName);
-            preparedStatement.setString(4, designation);
-            preparedStatement.setInt(5, experience);
-            rowCount = preparedStatement.executeUpdate();
-            preparedStatement.close();
-        } catch (Exception e) {
-            System.out.println("Could not load the insert operation" + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            connector.closeConnection(connection);
-        }
+        //Connection connection = connector.getConnection();
         return rowCount;
     }
 
     /**
      * InsertPersonalDetails is used to insert the values using Insert query
-     * @param employeeId int 
-     * @param name String
-     * @param emailId String
+     *
+     * @param employeeId  int
+     * @param name        String
+     * @param emailId     String
      * @param dateOfBirth String
      * @param phoneNumber long
      * @return rowCount int - to find whether the PersonalDetails inserted or not
@@ -98,12 +85,10 @@ public class EmployeeDao implements EmployeeDaoImpl {
 
     /**
      * InsertAddress is used to insert the values using Insert query
-     * @param employeeId int 
-     * @param street String
-     * @param city String
-     * @param district String
-     * @param state String
-     * @param pinCode long
+     *
+     * @param employeeId       int
+     * @param currentAddress   Address
+     * @param permanentAddress Address
      * @return rowCount int - to find whether the row inserted or not
      */
     @Override
@@ -140,9 +125,11 @@ public class EmployeeDao implements EmployeeDaoImpl {
         return rowCount;
     }
 
-    /**ViewEmployee is used to view the employee details using select query
+    /**
+     * ViewEmployee is used to view the employee details using select query
+     *
      * @param employeeId int
-     * @param viewFlag boolean
+     * @param viewFlag   boolean
      * @return employeeList List <Employee>
      */
     @Override
@@ -201,10 +188,11 @@ public class EmployeeDao implements EmployeeDaoImpl {
 
     /**
      * IsDuplicate is used to check value already present in the Personal_details table or not
-     * @param  employeeId int 
-     * @param emailId String  
+     *
+     * @param employeeId  int
+     * @param emailId     String
      * @param phoneNumber long
-     * @return employeeList List <Integer>  - to find how many rows affected  
+     * @return employeeList List <Integer>  - to find how many rows affected
      */
     @Override
     public List<Integer> isDuplicate(int employeeId, long phoneNumber, String emailId) {
@@ -233,6 +221,7 @@ public class EmployeeDao implements EmployeeDaoImpl {
 
     /**
      * DeleteAddress is used to delete entries in Address table
+     *
      * @param employeId int
      * @return countAddress int- to find how many rows affected
      */
@@ -258,6 +247,7 @@ public class EmployeeDao implements EmployeeDaoImpl {
 
     /**
      * DeleteEmployee is used to delete entries in Employee
+     *
      * @param employeId int
      * @return countEmployee int - to find how many rows affected
      */
@@ -282,9 +272,10 @@ public class EmployeeDao implements EmployeeDaoImpl {
 
     /**
      * UpdatePersonalDetails is used to change the Personal_details values of emailId, phoneNumber
-     * @param  employeeId int 
-     * @param emailId String  
-     * @param phoneNumber long 
+     *
+     * @param employeeId  int
+     * @param emailId     String
+     * @param phoneNumber long
      * @return updateCount int -to check the modification or done in a table or not
      */
     @Override
