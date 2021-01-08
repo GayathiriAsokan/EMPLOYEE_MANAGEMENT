@@ -17,7 +17,7 @@ public class Employee {
     private int employeeId;
     private String companyName;
     private PersonalDetails personaldetails;
-    private long salary;
+    private double salary;
     private int experience;
     private String designation;
 
@@ -31,7 +31,7 @@ public class Employee {
      * Parameterized constructor with parameters of companyName and salary
      * Asigning values using this keyword
      */
-    public Employee(int employeeId, String companyName, long salary, int experience, String designation) {
+    public Employee(int employeeId, String companyName, double salary, int experience, String designation) {
         this.companyName = companyName;
         this.salary = salary;
         this.employeeId = employeeId;
@@ -40,11 +40,11 @@ public class Employee {
     }
 
    public PersonalDetails getPersonalDetails() {
-       return personaldetails;
-    }
+     return personaldetails;
+   }
 
-   public void setPersonalDetails(PersonalDetails personaldetails) {
-       this.personaldetails = personaldetails;
+    public void setPersonalDetails(PersonalDetails personaldetails) {
+     this.personaldetails = personaldetails;
     }
 
     public String getCompanyName() {
@@ -55,11 +55,11 @@ public class Employee {
         this.companyName = companyName;
     }
 
-    public long getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(long salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
@@ -90,7 +90,7 @@ public class Employee {
     @Override
     public String toString() {
         return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "
-                + getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience()  + " "
+                + getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience() + " "
                 + getPersonalDetails().toString();
     }
 }

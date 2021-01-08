@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping>
+    <class name="com.ideas2it.employee.model.Employee" table="employee">
+        <meta attribute = "class-description">
+            This class contains the employee detail.
+        </meta>
+        <id name = "employeeId" type = "int" column = "employee_id">
+            <generator class="assigned"></generator>
+        </id>
+        <property name = "designation" column = "designation" type = "string"/>
+        <property name = "companyName" column = "company_name" type = "string"/>
+        <property name = "experience" column = "experience" type = "int"/>
+        <property name = "salary" column = "salary" type = "double"/>
+        <one-to-one name="personal_details" cascade="all"></one-to-one>
+    </class>
+
+</hibernate-mapping>

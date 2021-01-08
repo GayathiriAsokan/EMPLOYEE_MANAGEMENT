@@ -5,12 +5,11 @@
  * @version 1.0
  * @since 1.0
  */
-package com.ideas2it;
 
 import java.util.Scanner;
 
-import com.ideas2it.employee.view.EmployeeView;
-import com.ideas2it.project.view.ProjectView;
+import com.ideas2it.employee.controller.EmployeeController;
+import com.ideas2it.project.controller.ProjectController;
 
 /**
  * @description EmployeeApplication common main class for employee and project 
@@ -25,8 +24,8 @@ public class EmployeeManagement {
      * @param args - Application startup arguments
      */
     public static void main(String [] args) {
-        ProjectView projectView = new ProjectView();
-        EmployeeView employeeView = new EmployeeView();
+        ProjectController projectController = new ProjectController();
+        EmployeeController employeeController = new EmployeeController();
        boolean exitFlag = true;
        Scanner scanner = new Scanner(System.in);
        do {
@@ -36,10 +35,10 @@ public class EmployeeManagement {
            int userOption = scanner.nextInt();
            if (userOption == 1) {
                System.out.println("\nEMPLOYEE DETAILS");
-               employeeView.employeeDetails();
+               employeeController.employeeDetails();
            } else if (userOption == 2) {
                System.out.println("\nPROJECT DETAILS");
-               projectView.projectDetails();
+               projectController.projectDetails();
            } else if (userOption == 3) {
                System.out.println("EXIT EMPLOYEE  MANAGEMENT");
                exitFlag = false;

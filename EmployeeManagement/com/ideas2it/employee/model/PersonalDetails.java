@@ -19,7 +19,8 @@ public class PersonalDetails {
     private String name;
     private String emailId;
     private String dateOfBirth;
-    private long phoneNumber;
+    private int phoneNumber;
+    private Employee employee;
     private Address address;
     private List<Address> addressList = new ArrayList<Address>();
 
@@ -33,7 +34,7 @@ public class PersonalDetails {
      * Parameterized constructor with parameters of name, dateOfBirth, phoneNumber
      * Asigning values using this keyword
      */
-    public PersonalDetails(String name, String emailId, String dateOfBirth, long phoneNumber) {
+    public PersonalDetails(String name, String emailId, String dateOfBirth, int phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
@@ -60,11 +61,11 @@ public class PersonalDetails {
         return emailId;
     }
 
-    public long getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -1,35 +1,136 @@
 /**
- * Provide the interface necessary to create EmployeeDaoImpl
- * To communicate with EmployeeDao
+ * Provide the class necessary to create a dao class
+ * To communicate with service and model classes
+ *
  * @version 1.0
  * @since 1.0
  */
 package com.ideas2it.employee.dao;
 
-import com.ideas2it.employee.model.Address;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ideas2it.employee.model.Employee;
+import com.ideas2it.employee.model.PersonalDetails;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.ideas2it.employee.model.Address;
+import org.hibernate.Transaction;
+
 /**
- * @description EmployeeDaoImpl to communicate with EmployeeDao
- * @version 1.0
  * @author GAYATHIRI
+ * @version 1.0
+ * @description EmployeeDao made jdbc connectivity for the employeeApplication
+ * Using database we can insert ,update,select,delete data using sql query
  */
-public interface EmployeeDaoImpl {
-    public int insertEmployee(int employeeId, long salary, String companyName, String designation, int experience);
+public class EmployeeDaoImpl implements EmployeeDao {
+    SessionManagement sessionManagement = new SessionManagement();
 
-    public int insertPersonalDetails(int employeeId, String name, long phoneNumber, String emailId, String dateOfBirth);
+    /**
+     * InsertEmployee is used to insert the employee data using insert query
+     *
+     * @param employeeId  int
+     * @param salary      String
+     * @param companyName String
+     * @return rowCount int - to find whether the employee data inserted or not
+     */
+    @Override
+    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, String name, double phoneNumber, String emailId, String dateOfBirth) {
+        System.out.println("EMPLOYEE DATA");
+        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
+        PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, phoneNumber);
+        employee.setPersonalDetails(personalDetails);
+        SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+        session.save(employee);
+        t.commit();
+        int rowCount = 0;
+        return rowCount;
+    }
 
-    public int insertAddress(int employeeId, Address currentAddress, Address permanentAddress);
+    /**
+     * InsertAddress is used to insert the values using Insert query
+     *
+     * @param employeeId       int
+     * @param currentAddress   Address
+     * @param permanentAddress Address
+     * @return rowCount int - to find whether the row inserted or not
+     */
+    @Override
+    public int insertAddress(int employeeId, Address currentAddress, Address permanentAddress) {
+        System.out.println("ADDRESS DATA");
+        int rowCount = 0;
 
-    public List<HashMap<String, Object>> viewEmployee(int employeeId, boolean viewFlag);
+        return rowCount;
+    }
 
-    public List<Integer> isDuplicate(int employeeId, long phoneNumber, String emailId);
+    /**
+     * ViewEmployee is used to view the employee details using select query
+     *
+     * @param employeeId int
+     * @param viewFlag   boolean
+     * @return employeeList List <Employee>
+     */
+    @Override
+    public List<HashMap<String, Object>> viewEmployee(int employeeId, boolean viewFlag) {
+        List<HashMap<String, Object>> employeeList = new ArrayList<HashMap<String, Object>>();
+        return employeeList;
+    }
 
-    public int deleteAddress(int employeeId, String addressType);
+    /**
+     * IsDuplicate is used to check value already present in the Personal_details table or not
+     *
+     * @param employeeId  int
+     * @param emailId     String
+     * @param phoneNumber long
+     * @return employeeList List <Integer>  - to find how many rows affected
+     */
+    @Override
+    public List<Integer> isDuplicate(int employeeId, double phoneNumber, String emailId) {
+        List<Integer> employeeList = new ArrayList<Integer>();
+        int countRow = 0;
 
-    public int deleteEmployee(int employeeId);
+        return employeeList;
+    }
 
-    public int updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
+    /**
+     * DeleteAddress is used to delete entries in Address table
+     *
+     * @return countAddress int- to find how many rows affected
+     */
+    @Override
+    public int deleteAddress(int employeeId, String addressType) {
+        int countAddress = 0;
+
+        return countAddress;
+    }
+
+    /**
+     * DeleteEmployee is used to delete entries in Employee
+     *
+     * @return countEmployee int - to find how many rows affected
+     */
+    @Override
+    public int deleteEmployee(int employeeId) {
+        int countEmployee = 0;
+        return countEmployee;
+    }
+
+    /**
+     * UpdatePersonalDetails is used to change the Personal_details values of emailId, phoneNumber
+     *
+     * @param employeeId  int
+     * @param emailId     String
+     * @param phoneNumber long
+     * @return updateCount int -to check the modification or done in a table or not
+     */
+    @Override
+    public int updatePersonalDetails(int employeeId, double phoneNumber, String emailId) {
+        int updateCount = 0;
+        return updateCount;
+    }
 }

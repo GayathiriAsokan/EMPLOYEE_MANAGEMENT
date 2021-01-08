@@ -4,9 +4,6 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect-
-        </property>
         <property name="hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
@@ -20,7 +17,7 @@
             Rooter@12345
         </property>
         <property name="hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect-
+            org.hibernate.dialect.MySQLDialect
         </property>
         <property name="hbm2ddl.auto">
             update
@@ -28,5 +25,6 @@
         <property name="Show Sql">
            true
         </property>
+        <mapping resource="resources/classes/Employee.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
