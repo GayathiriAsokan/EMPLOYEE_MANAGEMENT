@@ -14,83 +14,83 @@ package com.ideas2it.employee.model;
  * @version 1.0
  */
 public class Employee {
-    private int employeeId;
-    private String companyName;
-    private PersonalDetails personaldetails;
-    private double salary;
-    private int experience;
-    private String designation;
+	private int employeeId;
+	private String companyName;
+	private double salary;
+	private int experience;
+	private String designation;
+	private PersonalDetails personalDetails;
+	
+	/**
+	 * Default Constructor which creates an empty object of Employee
+	 */
+	public Employee() {
+	}
 
-    /**
-     * Default Constructor which creates an empty object of Employee
-     */
-    public Employee() {
-    }
+	/**
+	 * Parameterized constructor with parameters of companyName and salary
+	 * Asigning values using this keyword
+	 */
+	public Employee(int employeeId, String companyName, double salary, int experience, String designation) {
+		this.companyName = companyName;
+		this.salary = salary;
+		this.employeeId = employeeId;
+		this.experience = experience;
+		this.designation = designation;
+	}
+	
+	public String getCompanyName() {
+		return companyName;
+	}
 
-    /**
-     * Parameterized constructor with parameters of companyName and salary
-     * Asigning values using this keyword
-     */
-    public Employee(int employeeId, String companyName, double salary, int experience, String designation) {
-        this.companyName = companyName;
-        this.salary = salary;
-        this.employeeId = employeeId;
-        this.experience = experience;
-        this.designation = designation;
-    }
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 
-   public PersonalDetails getPersonalDetails() {
-     return personaldetails;
-   }
+	public double getSalary() {
+		return salary;
+	}
 
-    public void setPersonalDetails(PersonalDetails personaldetails) {
-     this.personaldetails = personaldetails;
-    }
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 
-    public String getCompanyName() {
-        return companyName;
-    }
+	public int getEmployeeId() {
+		return employeeId;
+	}
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
 
-    public double getSalary() {
-        return salary;
-    }
+	public int getExperience() {
+		return experience;
+	}
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
+	public String getDesignation() {
+		return designation;
+	}
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
 
-    public int getExperience() {
-        return experience;
-    }
+	public PersonalDetails getPersonalDetails() {
+		return personalDetails;
+	}
 
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
-    @Override
-    public String toString() {
-        return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "
-                + getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience() + " "
-                + getPersonalDetails().toString();
-    }
+	public void setPersonalDetails(PersonalDetails personalDetails) {
+		this.personalDetails = personalDetails;
+	}
+	
+	@Override
+	public String toString() {
+		return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "
+				+ getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience() + " "
+				+ getPersonalDetails().toString();
+	}
 }

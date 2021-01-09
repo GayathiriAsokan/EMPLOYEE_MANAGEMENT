@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ideas2it.employee.model.Address" table="address">
+		<meta attribute="class-description">
+			This class contains the Address.
+		</meta>
+			<id name = "addressId" type = "int" column = "address_id">
+            <generator class="assigned"></generator>
+        </id>
+		<property name="street" column="street" type="string">
+		</property>
+		<property name="city" column="city" type="string">
+		</property>
+		<property name="district" column="district" type="string">
+		</property>
+		<property name="state" column="state" type="string">
+		</property>
+		<property name="pinCode" column="pin_code" type="int"></property>
+	</class>
+</hibernate-mapping>

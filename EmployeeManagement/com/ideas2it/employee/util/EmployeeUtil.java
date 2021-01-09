@@ -45,9 +45,9 @@ public class EmployeeUtil {
      * @param phoneNumber long  - check valid in the employee details
      * @return isValid boolean - to verify phoneNumber
      */
-    public boolean isPhoneNumberValid(int phoneNumber) {
+    public boolean isPhoneNumberValid(Long phoneNumber) {
         boolean isValid = false;
-        String mobileNumber = Integer.toString(phoneNumber);
+        String mobileNumber = Long.toString(phoneNumber);
         if (mobileNumber.length() == 10) {
             isValid = true;
         }
@@ -118,10 +118,10 @@ public class EmployeeUtil {
      * @param phoneNumber long - validate phoneNumber
      * @return phoneNumber long - used to check whether it is a proper phoneNumber or not
      */ 
-    public int checkPhoneNumber(int phoneNumber) {
+    public Long checkPhoneNumber(Long phoneNumber) {
         if (!(isPhoneNumberValid(phoneNumber))) {
             System.out.println("Not a valid phone number kindly change phone number");
-            phoneNumber = 0;
+            phoneNumber = (long) 0;
         }
         return phoneNumber;    
     }

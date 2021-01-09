@@ -15,7 +15,7 @@
         <property name = "companyName" column = "company_name" type = "string"/>
         <property name = "experience" column = "experience" type = "int"/>
         <property name = "salary" column = "salary" type = "double"/>
-        <one-to-one name="personal_details" cascade="all"></one-to-one>
+        <one-to-one name ="personalDetails" cascade="all"></one-to-one>
     </class>
 
 </hibernate-mapping>

@@ -38,33 +38,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * @return rowCount int - to find whether the employee data inserted or not
      */
     @Override
-    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, String name, double phoneNumber, String emailId, String dateOfBirth) {
+    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, int personalId,  String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
         System.out.println("EMPLOYEE DATA");
-        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
-        PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, phoneNumber);
-        employee.setPersonalDetails(personalDetails);
         SessionFactory sessionFactory = SessionManagement.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction t = session.beginTransaction();
+        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
+        PersonalDetails personalDetails = new PersonalDetails(personalId, name, emailId, dateOfBirth, phoneNumber);
+        employee.setPersonalDetails(personalDetails);
+        personalDetails.setAddressList(currentAddress);
+        personalDetails.setAddressList(permanentAddress);
         session.save(employee);
         t.commit();
         int rowCount = 0;
-        return rowCount;
-    }
-
-    /**
-     * InsertAddress is used to insert the values using Insert query
-     *
-     * @param employeeId       int
-     * @param currentAddress   Address
-     * @param permanentAddress Address
-     * @return rowCount int - to find whether the row inserted or not
-     */
-    @Override
-    public int insertAddress(int employeeId, Address currentAddress, Address permanentAddress) {
-        System.out.println("ADDRESS DATA");
-        int rowCount = 0;
-
         return rowCount;
     }
 
@@ -83,7 +69,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     /**
      * IsDuplicate is used to check value already present in the Personal_details table or not
-     *
      * @param employeeId  int
      * @param emailId     String
      * @param phoneNumber long

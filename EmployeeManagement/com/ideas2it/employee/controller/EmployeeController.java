@@ -49,7 +49,7 @@ public class EmployeeController {
                     break;
                 case 3:
                     System.out.println("UPDATE THE DATA");
-                    updateEmployee();
+                    //updateEmployee();
                     break;
                 case 4:
                     System.out.println("VIEW THE LIST OF DATA");
@@ -86,14 +86,17 @@ public class EmployeeController {
         System.out.println("Enter Your Companyname");
         String companyName = scanner.next();
         System.out.println("Enter Your Salary");
-        double salary = scanner.nextDouble();
+        long salary = scanner.nextLong();
         System.out.println("Enter Your Designatiion");
         String designation = scanner.next();
         System.out.println("Enter Your Experience(Years)");
         int experience = scanner.nextInt();
+        System.out.println("Enter Your Personalid");
+        int personalId = scanner.nextInt();
         System.out.println("Enter Your Name");
         String name = scanner.next();
-        int phoneNumber = checkPhoneNumber();
+        System.out.println("Enter Your Phonenumber");
+        long phoneNumber = checkPhoneNumber();
         String dateOfBirth = checkDateOfBirth();
         String emailId = checkEmailId();
         //List <Integer> employeeList = employeeService.checkEmployeeData(employeeId, phoneNumber, emailId);
@@ -102,13 +105,12 @@ public class EmployeeController {
       //  } else if (employeeList.get(1) > 0) {
            // System.out.println("Duplicate Phonenumber");
         //} else if (employeeList.get(2) > 0) {
-            System.out.println("Duplicate Emailid");
+           // System.out.println("Duplicate Emailid");
        // } else {
-            //Address currentAddress = getAddressValues();
-           // Address permanentAddress = getAddressValues();
+            Address currentAddress = getAddressValues();
+            Address permanentAddress = getAddressValues();
             int messageStatus = employeeService.insertEmployee(employeeId, companyName, salary, designation, experience, 
-                name, phoneNumber, dateOfBirth, emailId);
-            // currentAddress, permanentAddress,
+            		personalId, name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
             System.out.println(messageStatus);
        // }
     }
@@ -118,6 +120,8 @@ public class EmployeeController {
      * @return address  Address - return address details in this method
      */
     public Address getAddressValues() {
+    	System.out.println("Enter Your AddressId");
+        int addressId = scanner.nextInt();
         System.out.println("Enter Your Street");
         String street = scanner.next();
         System.out.println("Enter Your City");
@@ -128,12 +132,12 @@ public class EmployeeController {
         String state = scanner.next();
         System.out.println("Enter Your Pincode");
         int pinCode = scanner.nextInt();
-        return employeeService.addAddressValues(street, city, district, state, pinCode);
+        return employeeService.addAddressValues(addressId, street, city, district, state, pinCode);
     }
 
     /**
      * UpdateEmployee is used to change the value from employee details
-     */
+     *
     public void updateEmployee() {
         System.out.println("ENTER YOUR EMPLOYEEID");
         int employeeId = scanner.nextInt();
@@ -148,9 +152,9 @@ public class EmployeeController {
      * CheckValidationMobile user need to enter phone number repeatedly until a valid phone number
      * @return phoneNumber long - to set the value in employeeMap
      */
-    public int checkPhoneNumber() {
+    public long checkPhoneNumber() {
         System.out.println("Enter Your Phonenumber");
-        int phoneNumber = scanner.nextInt();
+        long phoneNumber = scanner.nextLong();
         phoneNumber = employeeService.checkPhoneNumber(phoneNumber);
         if (phoneNumber == 0) {
             checkPhoneNumber();

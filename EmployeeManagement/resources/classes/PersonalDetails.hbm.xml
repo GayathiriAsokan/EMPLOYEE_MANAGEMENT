@@ -8,15 +8,17 @@
         <meta attribute = "class-description">
             This class contains the personal details.
         </meta>
-        <id name = "employeeId">
-            <generator class="foreign">
-            <param name = "property">employee</param>
-            </generator>
+        <id name = "personalId" type = "int" column = "personal_id">
+            <generator class="assigned"></generator>
         </id>
+         <list name = "addressList" cascade ="all">
+         <key column = "employee_id"/>
+         <list-index column="address_id"/>
+         <one-to-many class = "com.ideas2it.employee.model.Address" />
+         </list>
         <property name = "name" column = "name" type = "string"/>
         <property name = "emailId" column = "email_id" type = "string"/>
         <property name = "dateOfBirth" column = "dateof_birth" type = "string"/>
-        <property name = "phoneNumber" column = "phone_number" type = "double"/>
-        <one-to-one name = "personal_details" cascade="all"></one-to-one>
+        <property name = "phoneNumber" column = "phone_number" type = "string"/>
     </class>
 </hibernate-mapping>

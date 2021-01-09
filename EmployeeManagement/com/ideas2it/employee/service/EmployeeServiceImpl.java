@@ -48,20 +48,21 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public int insertEmployee(int employeeId, String companyName, double salary, String designation, int experience, 
-    	String name, int phoneNumber, String dateOfBirth, String emailId) {
-    	       //Address currentAddress, Address permanentAddress, 
-      PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, phoneNumber);
-        //personalDetails.setAddressList(currentAddress);
-       // personalDetails.setAddressList(permanentAddress);
+    	int personalId, String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress) {
+    	String mobileNumber = Long.toString(phoneNumber);
+       PersonalDetails personalDetails = new PersonalDetails(personalId, name, emailId, dateOfBirth, mobileNumber);
+       personalDetails.setAddressList(currentAddress);
+       personalDetails.setAddressList(permanentAddress);
         Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
         employee.setPersonalDetails(personalDetails);
         int countInsertedRow = employeeDAO.insertEmployee(employeeId, employee.getSalary(), employee.getCompanyName(),
-               employee.getDesignation(), employee.getExperience(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), personalDetails.getDateOfBirth());
+               employee.getDesignation(), employee.getExperience(), personalDetails.getPersonalId(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
+               personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
     //   if (countInsertedRow != 0) {
           // countInsertedRow = employeeDAO.insertPersonalDetails(employeeId, personalDetails.getName(),
                //     personalDetails.getPhoneNumber(), personalDetails.getEmailId(), personalDetails.getDateOfBirth());
            // if (countInsertedRow != 0) {
-             //   countInsertedRow = employeeDAO.insertAddress(employeeId, currentAddress, permanentAddress);
+             //   countInsertedRow = employeeDAO.insertAddress(employeeId, );
                // if (countInsertedRow != 0) {
                     //return "EMPLOYEE DATA ADDED SUCCESSFULLY";
                // } else {
@@ -121,9 +122,9 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return AddressValues Address - return the address details  to the getAddressValues
      */
     @Override
-    public Address addAddressValues(String street, String city, String district, String state, int pinCode) {
+    public Address addAddressValues(int addressId, String street, String city, String district, String state, int pinCode) {
         PersonalDetails personalDetails = new PersonalDetails();
-        Address AddressValues = new Address(street, city, district, pinCode, state);
+        Address AddressValues = new Address(addressId, street, city, district, pinCode, state);
         personalDetails.setAddressList(AddressValues);
         return AddressValues;
     }
@@ -134,19 +135,19 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param  employeeId int
      * @param phoneNumber long
      * @return employeeList List <Integer> 
-     */
+     
     @Override
-    public List<Integer> checkEmployeeData(int employeeId, double phoneNumber, String emailId) {
+    public List<Integer> checkEmployeeData(int employeeId, long phoneNumber, String emailId) {
         return employeeDAO.isDuplicate(employeeId, phoneNumber, emailId);
-    }
+    }*/
 
     /**
      * UpdatePhoneNumber to change the value of phone number in employeeMap
      * @param employeeId int - to get the personal details object
      * @param phoneNumber long - check for validation and duplication
-     */
+     
     @Override
-    public String updatePersonalDetails(int employeeId, double phoneNumber, String emailId) {
+    public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId) {
         List<Integer> employeeList = new ArrayList<Integer>();
         employeeList = checkEmployeeData(employeeId, phoneNumber, emailId);
         if (employeeList.get(0) != 0 && employeeList.get(1) == 0 && employeeList.get(2) == 0) {
@@ -155,7 +156,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         } else {
             return "ALREADY EXIXTS  DUPLICATE VALUE";
         }
-    }
+    }*/
 
     /**
      * CheckEmailId is used  for validation and duplication check
@@ -173,7 +174,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return phoneNumber long - used to check whether it is a proper phoneNumber or not
      */
     @Override
-    public int checkPhoneNumber(int phoneNumber) {
+    public long checkPhoneNumber(long phoneNumber) {
         return employeeUtil.checkPhoneNumber(phoneNumber);
     }
 

@@ -13,12 +13,14 @@ package com.ideas2it.employee.model;
  * @version 1.0
  */
 public class Address {
+	private int addressId;
     private int pinCode;
     private String street;
     private String district;
     private String city;
     private String state;
-
+    private PersonalDetails personalDetails;
+    
     /**
      * Default Constructor which creates an empty object of Address
      */
@@ -29,12 +31,13 @@ public class Address {
      * Parameterized constructor with parameters  city,district,state
      * Asigning values using this keyword    
      */
-    public Address(String street, String city, String district, int pinCode, String state) {
+    public Address(int addressId, String street, String city, String district, int pinCode, String state) {
         this.pinCode = pinCode;
         this.city = city;
         this.state = state;
         this.street = street;
         this.district = district;
+        this.addressId = addressId;
     }
 
     public void setPinCode(int pinCode) {
@@ -77,7 +80,23 @@ public class Address {
         return district;
     }
 
-    @Override
+    public PersonalDetails getPersonalDetails() {
+		return personalDetails;
+	}
+
+	public void setPersonalDetails(PersonalDetails personalDetails) {
+		this.personalDetails = personalDetails;
+	}
+	
+	public int getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
+	@Override
     public String toString() {
         return "\n Address : PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
                 + "\n District : " + getDistrict() + "\n State : " + getState();

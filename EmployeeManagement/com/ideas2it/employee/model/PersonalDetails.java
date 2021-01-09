@@ -9,6 +9,7 @@ package com.ideas2it.employee.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ideas2it.employee.model.Employee;
 /**
  * PersonalDetails class is a model class
  * It is used to hold the user personal details such as  name,emailid,phonenumber
@@ -16,10 +17,11 @@ import java.util.List;
  * @version 1.0
  */
 public class PersonalDetails {
-    private String name;
+    private int personalId;
+	private String name;
     private String emailId;
     private String dateOfBirth;
-    private int phoneNumber;
+    private String phoneNumber;
     private Employee employee;
     private Address address;
     private List<Address> addressList = new ArrayList<Address>();
@@ -34,21 +36,31 @@ public class PersonalDetails {
      * Parameterized constructor with parameters of name, dateOfBirth, phoneNumber
      * Asigning values using this keyword
      */
-    public PersonalDetails(String name, String emailId, String dateOfBirth, int phoneNumber) {
-        this.name = name;
+    public PersonalDetails(int personalId, String name, String emailId, String dateOfBirth, String phoneNumber) {
+    	this.personalId = personalId;
+    	this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
         this.dateOfBirth = dateOfBirth;
     }
+	
+	  public void setAddressList(Address address) { 
+		  addressList.add(address); 
+		  }
+	  
+	  public List<Address> getAddressList() {
+		  return addressList;
+		  }
+	 
 
-    public void setAddressList(Address address) {
-        addressList.add(address);
-    }
+    public int getPersonalId() {
+		return personalId;
+	}
 
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
+	public void setPersonalId(int personalId) {
+		this.personalId = personalId;
+	}
+	
     public String getName() {
         return name;
     }
@@ -61,11 +73,11 @@ public class PersonalDetails {
         return emailId;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -81,9 +93,25 @@ public class PersonalDetails {
         this.name = name;
     }
 
-    @Override
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+    public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
     public String toString() {
         return " \n PersonalDetails : \n Name : " + getName() + "\n Phonenumber : " + getPhoneNumber() + "\n EmailId : " + getEmailId() +
-                "\n Date of birth : " + getDateOfBirth() + " " + getAddressList().toString();
+                "\n Date of birth : " + getDateOfBirth() + " " + getEmployee() + " " + getAddressList().toString();
     }
 }

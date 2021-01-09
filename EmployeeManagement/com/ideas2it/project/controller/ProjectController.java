@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.ideas2it.project.service.ProjectService;
+import com.ideas2it.project.service.ProjectServiceImpl;
 
 /**
  * @description ProjectController implements an application that is used to hold ProjectService
@@ -21,7 +22,7 @@ import com.ideas2it.project.service.ProjectService;
  */
 public class ProjectController {
     Scanner scanner = new Scanner(System.in);
-    ProjectService projectService = new ProjectService();
+    ProjectServiceImpl projectService = new ProjectServiceImpl();
 
     /**
      * In this method we can view, remove, add, update employee data

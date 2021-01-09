@@ -17,9 +17,7 @@ import java.util.List;
  * @author GAYATHIRI
  */
 public interface EmployeeDao {
-    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, String name, double phoneNumber, String emailId, String dateOfBirth);
-
-    public int insertAddress(int employeeId, Address currentAddress, Address permanentAddress);
+    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, int personalId, String name, String phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress);
 
     public List<HashMap<String, Object>> viewEmployee(int employeeId, boolean viewFlag);
 
