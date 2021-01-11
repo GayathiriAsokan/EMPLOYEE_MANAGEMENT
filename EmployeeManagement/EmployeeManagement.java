@@ -19,7 +19,7 @@ import com.ideas2it.project.controller.ProjectController;
  */
 public class EmployeeManagement {
 
-    /**sbb
+    /**
      * Used for insert delete  operations in employee and project
      * @param args - Application startup arguments
      */
@@ -47,4 +47,5 @@ public class EmployeeManagement {
            }
        } while (exitFlag); 
     }
+    
 }

@@ -47,18 +47,21 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return String - to return message status of the employee details
      */
     @Override
-    public int insertEmployee(int employeeId, String companyName, double salary, String designation, int experience, 
-    	int personalId, String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress) {
-    	String mobileNumber = Long.toString(phoneNumber);
-       PersonalDetails personalDetails = new PersonalDetails(personalId, name, emailId, dateOfBirth, mobileNumber);
-       personalDetails.setAddressList(currentAddress);
-       personalDetails.setAddressList(permanentAddress);
-        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
-        employee.setPersonalDetails(personalDetails);
-        int countInsertedRow = employeeDAO.insertEmployee(employeeId, employee.getSalary(), employee.getCompanyName(),
-               employee.getDesignation(), employee.getExperience(), personalDetails.getPersonalId(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
+    public int insertEmployee(String companyName, double salary, String designation, int experience, 
+                             String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress) {
+       String mobileNumber = Long.toString(phoneNumber);
+       PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
+       List <Address> address = new ArrayList <Address>();
+       address.add(currentAddress);
+       address.add(permanentAddress);
+       personalDetails.setAddressList(address);
+       System.out.println(personalDetails);
+       Employee employee = new Employee(companyName, salary, experience, designation);
+       employee.setPersonalDetails(personalDetails);
+       int countInsertedRow = employeeDAO.insertEmployee(employee.getSalary(), employee.getCompanyName(),
+               employee.getDesignation(), employee.getExperience(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
                personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
-    //   if (countInsertedRow != 0) {
+       //if (countInsertedRow != 0) {
           // countInsertedRow = employeeDAO.insertPersonalDetails(employeeId, personalDetails.getName(),
                //     personalDetails.getPhoneNumber(), personalDetails.getEmailId(), personalDetails.getDateOfBirth());
            // if (countInsertedRow != 0) {
@@ -83,8 +86,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return employeeMap Map <Integer,Employee> - to print employee details
      */
     @Override
-    public List<HashMap<String, Object>> viewEmployee() {
-        return employeeDAO.viewEmployee(0, false);
+    public List <Employee> viewEmployee() {
+        return employeeDAO.viewEmployee();
     }
 
 
@@ -93,10 +96,10 @@ public class EmployeeServiceImpl implements EmployeeService {
      * It prints a row from a EmployeeMap
      * @param employeeId int - to display the employee data
      * @return List<HashMap<String, Object>> - to print the employee details
-     */
+     
     @Override
     public List<HashMap<String, Object>> viewSingleEmployee(int employeeId) {
-        return employeeDAO.viewEmployee(employeeId, true);
+        return employeeDAO.viewEmployee();
     }
 
     /**
@@ -107,8 +110,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Integer> deleteEmployee(int employeeId, String addressType) {
         List<Integer> employeeList = new ArrayList<Integer>();
-        employeeList.add(employeeDAO.deleteAddress(employeeId, addressType));
-        employeeList.add(employeeDAO.deleteEmployee(employeeId));
+        employeeList.add(employeeDAO.deleteAddress(addressType));
+        //employeeList.add(employeeDAO.deleteEmployee(employeeId));
         return employeeList;
     }
 
@@ -122,11 +125,11 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return AddressValues Address - return the address details  to the getAddressValues
      */
     @Override
-    public Address addAddressValues(int addressId, String street, String city, String district, String state, int pinCode) {
-        PersonalDetails personalDetails = new PersonalDetails();
-        Address AddressValues = new Address(addressId, street, city, district, pinCode, state);
-        personalDetails.setAddressList(AddressValues);
-        return AddressValues;
+    public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType) {
+        //PersonalDetails personalDetails = new PersonalDetails();
+        Address addressValues = new Address(street, city, district, pinCode, state, addressType);
+        //personalDetails.setAddressList(address);
+        return addressValues;
     }
 
     /**

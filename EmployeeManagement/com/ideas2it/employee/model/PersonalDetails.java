@@ -23,8 +23,7 @@ public class PersonalDetails {
     private String dateOfBirth;
     private String phoneNumber;
     private Employee employee;
-    private Address address;
-    private List<Address> addressList = new ArrayList<Address>();
+    private List<Address> addressList;
 
     /**
      * Default Constructor which creates an empty object of PersonalDetails
@@ -36,16 +35,15 @@ public class PersonalDetails {
      * Parameterized constructor with parameters of name, dateOfBirth, phoneNumber
      * Asigning values using this keyword
      */
-    public PersonalDetails(int personalId, String name, String emailId, String dateOfBirth, String phoneNumber) {
-    	this.personalId = personalId;
+    public PersonalDetails(String name, String emailId, String dateOfBirth, String phoneNumber) {
     	this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailId = emailId;
         this.dateOfBirth = dateOfBirth;
     }
 	
-	  public void setAddressList(Address address) { 
-		  addressList.add(address); 
+	  public void setAddressList(List <Address> address) { 
+		  addressList = address; 
 		  }
 	  
 	  public List<Address> getAddressList() {
@@ -101,17 +99,9 @@ public class PersonalDetails {
 		this.employee = employee;
 	}
 
-    public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	@Override
+  	@Override
     public String toString() {
-        return " \n PersonalDetails : \n Name : " + getName() + "\n Phonenumber : " + getPhoneNumber() + "\n EmailId : " + getEmailId() +
-                "\n Date of birth : " + getDateOfBirth() + " " + getEmployee() + " " + getAddressList().toString();
+        return " \n PersonalDetails : \n  PersonalId" + getPersonalId() + "\n Name :" + getName() + "\n Phonenumber : " + getPhoneNumber() + "\n EmailId : " + getEmailId() +
+                "\n Date of birth : " + getDateOfBirth() ;//+  " " + getAddressList().toString();
     }
 }

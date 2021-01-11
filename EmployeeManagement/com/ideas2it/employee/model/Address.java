@@ -19,6 +19,7 @@ public class Address {
     private String district;
     private String city;
     private String state;
+    private String addressType;
     private PersonalDetails personalDetails;
     
     /**
@@ -31,13 +32,13 @@ public class Address {
      * Parameterized constructor with parameters  city,district,state
      * Asigning values using this keyword    
      */
-    public Address(int addressId, String street, String city, String district, int pinCode, String state) {
+    public Address(String street, String city, String district, int pinCode, String state, String addressType) {
         this.pinCode = pinCode;
         this.city = city;
         this.state = state;
         this.street = street;
         this.district = district;
-        this.addressId = addressId;
+        this.addressType = addressType;
     }
 
     public void setPinCode(int pinCode) {
@@ -79,15 +80,13 @@ public class Address {
     public String getDistrict() {
         return district;
     }
-
-    public PersonalDetails getPersonalDetails() {
-		return personalDetails;
-	}
-
-	public void setPersonalDetails(PersonalDetails personalDetails) {
-		this.personalDetails = personalDetails;
-	}
-	
+    
+	/*
+	 * public int getAddress_list_index() { return address_list_index; }
+	 * 
+	 * public void setAddress_list_index(int address_list_index) {
+	 * this.address_list_index = address_list_index; }
+	 */
 	public int getAddressId() {
 		return addressId;
 	}
@@ -95,11 +94,27 @@ public class Address {
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
+	
+	public String getAddressType() {
+		return addressType;
+	}
+
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
+	}
+	
+	public PersonalDetails getPersonalDetails() {
+		return personalDetails;
+	}
+
+	public void setPersonalDetails(PersonalDetails personal_details) {
+		this.personalDetails = personal_details;
+	}
 
 	@Override
     public String toString() {
-        return "\n Address : PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
-                + "\n District : " + getDistrict() + "\n State : " + getState();
+        return "\n Address : AddressId "  +  getAddressId() + "\n PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
+                + "\n District : " + getDistrict() + "\n State : " + getState() + "\n AddressType : " + getAddressType() + " "  + getPersonalDetails().toString();
     }
 }
 

@@ -7,6 +7,7 @@
 package com.ideas2it.employee.service;
 
 import com.ideas2it.employee.model.Address;
+import com.ideas2it.employee.model.Employee;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,15 +18,15 @@ import java.util.List;
  * @version 1.0
  */
 public interface EmployeeService {
-    public int insertEmployee(int employeeId, String companyName, double salary, String designation, int experience,
-    		int personalId, String name,  long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress);
-    public List<HashMap<String, Object>> viewEmployee();
+    public int insertEmployee(String companyName, double salary, String designation, int experience,
+    		String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress);
+    public List <Employee>viewEmployee();
 
-    public List<HashMap<String, Object>> viewSingleEmployee(int employeeId);
+   // public List<HashMap<String, Object>> viewSingleEmployee(int employeeId);
 
     public List<Integer> deleteEmployee(int employeeId, String addressType);
 
-    public Address addAddressValues(int addressId, String street, String city, String district, String state, int pinCode);
+    public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType);
 
    // public List<Integer> checkEmployeeData(int employeeId, long phoneNumber, String emailId);
 

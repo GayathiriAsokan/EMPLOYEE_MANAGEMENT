@@ -7,6 +7,7 @@
 package com.ideas2it.employee.dao;
 
 import com.ideas2it.employee.model.Address;
+import com.ideas2it.employee.model.Employee;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,13 +18,13 @@ import java.util.List;
  * @author GAYATHIRI
  */
 public interface EmployeeDao {
-    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, int personalId, String name, String phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress);
+    public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress);
 
-    public List<HashMap<String, Object>> viewEmployee(int employeeId, boolean viewFlag);
+    public List <Employee> viewEmployee();
 
     public List<Integer> isDuplicate(int employeeId, double phoneNumber, String emailId);
 
-    public int deleteAddress(int employeeId, String addressType);
+    public int deleteAddress(String addressType);
 
     public int deleteEmployee(int employeeId);
 

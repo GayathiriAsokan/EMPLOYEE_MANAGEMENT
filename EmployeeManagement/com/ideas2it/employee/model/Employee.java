@@ -20,7 +20,7 @@ public class Employee {
 	private int experience;
 	private String designation;
 	private PersonalDetails personalDetails;
-	
+
 	/**
 	 * Default Constructor which creates an empty object of Employee
 	 */
@@ -31,14 +31,13 @@ public class Employee {
 	 * Parameterized constructor with parameters of companyName and salary
 	 * Asigning values using this keyword
 	 */
-	public Employee(int employeeId, String companyName, double salary, int experience, String designation) {
+	public Employee(String companyName, double salary, int experience, String designation) {
 		this.companyName = companyName;
 		this.salary = salary;
-		this.employeeId = employeeId;
 		this.experience = experience;
 		this.designation = designation;
 	}
-	
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -86,7 +85,7 @@ public class Employee {
 	public void setPersonalDetails(PersonalDetails personalDetails) {
 		this.personalDetails = personalDetails;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "

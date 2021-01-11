@@ -2,15 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+        
 <hibernate-mapping>
-	<class name="com.ideas2it.employee.model.Address" table="address">
+<class name="com.ideas2it.employee.model.Address" table="address_details">
 		<meta attribute="class-description">
 			This class contains the Address.
 		</meta>
 			<id name = "addressId" type = "int" column = "address_id">
-            <generator class="assigned"></generator>
-        </id>
+            <generator class="increment"></generator>
+           </id>
 		<property name="street" column="street" type="string">
 		</property>
 		<property name="city" column="city" type="string">
@@ -19,6 +19,11 @@
 		</property>
 		<property name="state" column="state" type="string">
 		</property>
-		<property name="pinCode" column="pin_code" type="int"></property>
+		<property name="pinCode" column="pin_code" type="int">
+		</property>
+		<property name="addressType" column="address_type" type="string">
+		</property>
+		<many-to-one class="com.ideas2it.employee.model.PersonalDetails" name="personalDetails" column ="personal_id" cascade ="persist,refresh,merge" lazy="proxy">
+		</many-to-one>
 	</class>
 </hibernate-mapping>

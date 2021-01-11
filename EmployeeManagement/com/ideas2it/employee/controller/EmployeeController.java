@@ -53,21 +53,25 @@ public class EmployeeController {
                     break;
                 case 4:
                     System.out.println("VIEW THE LIST OF DATA");
-                    List <HashMap <String, Object>> employeeList = employeeService.viewEmployee();
-                    System.out.println(" EmployeeId \t Name \t PhoneNumber \t Salary \t EmailId \t State");
-                    for (int listIndex = 0; listIndex < employeeList.size(); listIndex ++) {
-                        HashMap <String, Object> employeeMap = employeeList.get(listIndex);
-                        System.out.println(employeeMap.get("EmployeeId") + "\t\t" + employeeMap.get("Name") + "\t" +
-                                employeeMap.get("PhoneNumber") + "\t\t" + employeeMap.get("Salary") + "\t" +
-                                employeeMap.get("EmailId")  + "\t\t" +employeeMap.get("State"));
-                    }
+                    
+					/*
+					 * List <HashMap <String, Object>> employeeList =
+					 * employeeService.viewEmployee(); System.out.
+					 * println(" EmployeeId \t Name \t PhoneNumber \t Salary \t EmailId \t State");
+					 * for (int listIndex = 0; listIndex < employeeList.size(); listIndex ++) {
+					 * HashMap <String, Object> employeeMap = employeeList.get(listIndex);
+					 * System.out.println(employeeMap.get("EmployeeId") + "\t\t" +
+					 * employeeMap.get("Name") + "\t" + employeeMap.get("PhoneNumber") + "\t\t" +
+					 * employeeMap.get("Salary") + "\t" + employeeMap.get("EmailId") + "\t\t"
+					 * +employeeMap.get("State")); }
+					 */
                     System.out.println("\nDATA FROM MAP IS PRINTED");
                     break;
                 case 5:
                     System.out.println("VIEW THE SINGLE ROW");
                     System.out.println("ENTER EMPLOYEE ID");
                     employeeId = scanner.nextInt();
-                    System.out.println("\n" + employeeService.viewSingleEmployee(employeeId));
+                    //System.out.println("\n" + employeeService.viewSingleEmployee(employeeId));
                     break;
                 case 6:
                     checkCase = false;
@@ -81,8 +85,6 @@ public class EmployeeController {
      * AddEmployee is used to get the values from the user
      */
     public void addEmployee() {
-        System.out.println("Enter Your Emloyeeid");
-        int employeeId = scanner.nextInt();
         System.out.println("Enter Your Companyname");
         String companyName = scanner.next();
         System.out.println("Enter Your Salary");
@@ -91,8 +93,6 @@ public class EmployeeController {
         String designation = scanner.next();
         System.out.println("Enter Your Experience(Years)");
         int experience = scanner.nextInt();
-        System.out.println("Enter Your Personalid");
-        int personalId = scanner.nextInt();
         System.out.println("Enter Your Name");
         String name = scanner.next();
         System.out.println("Enter Your Phonenumber");
@@ -107,10 +107,10 @@ public class EmployeeController {
         //} else if (employeeList.get(2) > 0) {
            // System.out.println("Duplicate Emailid");
        // } else {
-            Address currentAddress = getAddressValues();
-            Address permanentAddress = getAddressValues();
-            int messageStatus = employeeService.insertEmployee(employeeId, companyName, salary, designation, experience, 
-            		personalId, name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
+            Address currentAddress = getAddressValues("currentAddress");
+            Address permanentAddress = getAddressValues("permanentAddress");
+            int messageStatus = employeeService.insertEmployee(companyName, salary, designation, experience, 
+                                name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
             System.out.println(messageStatus);
        // }
     }
@@ -119,9 +119,7 @@ public class EmployeeController {
      * GetAddressValues is used to get address details from user
      * @return address  Address - return address details in this method
      */
-    public Address getAddressValues() {
-    	System.out.println("Enter Your AddressId");
-        int addressId = scanner.nextInt();
+    public Address getAddressValues(String addressType) {
         System.out.println("Enter Your Street");
         String street = scanner.next();
         System.out.println("Enter Your City");
@@ -132,7 +130,7 @@ public class EmployeeController {
         String state = scanner.next();
         System.out.println("Enter Your Pincode");
         int pinCode = scanner.nextInt();
-        return employeeService.addAddressValues(addressId, street, city, district, state, pinCode);
+        return employeeService.addAddressValues(street, city, district, state, pinCode, addressType);
     }
 
     /**

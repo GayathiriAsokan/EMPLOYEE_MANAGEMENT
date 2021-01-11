@@ -8,7 +8,7 @@
             com.mysql.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/Employee_Application
+            jdbc:mysql://localhost:3306/Employee_Management
         </property>
         <property name="hibernate.connection.username">
             root
@@ -24,9 +24,9 @@
         </property>
         <property name="Show Sql">
            true
-        </property>
-         <mapping resource="resources/classes/Address.hbm.xml"/> 
-         <mapping resource="resources/classes/PersonalDetails.hbm.xml"/> 
+        </property> 
+        <mapping resource="resources/classes/Address.hbm.xml"/>
+        <mapping resource="resources/classes/PersonalDetails.hbm.xml"/>
         <mapping resource="resources/classes/Employee.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

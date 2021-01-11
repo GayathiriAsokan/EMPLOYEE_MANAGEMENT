@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ideas2it.employee.model.Employee;
-import com.ideas2it.employee.model.PersonalDetails;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.ideas2it.employee.model.Address;
-import org.hibernate.Transaction;
+import com.ideas2it.employee.model.Employee;
+import com.ideas2it.employee.model.PersonalDetails;
 
 /**
  * @author GAYATHIRI
@@ -38,32 +37,44 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * @return rowCount int - to find whether the employee data inserted or not
      */
     @Override
-    public int insertEmployee(int employeeId, double salary, String companyName, String designation, int experience, int personalId,  String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
+    public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
         System.out.println("EMPLOYEE DATA");
         SessionFactory sessionFactory = SessionManagement.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction t = session.beginTransaction();
-        Employee employee = new Employee(employeeId, companyName, salary, experience, designation);
-        PersonalDetails personalDetails = new PersonalDetails(personalId, name, emailId, dateOfBirth, phoneNumber);
-        employee.setPersonalDetails(personalDetails);
-        personalDetails.setAddressList(currentAddress);
-        personalDetails.setAddressList(permanentAddress);
-        session.save(employee);
-        t.commit();
+        Transaction transaction = session.beginTransaction();
+		Employee employee = new Employee(companyName, salary, experience,designation); 
+		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, phoneNumber);
+		System.out.println(personalDetails);
+		employee.setPersonalDetails(personalDetails);
+		currentAddress.setPersonalDetails(personalDetails); 
+		permanentAddress.setPersonalDetails(personalDetails);
+		/*
+		 * List <Address> address = new ArrayList <Address>();
+		 * address.add(currentAddress); personalDetails.setAddressList(address);
+		 * address.add(permanentAddress); personalDetails.setAddressList(address);
+		 */
+		session.save(employee);
+		session.save(personalDetails);
+		session.save(currentAddress);
+		session.save(permanentAddress);
+		transaction.commit();
+        session.close();
         int rowCount = 0;
         return rowCount;
     }
 
     /**
      * ViewEmployee is used to view the employee details using select query
-     *
      * @param employeeId int
      * @param viewFlag   boolean
      * @return employeeList List <Employee>
      */
     @Override
-    public List<HashMap<String, Object>> viewEmployee(int employeeId, boolean viewFlag) {
-        List<HashMap<String, Object>> employeeList = new ArrayList<HashMap<String, Object>>();
+    public List <Employee> viewEmployee() {
+    	SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+    	Session session = sessionFactory.openSession();
+    	List <Employee> employeeList = session.createQuery("from employee").list();
+    	System.out.println(employeeList);
         return employeeList;
     }
 
@@ -88,9 +99,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * @return countAddress int- to find how many rows affected
      */
     @Override
-    public int deleteAddress(int employeeId, String addressType) {
+    public int deleteAddress(String addressType) {
         int countAddress = 0;
-
+        SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(addressType);
+        session.close();
+        transaction.commit();
         return countAddress;
     }
 
