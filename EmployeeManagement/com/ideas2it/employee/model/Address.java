@@ -114,7 +114,7 @@ public class Address {
 	@Override
     public String toString() {
         return "\n Address : AddressId "  +  getAddressId() + "\n PinCode : " + getPinCode() + "\n Street : " + getStreet() + "\n City : " + getCity()
-                + "\n District : " + getDistrict() + "\n State : " + getState() + "\n AddressType : " + getAddressType() + " "  + getPersonalDetails().toString();
+                + "\n District : " + getDistrict() + "\n State : " + getState() + "\n AddressType : " + getAddressType(); //+ " "  + getPersonalDetails().toString();
     }
 }
 

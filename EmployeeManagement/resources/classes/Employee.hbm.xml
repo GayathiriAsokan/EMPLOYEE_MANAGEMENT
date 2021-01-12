@@ -17,5 +17,4 @@
         <property name = "salary" column = "salary" type = "double"/>
         <one-to-one name ="personalDetails" cascade="persist,refresh,merge"></one-to-one>
     </class>
-
 </hibernate-mapping>

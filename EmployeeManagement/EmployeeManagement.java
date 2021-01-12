@@ -1,7 +1,7 @@
 /**
  * Provide the class necessary to create an Main class
- * To communicate with Employeecontroller and ProjectController 
- * Common main class fo employee and project
+ * To communicate with Employee controller and ProjectController 
+ * Common main class for employee and project
  * @version 1.0
  * @since 1.0
  */
@@ -13,7 +13,7 @@ import com.ideas2it.project.controller.ProjectController;
 
 /**
  * @description EmployeeApplication common main class for employee and project 
- * Used to hold Employeecontroller and ProjectController
+ * Used to hold Employee controller and ProjectController
  * @author GAYATHIRI
  * @version 1.0
  */

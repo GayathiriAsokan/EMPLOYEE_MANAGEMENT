@@ -6,11 +6,10 @@
  */
 package com.ideas2it.employee.dao;
 
+import java.util.List;
+
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @description EmployeeDaoImpl to communicate with EmployeeDao
@@ -18,15 +17,39 @@ import java.util.List;
  * @author GAYATHIRI
  */
 public interface EmployeeDao {
+	
+	/*
+	 * Insert values in database using hibernate
+	 */
     public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress);
-
+    
+    /*
+	 * View values from database using hibernate
+	 */
     public List <Employee> viewEmployee();
+    
+    /*
+     * View values by  Id from database using hibernate
+     */
+    public Employee employeeViewById(int employeeId);
 
-    public List<Integer> isDuplicate(int employeeId, double phoneNumber, String emailId);
+    /*
+     * isDuplicate from database using hibernate
+     */
+    public List<Integer> isDuplicate(int employeeId, long phoneNumber, String emailId);
 
-    public int deleteAddress(String addressType);
+    /*
+	 * Delete values in address in database using hibernate
+	 */
+    public int deleteAddress(int employeeId, String addressType);
 
+    /*
+	 * Delete values in employee table database using hibernate
+	 */
     public int deleteEmployee(int employeeId);
 
-    public int updatePersonalDetails(int employeeId, double phoneNumber, String emailId);
+    /*
+	 * Update values in database using hibernate
+	 */
+    public int updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
 }

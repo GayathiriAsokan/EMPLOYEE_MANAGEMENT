@@ -11,14 +11,13 @@
         <id name = "personalId" type = "int" column = "personal_id">
             <generator class="increment"></generator>
         </id>
-          <bag name="addressList" cascade="persist,refresh,merge" lazy ="true">  
+          <set name="addressSet" cascade="persist,refresh,merge" lazy ="true">  
             <key column="personal_id"></key>  
           <one-to-many class="com.ideas2it.employee.model.Address"/>  
-          </bag>  
+          </set>  
         <property name = "name" column = "name" type = "string"/>
         <property name = "emailId" column = "email_id" type = "string"/>
         <property name = "dateOfBirth" column = "dateof_birth" type = "string"/>
         <property name = "phoneNumber" column = "phone_number" type = "string"/>
     </class>
-   
 </hibernate-mapping>

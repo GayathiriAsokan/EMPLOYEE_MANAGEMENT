@@ -22,7 +22,13 @@
         <property name="hbm2ddl.auto">
             update
         </property>
-        <property name="Show Sql">
+        <property name="show_sql">
+           true
+        </property> 
+        <property name="format_sql">
+           true
+        </property> 
+        <property name="use_sql_comments">
            true
         </property> 
         <mapping resource="resources/classes/Address.hbm.xml"/>

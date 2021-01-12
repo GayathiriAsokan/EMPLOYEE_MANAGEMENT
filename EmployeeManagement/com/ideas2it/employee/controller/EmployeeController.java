@@ -49,29 +49,18 @@ public class EmployeeController {
                     break;
                 case 3:
                     System.out.println("UPDATE THE DATA");
-                    //updateEmployee();
+                    updateEmployee();
                     break;
                 case 4:
                     System.out.println("VIEW THE LIST OF DATA");
-                    
-					/*
-					 * List <HashMap <String, Object>> employeeList =
-					 * employeeService.viewEmployee(); System.out.
-					 * println(" EmployeeId \t Name \t PhoneNumber \t Salary \t EmailId \t State");
-					 * for (int listIndex = 0; listIndex < employeeList.size(); listIndex ++) {
-					 * HashMap <String, Object> employeeMap = employeeList.get(listIndex);
-					 * System.out.println(employeeMap.get("EmployeeId") + "\t\t" +
-					 * employeeMap.get("Name") + "\t" + employeeMap.get("PhoneNumber") + "\t\t" +
-					 * employeeMap.get("Salary") + "\t" + employeeMap.get("EmailId") + "\t\t"
-					 * +employeeMap.get("State")); }
-					 */
+                    System.out.println(employeeService.viewEmployee());
                     System.out.println("\nDATA FROM MAP IS PRINTED");
                     break;
                 case 5:
                     System.out.println("VIEW THE SINGLE ROW");
                     System.out.println("ENTER EMPLOYEE ID");
                     employeeId = scanner.nextInt();
-                    //System.out.println("\n" + employeeService.viewSingleEmployee(employeeId));
+                    System.out.println("\n" + employeeService.viewSingleEmployee(employeeId));
                     break;
                 case 6:
                     checkCase = false;
@@ -85,6 +74,10 @@ public class EmployeeController {
      * AddEmployee is used to get the values from the user
      */
     public void addEmployee() {
+		/*
+		 * System.out.println("Enter your EmployeeId"); int employeeId =
+		 * scanner.nextInt();
+		 */
         System.out.println("Enter Your Companyname");
         String companyName = scanner.next();
         System.out.println("Enter Your Salary");
@@ -95,24 +88,21 @@ public class EmployeeController {
         int experience = scanner.nextInt();
         System.out.println("Enter Your Name");
         String name = scanner.next();
-        System.out.println("Enter Your Phonenumber");
         long phoneNumber = checkPhoneNumber();
         String dateOfBirth = checkDateOfBirth();
         String emailId = checkEmailId();
         //List <Integer> employeeList = employeeService.checkEmployeeData(employeeId, phoneNumber, emailId);
-       // if (employeeList.get(0) > 0 ) {
-           // System.out.println( "Duplicate EmployeeId");
-      //  } else if (employeeList.get(1) > 0) {
-           // System.out.println("Duplicate Phonenumber");
-        //} else if (employeeList.get(2) > 0) {
-           // System.out.println("Duplicate Emailid");
-       // } else {
+		/*
+		 * if (employeeList.get(0) != 0 ) { System.out.println(
+		 * "Duplicate Phonenumber"); } else if (employeeList.get(1) != 0) {
+		 * System.out.println("Duplicate Emailid"); } else {
+		 */
             Address currentAddress = getAddressValues("currentAddress");
             Address permanentAddress = getAddressValues("permanentAddress");
             int messageStatus = employeeService.insertEmployee(companyName, salary, designation, experience, 
                                 name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
             System.out.println(messageStatus);
-       // }
+       //}
     }
 
     /**
@@ -135,14 +125,15 @@ public class EmployeeController {
 
     /**
      * UpdateEmployee is used to change the value from employee details
-     *
+     */
     public void updateEmployee() {
         System.out.println("ENTER YOUR EMPLOYEEID");
         int employeeId = scanner.nextInt();
         System.out.println("ENTER PHONE NUMBER");
-        int phoneNumber = scanner.nextInt();
+        long phoneNumber = scanner.nextLong();
         System.out.println("ENTER EMAILID");
         String emailId = scanner.next();
+        employeeService.checkEmployeeData(employeeId, phoneNumber, emailId);
         System.out.println(employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId));
     }
 
