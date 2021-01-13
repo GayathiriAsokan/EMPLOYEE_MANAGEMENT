@@ -7,7 +7,11 @@
 package com.ideas2it.project.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.ideas2it.employee.model.Employee;
 
 /**
  * @description Project Model class is a model class
@@ -16,12 +20,11 @@ import java.util.List;
  */
 public class Project {
     private int projectId;
-    private int employeeId;
     private String projectName;
     private String technology;
     private String projectManager;
     private String projectType;
-    private List<Integer> projectList = new ArrayList<Integer>();
+    //private Set <Employee>  employeeSet = new HashSet <Employee>();
 
     /**
      * Default Constructor which creates an empty object of Address
@@ -33,9 +36,7 @@ public class Project {
      * Parameterized constructor with parameters  projectId,projectName,projectManager,projectType
      * Asigning values using this keyword    
      */
-    public Project(int employeeId, int projectId, String projectName, String projectManager, String projectType, String technology) {
-        this.projectId = projectId;
-        this.employeeId = employeeId;
+    public Project(String projectName, String projectManager, String projectType, String technology) {
         this.projectName = projectName;
         this.technology = technology;
         this.projectManager = projectManager;
@@ -82,18 +83,17 @@ public class Project {
         return projectId;
     }
 
-    public void setEmployeeId(int employeeId) {
-        projectList.add(employeeId);
-    }
-
-    public List<Integer> getEmployeeId() {
-        return projectList;
-    }
-
-    @Override
+	/*
+	 * public Set<Employee> getEmployeeSet() { return employeeSet; }
+	 * 
+	 * public void setEmployeeSet(Set<Employee> employeeSet) { this.employeeSet =
+	 * employeeSet; }
+	 */
+	@Override
     public String toString() {
-        return "\n Project: ProjectId : " + getProjectId() + "\n EmployeeId : " + getEmployeeId() + "\n ProjectName  : " + getProjectName() +
-                "\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : " + getProjectType();
+        return "\n Project: ProjectId : " + getProjectId() + "\n ProjectName  : " + getProjectName() +
+                "\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : "
+        		+ getProjectType(); //+ " " + getEmployeeSet();
     }
 
 }

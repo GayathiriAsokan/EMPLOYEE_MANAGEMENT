@@ -6,6 +6,8 @@
  */
 package com.ideas2it.employee.model;
 
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Employee class is a model class 
@@ -20,7 +22,8 @@ public class Employee {
 	private int experience;
 	private String designation;
 	private PersonalDetails personalDetails;
-
+	//private Set <Employee>  projectSet = new HashSet <Employee>();
+	
 	/**
 	 * Default Constructor which creates an empty object of Employee
 	 */
@@ -85,6 +88,13 @@ public class Employee {
 	public void setPersonalDetails(PersonalDetails personalDetails) {
 		this.personalDetails = personalDetails;
 	}
+
+	/*
+	 * public Set<Employee> getProjectSet() { return projectSet; }
+	 * 
+	 * public void setProjectSet(Set<Employee> projectSet) { this.projectSet =
+	 * projectSet; }
+	 */
 
 	@Override
 	public String toString() {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping>
+    <class name="com.ideas2it.project.model.Project" table="project">
+        <meta attribute = "class-description">
+            This class contains the project details.
+        </meta>
+        <id name = "ProjectId" type = "int" column = "Project_id">
+            <generator class="increment"></generator>
+        </id>
+         <!-- <set name="employeeSet" table = "proproject_idject_employee" cascade="persist,refresh,merge" lazy ="true" inverse = "true">  
+            <key column="employee_id"></key>  
+          <many-to-many column = "project_id" class="com.ideas2it.employee.model.Project"/>  
+          </set>  -->
+        <property name = "projectName" column = "project_name" type = "string"/>
+        <property name = "technology" column = "technology" type = "string"/>
+        <property name = "projectManager" column = "project_manager" type = "string"/>
+        <property name = "projectType" column = "project_type" type = "string"/>
+    </class>
+</hibernate-mapping>

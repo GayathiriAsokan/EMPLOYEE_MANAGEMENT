@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import sessionManagement.SessionManagement;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
@@ -39,7 +40,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
-		System.out.println("EMPLOYEE DATA");
 		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -88,25 +88,24 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 * @return employeeList List <Integer>  - to find how many rows affected
 	 */
 	@Override
-	public List<Integer> isDuplicate(int employeeId, long phoneNumber, String emailId) {
+	public List<Integer> isDuplicate(long phoneNumber, String emailId) {
 		int countPhoneNumber = 0, countEmailId = 0;
 		List<Integer> employeeList = new ArrayList<Integer>();
 		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		/*
-		 * Query checkQuery = session.
-		 * createQuery("from PersonalDetails personalDetails where personalDetails.phoneNumber = :phoneNumber "
-		 * ); checkQuery.setParameter("phoneNumber", phoneNumber);
-		 * System.out.println(checkQuery); employeeList.add(countPhoneNumber); Query
-		 * hqlQuery = session.
-		 * createQuery("from PersonalDetails  personalDetails where personalDetails.emailId = :emailId"
-		 * ); hqlQuery.setParameter("emailId", emailId); countEmailId =
-		 * hqlQuery.executeUpdate(); employeeList.add(countEmailId);
-		 * System.out.println(employeeList);
-		 */
+		employeeList.add(0);
+//		Query checkQuery = session.createQuery("from PersonalDetails personalDetails where personalDetails.phoneNumber = :phoneNumber", PersonalDetails.class);
+//		checkQuery.setParameter("phoneNumber", phoneNumber);
+//		countPhoneNumber = checkQuery.getFirstResult();
+//		employeeList.add(countPhoneNumber);
+		Query hqlQuery = session.createQuery("from PersonalDetails  personalDetails where personalDetails.emailId = :emailId", PersonalDetails.class);
+		hqlQuery.setParameter("emailId", emailId);
+		countEmailId = hqlQuery.getFirstResult();
+		employeeList.add(countEmailId);
 		transaction.commit();
 		session.close();
+		System.out.println(employeeList);
 		return employeeList;
 	}
 

@@ -91,18 +91,18 @@ public class EmployeeController {
         long phoneNumber = checkPhoneNumber();
         String dateOfBirth = checkDateOfBirth();
         String emailId = checkEmailId();
-        //List <Integer> employeeList = employeeService.checkEmployeeData(employeeId, phoneNumber, emailId);
-		/*
-		 * if (employeeList.get(0) != 0 ) { System.out.println(
-		 * "Duplicate Phonenumber"); } else if (employeeList.get(1) != 0) {
-		 * System.out.println("Duplicate Emailid"); } else {
-		 */
+        List <Integer> employeeList = employeeService.checkEmployeeData(phoneNumber, emailId);
+        if (employeeList.get(0) != 0) {
+        	System.out.println("Duplicate Phonenumber");
+        } else if (employeeList.get(1) != 0) {
+   		    System.out.println("Duplicate Emailid"); 
+   		} else {
             Address currentAddress = getAddressValues("currentAddress");
             Address permanentAddress = getAddressValues("permanentAddress");
             int messageStatus = employeeService.insertEmployee(companyName, salary, designation, experience, 
                                 name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
             System.out.println(messageStatus);
-       //}
+       }
     }
 
     /**
@@ -133,7 +133,7 @@ public class EmployeeController {
         long phoneNumber = scanner.nextLong();
         System.out.println("ENTER EMAILID");
         String emailId = scanner.next();
-        employeeService.checkEmployeeData(employeeId, phoneNumber, emailId);
+        employeeService.checkEmployeeData(phoneNumber, emailId);
         System.out.println(employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId));
     }
 
@@ -165,7 +165,10 @@ public class EmployeeController {
         return emailId;
     }
 
-    /**
+    /**Query checkQuery = session.createQuery("from PersonalDetails personalDetails where personalDetails.phoneNumber = :phoneNumber", PersonalDetails.class);
+//		checkQuery.setParameter("phoneNumber", phoneNumber);
+//		countPhoneNumber = checkQuery.getFirstResult();
+//		employeeList.add(countPhoneNumber);
      * CheckDateOfBirth user need to enter dateOfBirth  repeatedly until a valid dateofbirth
      * @return dateOfBirth String - to set the value in employeeMap
      */

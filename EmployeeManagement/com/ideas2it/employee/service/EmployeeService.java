@@ -46,7 +46,7 @@ public interface EmployeeService {
     /*
      * checkEmployeeData used for employee duplication
      */
-    public List<Integer> checkEmployeeData(int employeeId, long phoneNumber, String emailId);
+    public List<Integer> checkEmployeeData(long phoneNumber, String emailId);
 
     /*
      * updatePersonalDetails used for update employee using hibernate

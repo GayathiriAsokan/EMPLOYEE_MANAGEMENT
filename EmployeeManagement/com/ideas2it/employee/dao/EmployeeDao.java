@@ -36,7 +36,7 @@ public interface EmployeeDao {
     /*
      * isDuplicate from database using hibernate
      */
-    public List<Integer> isDuplicate(int employeeId, long phoneNumber, String emailId);
+    public List<Integer> isDuplicate(long phoneNumber, String emailId);
 
     /*
 	 * Delete values in address in database using hibernate

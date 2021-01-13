@@ -138,8 +138,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @return employeeList List <Integer> 
      */
     @Override
-    public List<Integer> checkEmployeeData(int employeeId, long phoneNumber, String emailId) {
-        return employeeDAO.isDuplicate(employeeId, phoneNumber, emailId);
+    public List<Integer> checkEmployeeData(long phoneNumber, String emailId) {
+        return employeeDAO.isDuplicate(phoneNumber, emailId);
     }
 
 	/**
@@ -150,12 +150,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId) {
         List<Integer> employeeList = new ArrayList<Integer>();
-        employeeList = checkEmployeeData(employeeId, phoneNumber, emailId);
+        employeeList = checkEmployeeData(phoneNumber, emailId);
         if (employeeList.get(0) == 0 && employeeList.get(1) == 0) {
            employeeDAO.updatePersonalDetails(employeeId, phoneNumber, emailId);
            return "UPDATED SUCCESSFULLY";
         } else {
-            return "ALREADY EXIXTS  DUPLICATE VALUE";
+           return "ALREADY EXIXTS  DUPLICATE VALUE";
         }
     }
 
