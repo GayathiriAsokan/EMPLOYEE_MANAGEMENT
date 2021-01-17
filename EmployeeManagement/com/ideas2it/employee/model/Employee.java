@@ -9,6 +9,8 @@ package com.ideas2it.employee.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.ideas2it.project.model.Project;
+
 /**
  * Employee class is a model class 
  * It is used to hold the user employee details such as project name, salary
@@ -22,8 +24,8 @@ public class Employee {
 	private int experience;
 	private String designation;
 	private PersonalDetails personalDetails;
-	//private Set <Employee>  projectSet = new HashSet <Employee>();
-	
+	private Set <Project>  projectSet = new HashSet <Project>();
+
 	/**
 	 * Default Constructor which creates an empty object of Employee
 	 */
@@ -89,17 +91,28 @@ public class Employee {
 		this.personalDetails = personalDetails;
 	}
 
-	/*
-	 * public Set<Employee> getProjectSet() { return projectSet; }
-	 * 
-	 * public void setProjectSet(Set<Employee> projectSet) { this.projectSet =
-	 * projectSet; }
-	 */
+	public Set<Project> getProjectSet() { 
+		return projectSet; 
+	}
+
+	public void setProjectSet(Set<Project> projectSet) {
+		this.projectSet = projectSet; 
+	}
+
+	public  Set<Integer> getProjectId(){
+		Set<Project> project =  new HashSet  <Project> ();
+		Set<Integer> projectId =  new HashSet  <Integer> ();
+		project.addAll(getProjectSet());
+		for (Project projectIterator : project) {
+			projectId.add(projectIterator.getProjectId());	
+		}
+		return projectId;
+	}
 
 	@Override
 	public String toString() {
 		return "\n Employee : EmployeeId : " + getEmployeeId() + "\n CompanyName : " + getCompanyName() + "\n Salary : "
 				+ getSalary() + "\n Designation : " + getDesignation() + "\n Experience : " + getExperience() + " "
-				+ getPersonalDetails().toString();
+				+ getPersonalDetails().toString() + getProjectId();
 	}
 }

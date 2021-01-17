@@ -6,11 +6,10 @@
  */
 package com.ideas2it.employee.service;
 
+import java.util.List;
+
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @description To communicate with service class
@@ -18,53 +17,102 @@ import java.util.List;
  * @version 1.0
  */
 public interface EmployeeService {
-	/*
+
+	/**
 	 * Insert values in database using hibernate
+	 * 
+	 * @param employeeId int - property in employee
+	 * @param companyName String -  property in employee
+	 * @param salary long - property in employee
+	 * @param pinCode int - property in address
+	 * @param name String - property in Personal details
+	 * @param state String - property in address
+	 * @param phoneNumber long - property in Personal details
+	 * @param dateOfBirth String - property in Personal details
+	 * @param city String -  property in address
+	 * @param emailId String -  property in Personal details
+	 * @param district String -  property in address
+	 * @param street string -  property in address
+	 * @return String - to return message status of the employee details
 	 */
-    public int insertEmployee(String companyName, double salary, String designation, int experience,
-    		String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress);
-    /*
-	 * View values from database using hibernate
+	public int insertEmployee(String companyName, double salary, String designation, int experience,
+			String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress);
+
+	/**
+	 * ViewEmployee is used show the employee details 
+	 * Values in the EmployeeMap are displayed 
+	 * 
+	 * @return employeeMap Map <Integer,Employee> - to print employee details
 	 */
-    public List<Employee> viewEmployee();
-    
-    /*
-     * View values by  Id from database using hibernate
-     */
-    public Employee viewSingleEmployee(int employeeId);
-    
-    /*
-	 * Delete values in employee in database using hibernate
+	public List<Employee> viewEmployee();
+
+	/**
+	 * ViewsingleData method  used to display the employee data
+	 * 
+	 * @param employeeId int - to display the employee data
+	 * @return List<HashMap<String, Object>> - to print the employee details
 	 */
-    public List<Integer> deleteEmployee(int employeeId, String addressType);
-    
-    /*
-     * Add address values in employee
-     */
-    public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType);
+	public Employee viewSingleEmployee(int employeeId);
 
-    /*
-     * checkEmployeeData used for employee duplication
-     */
-    public List<Integer> checkEmployeeData(long phoneNumber, String emailId);
+	/**
+	 * DeleteData method used to delete the employee data
+	 * 
+	 * @param employeeId int - to check employeedata is present or not
+	 * @return List<Integer>  - to print delted or not
+	 */
+	public List<Integer> deleteEmployee(int employeeId, String addressType);
 
-    /*
-     * updatePersonalDetails used for update employee using hibernate
-     */
-    public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
+	/**
+	 * AddAddressValues used to set the address details in Address
+	 * 
+	 * @param street String - property in Address
+	 * @param city String - property in Address
+	 * @param state String - property in Address
+	 * @param district String - property in Address
+	 * @param pinCode int - property in Address
+	 * @return AddressValues Address - return the address details  to the getAddressValues
+	 */
+	public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType);
 
-    /*
-     * checkEmailId used for validation
-     */
-    public String checkEmailId(String emailId);
+	/**
+	 * CheckEmployeeData is used  for duplication check
+	 * 
+	 * @param emailId String - validate emailId
+	 * @param  employeeId int
+	 * @param phoneNumber long
+	 * @return employeeList List <Integer> 
+	 */
+	public List<Integer> checkEmployeeData(long phoneNumber, String emailId);
 
-    /*
-     * checkPhoneNumber used for validation
-     */
-    public long checkPhoneNumber(long phoneNumber);
+	/**
+	 * UpdatePhoneNumber to change the value of phone number
+	 * 
+	 * @param employeeId int - to get the personal details object
+	 * @param phoneNumber long - check for validation and duplication
+	 */
+	public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
 
-    /*
-     * checkDateOfBirth used for validation
-     */
-    public String checkDateOfBirth(String dateOfBirth);
+	/**
+	 * CheckEmailId is used  for validation and duplication check
+	 * 
+	 * @param emailId String - validate emailId
+	 * @return emailId String - used to check whether it is a proper emailId or not
+	 */
+	public String checkEmailId(String emailId);
+
+	/**
+	 * CheckphoneNumber is used  for validation and duplication check
+	 * 
+	 * @param phoneNumber long - validate phoneNumber
+	 * @return phoneNumber long - used to check whether it is a proper phoneNumber or not
+	 */
+	public long checkPhoneNumber(long phoneNumber);
+
+	/**
+	 * CheckDateOfBirth is used  for validation 
+	 * 
+	 * @param DateOfBirth String - validate DateOfBirth
+	 * @return DateOfBirth String - used to check whether it is a proper DateOfBirth or not
+	 */
+	public String checkDateOfBirth(String dateOfBirth);
 }

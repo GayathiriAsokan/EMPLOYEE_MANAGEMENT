@@ -6,7 +6,6 @@
  */
 package com.ideas2it.project.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.ideas2it.project.model.Project;
@@ -17,19 +16,46 @@ import com.ideas2it.project.model.Project;
  * @version 1.2
  */
 public interface ProjectService {
-    public String insertProject(String projectName, String projectManager,
-                                String projectType, String technology);
 
-    public List<Project> viewProject();
-
-    public Project viewSingleProject(int projectId);
-
-	/*
-	 * public String deleteProject(int projectId, int employeeId);
-	 * 
-	 * public String updateProject(int projectId, int employeeId);
-	 * 
-	 * public int isProjectIdExist(int projectId);
+	/**
+	 * Insert is used to insert to project details 
+	 * @param projectName
+	 * @param projectManager
+	 * @param projectType
+	 * @param technology
+	 * @param startDate
+	 * @param endDate
+	 * @return String
 	 */
+	public String insertProject(String projectName, String projectManager,
+			String projectType, String technology, String startDate, String endDate);
+
+	/**
+	 * View the list of project
+	 * @return List<Project>
+	 */
+	public List<Project> viewProject();
+
+	/**
+	 * View project via Id
+	 * @param projectId
+	 * @return Project
+	 */
+	public Project viewSingleProject(int projectId);
+
+	/**
+	 * Update the project details
+	 * @param projectId int  
+	 * @param actualEndDate String
+	 * @return String
+	 */
+	public String updateProject(int projectId, String actualEndDate);
+
+	/**
+	 * Check date is used to validate date
+	 * @param dateValue String
+	 * @return String
+	 */
+	public String checkDate(String dateValue);
 }
 

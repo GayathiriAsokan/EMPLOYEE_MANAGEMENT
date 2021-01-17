@@ -6,6 +6,7 @@
  * @since 1.0
  */
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.ideas2it.employee.controller.EmployeeController;
@@ -19,33 +20,36 @@ import com.ideas2it.project.controller.ProjectController;
  */
 public class EmployeeManagement {
 
-    /**
-     * Used for insert delete  operations in employee and project
-     * @param args - Application startup arguments
-     */
-    public static void main(String [] args) {
-        ProjectController projectController = new ProjectController();
-        EmployeeController employeeController = new EmployeeController();
-       boolean exitFlag = true;
-       Scanner scanner = new Scanner(System.in);
-       do {
-           System.out.println("\nEMPLOYEE MANAGEMENT");
-           System.out.println("\n1.EMPLOYEE DETAILS \n2.PROJECT DETAILS \n3.Exit");
-           System.out.println("\nENTER THE OPTION YOU WANT TO USE");
-           int userOption = scanner.nextInt();
-           if (userOption == 1) {
-               System.out.println("\nEMPLOYEE DETAILS");
-               employeeController.employeeDetails();
-           } else if (userOption == 2) {
-               System.out.println("\nPROJECT DETAILS");
-               projectController.projectDetails();
-           } else if (userOption == 3) {
-               System.out.println("EXIT EMPLOYEE  MANAGEMENT");
-               exitFlag = false;
-           } else {
-               System.out.println("INVALID CASE");
-           }
-       } while (exitFlag); 
-    }
-    
+	/**
+	 * Used for insert delete  operations in employee and project
+	 * @param args - Application startup arguments
+	 */
+	public static void main(String [] args) {
+		ProjectController projectController = new ProjectController();
+		EmployeeController employeeController = new EmployeeController();
+		boolean exitFlag = true;
+		Scanner scanner = new Scanner(System.in);
+		try {
+			do {
+				System.out.println("\nEMPLOYEE MANAGEMENT");
+				System.out.println("\n1.EMPLOYEE DETAILS \n2.PROJECT DETAILS \n3.Exit");
+				System.out.println("\nENTER THE OPTION YOU WANT TO USE");
+				int userOption = scanner.nextInt();
+				if (userOption == 1) {
+					System.out.println("\nEMPLOYEE DETAILS");
+					employeeController.employeeDetails();
+				} else if (userOption == 2) {
+					System.out.println("\nPROJECT DETAILS");
+					projectController.projectDetails();
+				} else if (userOption == 3) {
+					System.out.println("\nEXIT EMPLOYEE  MANAGEMENT");
+					exitFlag = false;
+				} else {
+					System.out.println("INVALID CASE");
+				}
+			} while (exitFlag); 
+		} catch(InputMismatchException e) {
+			System.out.println("PLEASE ENTER A VALID INPUT");
+		}
+	}
 }

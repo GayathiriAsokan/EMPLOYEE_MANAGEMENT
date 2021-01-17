@@ -5,13 +5,11 @@
  * @version 1.0
  * @since 1.0
  */
-package com.ideas2it.project.dao;
+package com.ideas2it.employee.dao;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,21 +28,21 @@ import sessionManagement.SessionManagement;
  */
 public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao{
 	SessionManagement sessionManagement = new SessionManagement();
-
+	
 	/**
 	 * AddProjectEmployee is used to add details in project and employee
 	 */
 	@Override
-	public void addProjectEmployee(List <Integer> listId, int projectId) {
+	public void addProjectEmployee(List <Integer> listId, int employeeId) {
 		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Project project = session.get(Project.class, projectId);
-		List <Employee> employee = session.createQuery("select emp from Employee emp where emp.employeeId IN :listId").setParameter("listId", listId).getResultList();
-		System.out.println("employee list" + employee);
-		Set <Employee> employeeSet = new HashSet <Employee>(employee);
-		project.setEmployeeSet(employeeSet);
-		session.save(project);
+		Employee employee = session.get(Employee.class, employeeId);
+		List <Project> project = session.createQuery("select project from Project project where project.projectId IN :listId").setParameter("listId", listId).getResultList();
+		System.out.println("employee list" + project);
+		Set<Project> projectSet = new HashSet <Project>(project);
+		employee.setProjectSet(projectSet);
+		session.save(employee);
 		transaction.commit();
 		session.close();
 	}
@@ -53,21 +51,21 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao{
 	 * ViewProjectEmployee() is used to view the project employee details
 	 */
 	@Override
-	public List <Project> viewProjectEmployee() {
+	public List <Employee> viewProjectEmployee() {
 		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		List <Project> project = session.createQuery("from Project", Project.class).getResultList();
-		return project;
+		List <Employee> employee = session.createQuery("from Employee", Employee.class).getResultList();
+		return employee;
 	}
 
 	/**
 	 * ViewProjectEmployeeById is used to view the project employee via Id
 	 */
 	@Override
-	public Project viewProjectEmployeeById(int projectId) {
+	public Employee viewProjectEmployeeById(int employeeId) {
 		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		Project project = session.get(Project.class, projectId);
-		return project;
+		Employee employee = session.get(Employee.class, employeeId);
+		return employee;
 	}
 }
