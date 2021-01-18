@@ -25,10 +25,11 @@ public interface ProjectService {
 	 * @param technology
 	 * @param startDate
 	 * @param endDate
+	 * @param actualEndDate
 	 * @return String
 	 */
 	public String insertProject(String projectName, String projectManager,
-			String projectType, String technology, String startDate, String endDate);
+			String projectType, String technology, String startDate, String endDate, String actualEndDate);
 
 	/**
 	 * View the list of project
@@ -49,7 +50,7 @@ public interface ProjectService {
 	 * @param actualEndDate String
 	 * @return String
 	 */
-	public String updateProject(int projectId, String actualEndDate);
+	public String updateProject(int projectId, String actualEndDate, String technology);
 
 	/**
 	 * Check date is used to validate date

@@ -12,6 +12,8 @@ import java.util.Scanner;
 import com.ideas2it.employee.controller.EmployeeController;
 import com.ideas2it.project.controller.ProjectController;
 
+import sessionManagement.SessionManagement;
+
 /**
  * @description EmployeeApplication common main class for employee and project 
  * Used to hold Employee controller and ProjectController
@@ -27,6 +29,7 @@ public class EmployeeManagement {
 	public static void main(String [] args) {
 		ProjectController projectController = new ProjectController();
 		EmployeeController employeeController = new EmployeeController();
+		SessionManagement.initializeSessionFactory();
 		boolean exitFlag = true;
 		Scanner scanner = new Scanner(System.in);
 		try {

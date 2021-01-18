@@ -26,17 +26,16 @@ import sessionManagement.SessionManagement;
  * @author GAYATHIRI
  */
 public class ProjectDaoImpl implements ProjectDao {
-	SessionManagement sessionManagement  = new SessionManagement();
 
 	/**
 	 * InsertProject is used to insert the values using Insert query
 	 */
 	@Override
-	public int insertProject(String projectName, String technology, String projectManager, String projectType, String startDate, String endDate) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+	public int insertProject(String projectName, String technology, String projectManager, String projectType, String startDate, String endDate, String actualEndDate) {
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Project project = new Project(projectName, technology, projectManager, projectType, startDate, endDate);
+		Project project = new Project(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate);
 		int rowCount = 0;
 		session.save(project);
 		System.out.println(rowCount);
@@ -50,7 +49,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public List<Project> viewProject() {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		List<Project> projectlist = session.createQuery("from Project", Project.class).getResultList();
 		return projectlist;
@@ -61,7 +60,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public Project projectViewById(int projectId) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Project project = session.get(Project.class, projectId);
 		return project;
@@ -71,13 +70,14 @@ public class ProjectDaoImpl implements ProjectDao {
 	 * UpdateProject is used to change the actualEndDate
 	 */
 	@Override
-	public int updateProject(int projectId, String actualEndDate) {
+	public int updateProject(int projectId, String actualEndDate, String technology) {
 		int updateCount = 0;
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Query UpdateQuery = session.createQuery("update Project project set project.actualEndDate = :actualEndDate where project.projectId = :projectId");
+		Query UpdateQuery = session.createQuery("update Project project set project.actualEndDate = :actualEndDate , project.technology = :technology where project.projectId = :projectId");
 		UpdateQuery.setParameter("actualEndDate", actualEndDate);
+		UpdateQuery.setParameter("technology", technology);
 		UpdateQuery.setParameter("projectId", projectId);
 		updateCount =  UpdateQuery.executeUpdate();
 		transaction.commit();

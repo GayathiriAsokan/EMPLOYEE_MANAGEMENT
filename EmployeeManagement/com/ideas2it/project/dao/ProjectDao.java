@@ -19,16 +19,17 @@ public interface ProjectDao {
 
 	/**
 	 * Inserting the project values 
-	 * @param projectName
-	 * @param technology
-	 * @param projectManager
-	 * @param projectType
-	 * @param startDate
-	 * @param endDate
-	 * @return
+	 * @param projectName String
+	 * @param technology String
+	 * @param projectManager String
+	 * @param projectType String
+	 * @param startDate String
+	 * @param endDate String
+	 * @param actualEndDate String
+	 * @return int
 	 */
     public int insertProject(String projectName, String technology,
-                             String projectManager, String projectType, String startDate, String endDate);
+                             String projectManager, String projectType, String startDate, String endDate, String actualEndDate);
     /**
      * ViewProject is used to view all project details
      * @return List<Project>
@@ -48,6 +49,6 @@ public interface ProjectDao {
      * @param actualEndDate
      * @return int
      */
-    public int updateProject(int projectId, String actualEndDate);
+    public int updateProject(int projectId, String actualEndDate, String technology);
 }
 

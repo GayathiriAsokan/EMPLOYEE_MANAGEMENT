@@ -13,20 +13,23 @@ import org.hibernate.SessionFactory;
  */
 public class SessionManagement {
 
+	public static  SessionFactory sessionFactory;
 	/**
 	 * SessionFactory is used to get session factory in hibernate 
 	 * @return SessionFactory
 	 */
-	public SessionFactory getSessionFactory(){
-		SessionFactory sessionFactory = null;
-		try {	
-			Configuration configuration = new Configuration();
-			configuration.configure("resources/properties/hibernate.cfg.xml");
-			sessionFactory = configuration.buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Could not load the connection" + e.getMessage());
-			e.printStackTrace();
-		}
-		return sessionFactory;
+	public static void  initializeSessionFactory(){
+			try {	
+				Configuration configuration = new Configuration();
+				configuration.configure("resources/properties/hibernate.cfg.xml");
+				sessionFactory = configuration.buildSessionFactory();
+			} catch (Exception e) {
+				System.out.println("Could not load the connection" + e.getMessage());
+				e.printStackTrace();
+			}
 	}	
+	public static SessionFactory  getSessionFactory(){
+		return sessionFactory;
+	}
+	
 }

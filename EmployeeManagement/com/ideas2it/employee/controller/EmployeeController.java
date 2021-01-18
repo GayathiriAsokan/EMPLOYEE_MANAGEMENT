@@ -34,7 +34,7 @@ public class EmployeeController {
 		boolean checkCase = true;
 		try {
 			do {
-				System.out.println("\n1.INSERT \n2.DELETE \n3.UPDATE \n4.VIEW LIST \n5.VIEW \n6.PROJEC EMPLOYEE MANAGEMENT \n7.EXIT");
+				System.out.println("\n1.INSERT \n2.DELETE \n3.UPDATE \n4.VIEW LIST \n5.VIEW \n6.PROJECT EMPLOYEE MANAGEMENT \n7.EXIT");
 				System.out.println("Enter The Option");
 				int pickCase = scanner.nextInt();
 				switch (pickCase) {
@@ -54,7 +54,7 @@ public class EmployeeController {
 					updateEmployee();
 					break;
 				case 4:
-					System.out.println("VIEW THE LIST OF DATA" + employeeService.viewEmployee() + " \nDATA FROM MAP IS PRINTED");
+					System.out.println("VIEW THE LIST OF DATA" + employeeService.viewEmployee() + " \nDATA FROM TABLE IS PRINTED");
 					break;
 				case 5:
 					System.out.println("VIEW THE SINGLE ROW");
@@ -96,20 +96,26 @@ public class EmployeeController {
 			String emailId = checkEmailId();
 			List <Integer> employeeList = employeeService.checkEmployeeData(phoneNumber, emailId);
 			if (employeeList.get(0) != 0 && employeeList.get(1) != 0) {
-				System.out.println("Duplicate Phonenumber And Emailid");
+				System.out.println("DUPLICATE PHONE NUMBER AND EMAILID");
 			} else if (employeeList.get(1) != 0) {
-				System.out.println("Duplicate Emailid"); 
+				System.out.println("DUPLICATE EMAILID"); 
 			} else if (employeeList.get(0) != 0) {
-				System.out.println("Duplicate Phonenumber");
+				System.out.println("DUPLICATE PHONE NUMBER");
 			} else {
 				Address currentAddress = getAddressValues("currentAddress");
-				Address permanentAddress;
+				Address permanentAddress ;
 				System.out.println("IS CURRENT ADDRESS IS SAME AS PERMANENT ADDRESS \n 1.YES  2.NO");
 				int addresscase = scanner.nextInt();
 				if (addresscase == 1) {
 					permanentAddress = currentAddress;
 				} else {
-					permanentAddress = getAddressValues("permanentAddress");
+					permanentAddress = new Address ();
+					permanentAddress.setAddressType("permanentAddress");
+					permanentAddress.setCity(currentAddress.getCity());
+					permanentAddress.setState(currentAddress.getState());
+					permanentAddress.setPinCode(currentAddress.getPinCode());
+					permanentAddress.setDistrict(currentAddress.getDistrict());
+					permanentAddress.setStreet(currentAddress.getStreet());
 				}
 				int messageStatus = employeeService.insertEmployee(companyName, salary, designation, experience, 
 						name, phoneNumber, dateOfBirth, emailId, currentAddress, permanentAddress);
@@ -151,11 +157,11 @@ public class EmployeeController {
 			String emailId = scanner.next();
 			List <Integer> employeeList = employeeService.checkEmployeeData(phoneNumber, emailId);
 			if (employeeList.get(0) != 0 && employeeList.get(1) != 0) {
-				System.out.println("Duplicate Phonenumber And Emailid");
+				System.out.println("DUPLICATE PHONE NUMBER AND EMAILID");
 			} else if (employeeList.get(1) != 0) {
-				System.out.println("Duplicate Emailid"); 
+				System.out.println("DUPLICATE EMAILID"); 
 			} else if (employeeList.get(0) != 0) {
-				System.out.println("Duplicate Phonenumber");
+				System.out.println("DUPLICATE PHONE NUMBER");
 			} else {
 				System.out.println(employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId));
 			}
@@ -214,7 +220,7 @@ public class EmployeeController {
 		try {
 			boolean checkCase = true;
 			do {
-				System.out.println("\n1.INSERT \n2.VIEW LIST \n3.VIEW \n4.PROJECT DETAILS");
+				System.out.println("\n1.INSERT \n2.VIEW LIST \n3.VIEW \n4.EMPLOYEE DETAILS");
 				System.out.println("Enter The Option");
 				int pickCase = scanner.nextInt();
 				switch (pickCase) {
@@ -227,6 +233,7 @@ public class EmployeeController {
 					int projectId = scanner.nextInt();
 					listId.add(projectId);
 					String employeeIdString = "DO You Want To Add more Employee \n 1.YES \n 2.NO";
+					System.out.println(employeeIdString);
 					int addProject = scanner.nextInt();
 					while (addProject == 1) {
 						System.out.println("Enter Your EmployeeId");

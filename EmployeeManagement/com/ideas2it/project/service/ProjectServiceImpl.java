@@ -28,8 +28,8 @@ public class ProjectServiceImpl implements ProjectService {
 	 * InsertProject is used to inserting the data and getting the values from user
 	 */
 	@Override
-	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate) {
-		projectDao.insertProject(projectName, technology, projectManager, projectType, startDate, endDate);
+	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate) {
+		projectDao.insertProject(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate);
 		return "PROJECT DATA ADDED SUCCESSFULLY";
 	}
 
@@ -61,8 +61,8 @@ public class ProjectServiceImpl implements ProjectService {
 	 * UpdateEmployee is used to change the value from employee details
 	 */
 	@Override
-	public String updateProject (int projectId, String actualEndDate) {
-		if (projectDao.updateProject(projectId, actualEndDate) == 1) { 
+	public String updateProject (int projectId, String actualEndDate, String technology) {
+		if (projectDao.updateProject(projectId, actualEndDate, technology) == 1) { 
 			return "UPDATED SUCCESSFULLY"; 
 		} else { 
 			return "CANNOT UPDATE GIVE  VALID DATE KINDLY CHECK IT"; }

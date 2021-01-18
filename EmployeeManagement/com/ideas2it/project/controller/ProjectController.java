@@ -47,7 +47,9 @@ public class ProjectController {
 					int projectId = scanner.nextInt();
 					String delayDate = "Enter Your Actual End Date in the format yyyy/MM/dd";
 					String actualEndDate =checkDate(delayDate);
-					System.out.println(projectService.updateProject(projectId, actualEndDate));
+					System.out.println("Enter Your Technology");
+					String technology = scanner.next();
+					System.out.println(projectService.updateProject(projectId, actualEndDate, technology));
 					break;
 				case 3:
 					System.out.println("VIEW THE  LIST OF DATA");
@@ -92,7 +94,9 @@ public class ProjectController {
 			String startDate = checkDate(date);
 			String  dateEnd =  "Enter Your End Date in the format yyyy/MM/dd";
 			String endDate = checkDate(dateEnd);
-			String messageStatus = projectService.insertProject(projectName, projectManager, projectType, technology, startDate, endDate);
+			String  actualdateEnd =  "Enter Your End Date in the format yyyy/MM/dd";
+			String actualEndDate = checkDate(actualdateEnd);
+			String messageStatus = projectService.insertProject(projectName, projectManager, projectType, technology, startDate, endDate, actualEndDate);
 			System.out.println(messageStatus);
 		} catch (InputMismatchException e) {
 			System.out.println("PLEASE GIVE A VALID INPUT");
@@ -132,14 +136,14 @@ public class ProjectController {
 					System.out.println("ENTER  PROJECT ID");
 					int projectId = scanner.nextInt();
 					listId.add(employeeId);
-					System.out.println("DO You Want To Add more Employee");
-					System.out.println("\n 1.YES \n 2.NO");
+					String employeeIdString = "DO You Want To Add more Employee \n 1.YES \n 2.NO";
+					System.out.println(employeeIdString);
 					int addEmployee = scanner.nextInt();
 					while (addEmployee == 1) {
 						System.out.println("Enter Your EmployeeId");
 						employeeId = scanner.nextInt();
 						listId.add(employeeId);
-						System.out.println("\n 1.YES \n 2.NO");
+						System.out.println(employeeIdString);
 						addEmployee = scanner.nextInt();
 					}
 					projectEmployee.addProjectEmployee(listId, projectId);

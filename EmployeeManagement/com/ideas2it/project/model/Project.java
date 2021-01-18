@@ -40,13 +40,14 @@ public class Project {
 	 * Parameterized constructor with parameters projectName, projectManager, projectType, startDate, endDate
 	 * Asigning values using this keyword    
 	 */
-	public Project(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate) {
+	public Project(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate) {
 		this.projectName = projectName;
 		this.technology = technology;
 		this.projectManager = projectManager;
 		this.projectType = projectType;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.actualEndDate = actualEndDate;
 	}
 
 	public void setProjectType(String projectType) {
@@ -134,8 +135,8 @@ public class Project {
 	public String toString() {
 		return "\n Project: ProjectId : " + getProjectId() + "\n ProjectName  : " + getProjectName() +
 				"\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : "
-				+ getProjectType()+  "\n EndDate" +  getEndDate() +  "\n StartDate" + getStartDate() + "\n ActualEndDate" + 
-				getActualEndDate() + " " + getEmployeeId() + "\n Project Status" + validator.projectStatus (endDate, actualEndDate);
+				+ getProjectType()+  "\n EndDate : " +  getEndDate() +  "\n StartDate : " + getStartDate() + "\n ActualEndDate : " + 
+				getActualEndDate() + " " + getEmployeeId() + "\n PROJECT STATUS " + validator.projectStatus (endDate, actualEndDate);
 	}
 
 }

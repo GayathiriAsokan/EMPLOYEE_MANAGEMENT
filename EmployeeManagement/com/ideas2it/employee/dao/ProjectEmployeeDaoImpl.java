@@ -27,14 +27,13 @@ import sessionManagement.SessionManagement;
  * @author GAYATHIRI
  */
 public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao{
-	SessionManagement sessionManagement = new SessionManagement();
 	
 	/**
 	 * AddProjectEmployee is used to add details in project and employee
 	 */
 	@Override
 	public void addProjectEmployee(List <Integer> listId, int employeeId) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Employee employee = session.get(Employee.class, employeeId);
@@ -52,7 +51,7 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao{
 	 */
 	@Override
 	public List <Employee> viewProjectEmployee() {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		List <Employee> employee = session.createQuery("from Employee", Employee.class).getResultList();
 		return employee;
@@ -63,7 +62,7 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao{
 	 */
 	@Override
 	public Employee viewProjectEmployeeById(int employeeId) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Employee employee = session.get(Employee.class, employeeId);
 		return employee;

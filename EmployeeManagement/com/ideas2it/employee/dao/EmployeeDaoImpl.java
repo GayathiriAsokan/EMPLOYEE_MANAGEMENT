@@ -30,14 +30,13 @@ import sessionManagement.SessionManagement;
  * @version 1.0
  */
 public class EmployeeDaoImpl implements EmployeeDao {
-	SessionManagement sessionManagement = new SessionManagement();
 
 	/**
 	 * InsertEmployee is used to insert the employee data using insert query
 	 */
 	@Override
 	public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Employee employee = new Employee(companyName, salary, experience,designation); 
@@ -60,7 +59,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public List <Employee> viewEmployee() {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		List <Employee> employeeList = session.createQuery("from Employee", Employee.class).getResultList();
 		return employeeList;
@@ -71,7 +70,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override 
 	public Employee employeeViewById(int employeeId) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Employee employee = session.get(Employee.class, employeeId);
 		return employee;
@@ -82,7 +81,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public List<Integer> isDuplicate(long phoneNumber, String emailId) {
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		String mobileNumber = Long.toString(phoneNumber);
@@ -105,22 +104,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public int deleteAddress(int employeeId, String addressType) {
-		int countAddress = 0, addressId =0;
+		int countAddress = 0;
+		Address address = null;
 		Employee employee = employeeViewById(employeeId);
 		PersonalDetails personalDetails = employee.getPersonalDetails();
-		Set <Address> address= personalDetails.getAddressSet();
-		for (Address address_details : address) {
+		Set <Address> addressSet = personalDetails.getAddressSet();
+		for (Address address_details : addressSet) {
 			if  (address_details.getAddressType().equals(addressType)) {
-				addressId = address_details.getAddressId(); 	 
+			     address = address_details;
 			}
 		}
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Query hqlquery = session.createQuery("delete from Address address where address.addressId = :addressId and address.addressType = :addressType");
-		hqlquery.setParameter("addressId",addressId);
-		hqlquery.setParameter("addressType", addressType);
-		countAddress = hqlquery.executeUpdate();
+		session.remove(address);
 		transaction.commit();
 		session.close();
 		return countAddress;
@@ -132,7 +129,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public int deleteEmployee(int employeeId) {
 		int countEmployee = 0;
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Query deleteQuery = session.createQuery("update Employee employee set designation = null where employee.employeeId = :employeeId");
@@ -152,7 +149,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Employee employee = employeeViewById(employeeId);
 		PersonalDetails personalDetails = employee.getPersonalDetails();
 		personalId = personalDetails.getPersonalId();
-		SessionFactory sessionFactory = sessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		String mobileNumber = Long.toString(phoneNumber);
