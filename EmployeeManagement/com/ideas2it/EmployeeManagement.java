@@ -5,14 +5,14 @@
  * @version 1.0
  * @since 1.0
  */
+package com.ideas2it;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.ideas2it.employee.controller.EmployeeController;
 import com.ideas2it.project.controller.ProjectController;
-
-import sessionManagement.SessionManagement;
+import com.ideas2it.sessionManagement.SessionManagement;
 
 /**
  * @description EmployeeApplication common main class for employee and project 
@@ -32,7 +32,6 @@ public class EmployeeManagement {
 		SessionManagement.initializeSessionFactory();
 		boolean exitFlag = true;
 		Scanner scanner = new Scanner(System.in);
-		try {
 			do {
 				System.out.println("\nEMPLOYEE MANAGEMENT");
 				System.out.println("\n1.EMPLOYEE DETAILS \n2.PROJECT DETAILS \n3.Exit");
@@ -40,10 +39,10 @@ public class EmployeeManagement {
 				int userOption = scanner.nextInt();
 				if (userOption == 1) {
 					System.out.println("\nEMPLOYEE DETAILS");
-					employeeController.employeeDetails();
+					employeeController.getEmployeeDetails();
 				} else if (userOption == 2) {
 					System.out.println("\nPROJECT DETAILS");
-					projectController.projectDetails();
+					projectController.getProjectDetails();
 				} else if (userOption == 3) {
 					System.out.println("\nEXIT EMPLOYEE  MANAGEMENT");
 					exitFlag = false;
@@ -51,8 +50,5 @@ public class EmployeeManagement {
 					System.out.println("INVALID CASE");
 				}
 			} while (exitFlag); 
-		} catch(InputMismatchException e) {
-			System.out.println("PLEASE ENTER A VALID INPUT");
-		}
 	}
 }

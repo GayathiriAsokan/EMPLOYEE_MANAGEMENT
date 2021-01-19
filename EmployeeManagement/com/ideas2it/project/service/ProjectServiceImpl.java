@@ -25,7 +25,7 @@ public class ProjectServiceImpl implements ProjectService {
 	Validator validator = new Validator();
 
 	/**
-	 * InsertProject is used to inserting the data and getting the values from user
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate) {
@@ -34,7 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	/**
-	 * ViewProject is used show the project details 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List<Project> viewProject() {
@@ -42,7 +42,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	/**
-	 * ViewsingleData method used to display the employee data 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Project viewSingleProject(int projectId) {
@@ -50,21 +50,29 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	/**
-	 * CheckDate is used to validate date
+	 * {@inheritDoc}
 	 */
 	@Override
-	public String checkDate(String dateValue) {
-		return validator.checkDate(dateValue);
+	public boolean isDateValid(String dateValue) {
+		return validator.isDateValid(dateValue);
 	}
 
 	/**
-	 * UpdateEmployee is used to change the value from employee details
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String updateProject (int projectId, String actualEndDate, String technology) {
 		if (projectDao.updateProject(projectId, actualEndDate, technology) == 1) { 
 			return "UPDATED SUCCESSFULLY"; 
 		} else { 
-			return "CANNOT UPDATE GIVE  VALID DATE KINDLY CHECK IT"; }
+			return "CANNOT UPDATE GIVE VALID DATE KINDLY CHECK IT"; }
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void addProjectEmployee(List <Integer> listId, int projectId) {
+		projectDao.addProjectEmployee(listId, projectId);
 	}
 }

@@ -6,6 +6,7 @@
  */
 package com.ideas2it.employee.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.ideas2it.employee.model.Address;
@@ -36,7 +37,7 @@ public interface EmployeeService {
 	 * @return String - to return message status of the employee details
 	 */
 	public int insertEmployee(String companyName, double salary, String designation, int experience,
-			String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress);
+			String name, long phoneNumber, String dateOfBirth, String emailId, HashMap <String, Object> currentAddressMap , HashMap <String, Object> permanentAddressMap);
 
 	/**
 	 * ViewEmployee is used show the employee details 
@@ -44,7 +45,7 @@ public interface EmployeeService {
 	 * 
 	 * @return employeeMap Map <Integer,Employee> - to print employee details
 	 */
-	public List<Employee> viewEmployee();
+	public List<Employee> getAllEmployee();
 
 	/**
 	 * ViewsingleData method  used to display the employee data
@@ -52,7 +53,7 @@ public interface EmployeeService {
 	 * @param employeeId int - to display the employee data
 	 * @return List<HashMap<String, Object>> - to print the employee details
 	 */
-	public Employee viewSingleEmployee(int employeeId);
+	public Employee getEmployee(int employeeId);
 
 	/**
 	 * DeleteData method used to delete the employee data
@@ -64,15 +65,10 @@ public interface EmployeeService {
 
 	/**
 	 * AddAddressValues used to set the address details in Address
-	 * 
-	 * @param street String - property in Address
-	 * @param city String - property in Address
-	 * @param state String - property in Address
-	 * @param district String - property in Address
-	 * @param pinCode int - property in Address
-	 * @return AddressValues Address - return the address details  to the getAddressValues
+	 * @param employeeListValues
+	 * @return
 	 */
-	public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType);
+	public Address addAddressValues(HashMap <String, Object> employeeListValues);
 
 	/**
 	 * CheckEmployeeData is used  for duplication check
@@ -82,7 +78,7 @@ public interface EmployeeService {
 	 * @param phoneNumber long
 	 * @return employeeList List <Integer> 
 	 */
-	public List<Integer> checkEmployeeData(long phoneNumber, String emailId);
+	public List<Integer> validateEmployeeData(long phoneNumber, String emailId);
 
 	/**
 	 * UpdatePhoneNumber to change the value of phone number
@@ -93,26 +89,34 @@ public interface EmployeeService {
 	public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
 
 	/**
-	 * CheckEmailId is used  for validation and duplication check
+	 * IsEmailIdValid is used  for validation and duplication check
 	 * 
 	 * @param emailId String - validate emailId
-	 * @return emailId String - used to check whether it is a proper emailId or not
+	 * @return boolean
 	 */
-	public String checkEmailId(String emailId);
+	public boolean isEmailIdValid(String emailId);
 
 	/**
-	 * CheckphoneNumber is used  for validation and duplication check
+	 * IsPhoneNumberValid is used  for validation and duplication check
 	 * 
 	 * @param phoneNumber long - validate phoneNumber
-	 * @return phoneNumber long - used to check whether it is a proper phoneNumber or not
+	 * @return boolean
 	 */
-	public long checkPhoneNumber(long phoneNumber);
+	public boolean isPhoneNumberValid(long phoneNumber);
 
 	/**
-	 * CheckDateOfBirth is used  for validation 
+	 * IsDateOfBirthValid is used  for validation 
 	 * 
 	 * @param DateOfBirth String - validate DateOfBirth
-	 * @return DateOfBirth String - used to check whether it is a proper DateOfBirth or not
+	 * @return boolean
 	 */
-	public String checkDateOfBirth(String dateOfBirth);
+	public boolean isDateOfBirthValid(String dateOfBirth);
+	
+	/**
+	 * AddProjectEmployee is used to add project employee details
+	 * 
+	 * @param listId
+	 * @param employeeId
+	 */
+	public void addProjectEmployee(List <Integer> listId, int employeeId);
 }

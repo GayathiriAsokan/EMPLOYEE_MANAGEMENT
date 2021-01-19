@@ -8,6 +8,7 @@
 package com.ideas2it.employee.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,15 +31,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	EmployeeDaoImpl employeeDAO = new EmployeeDaoImpl();
 
 	/**
-	 * InsertEmployee is used to inserting the data and getting the values from user
-	 * Add all  employee details in the employeeMap
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int insertEmployee(String companyName, double salary, String designation, int experience, 
-			String name, long phoneNumber, String dateOfBirth, String emailId, Address currentAddress, Address permanentAddress) {
+			String name, long phoneNumber, String dateOfBirth, String emailId, HashMap <String, Object> currentAddressMap , HashMap <String, Object> permanentAddressMap) {
 		String mobileNumber = Long.toString(phoneNumber);
 		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
-		Set <Address> address = new HashSet <Address>();
+		Address currentAddress = addAddressValues(currentAddressMap);
+		Address permanentAddress = addAddressValues(permanentAddressMap);
+		Set <Address> address = new HashSet <Address> ();
 		address.add(currentAddress);
 		address.add(permanentAddress);
 		personalDetails.setAddressSet(address);
@@ -52,19 +54,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * ViewEmployee is used show the employee details 
-	 * Values in the EmployeeMap are displayed 
+	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Employee> viewEmployee() {
+	public List<Employee> getAllEmployee() {
 		return employeeDAO.viewEmployee();
 	}
 
 	/**
-	 * ViewsingleData method  used to display the employee data
+	 * {@inheritDoc}
 	 */
 	@Override
-	public Employee viewSingleEmployee(int employeeId) {
+	public Employee getEmployee(int employeeId) {
 		return employeeDAO.employeeViewById(employeeId);
 	}
 
@@ -80,29 +81,35 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * AddAddressValues used to set the address details in Address
+	 * {@inheritDoc}
 	 */
 	@Override
-	public Address addAddressValues(String street, String city, String district, String state, int pinCode, String addressType) {
+	public Address addAddressValues(HashMap <String, Object> employeeMap) {
+		String street = (String) employeeMap.get("Street");
+		String city = (String) employeeMap.get("City");
+		String district = (String) employeeMap.get("District");
+		String state = (String) employeeMap.get("State");
+		String addressType = (String) employeeMap.get("AddressType");
+		int pinCode = (int) employeeMap.get("PinCode");
 		Address addressValues = new Address(street, city, district, pinCode, state, addressType);
 		return addressValues;
 	}
 
 	/**
-	 * CheckEmployeeData is used  for duplication check
+	 * {@inheritDoc}
 	 */
 	@Override
-	public List<Integer> checkEmployeeData(long phoneNumber, String emailId) {
+	public List<Integer> validateEmployeeData(long phoneNumber, String emailId) {
 		return employeeDAO.isDuplicate(phoneNumber, emailId);
 	}
 
 	/**
-	 * UpdatePersonalDetails to change the value of phone number and emailId
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId) {
 		List<Integer> employeeList = new ArrayList<Integer>();
-		employeeList = checkEmployeeData(phoneNumber, emailId);
+		employeeList = validateEmployeeData(phoneNumber, emailId);
 		if (employeeList.get(0) == 0 && employeeList.get(1) == 0) {
 			employeeDAO.updatePersonalDetails(employeeId, phoneNumber, emailId);
 			return "UPDATED SUCCESSFULLY";
@@ -112,27 +119,36 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	/**
-	 * CheckEmailId is used  for validation and duplication check
+	 * {@inheritDoc}
 	 */
 	@Override
-	public String checkEmailId(String emailId) {
-		return validator.checkEmailId(emailId);
+	public boolean isEmailIdValid(String emailId) {
+		System.out.println(validator.isEmailIdValid(emailId));
+		return validator.isEmailIdValid(emailId);
 	}
 
 	/**
-	 * CheckphoneNumber is used  for validation and duplication check
+	 * {@inheritDoc}
 	 */
 	@Override
-	public long checkPhoneNumber(long phoneNumber) {
-		return validator.checkPhoneNumber(phoneNumber);
+	public boolean isPhoneNumberValid(long phoneNumber) {
+		return validator.isPhoneNumberValid(phoneNumber);
 	}
 
 	/**
 	 * CheckDateOfBirth is used  for validation 
 	 */
 	@Override
-	public String checkDateOfBirth(String dateOfBirth) {
-		return validator.checkDate(dateOfBirth);
+	public boolean isDateOfBirthValid(String dateOfBirth) {
+		return validator.isDateValid(dateOfBirth);
+	}
+
+	/**
+	 * AddProjectEmployee is used to add project employee details
+	 */
+	@Override
+	public void addProjectEmployee(List <Integer> listId, int employeeId) {
+		employeeDAO.addProjectEmployee(listId, employeeId);
 	}
 }
 

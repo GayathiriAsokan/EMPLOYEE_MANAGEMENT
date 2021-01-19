@@ -57,6 +57,11 @@ public interface ProjectService {
 	 * @param dateValue String
 	 * @return String
 	 */
-	public String checkDate(String dateValue);
+	public boolean isDateValid(String dateValue);
+	
+	/**
+	 * AddProjectEmployee is used to add project employee details
+	 */
+	public void addProjectEmployee(List <Integer> listId, int projectId);
 }
 

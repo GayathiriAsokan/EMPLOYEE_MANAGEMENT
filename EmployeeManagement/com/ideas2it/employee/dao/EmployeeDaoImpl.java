@@ -8,6 +8,7 @@
 package com.ideas2it.employee.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,8 @@ import org.hibernate.Transaction;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
-import sessionManagement.SessionManagement;
+import com.ideas2it.project.model.Project;
+import com.ideas2it.sessionManagement.SessionManagement;
 
 /**
  * @description EmployeeDao made jdbc connectivity using hibernate for the employeeApplication
@@ -32,11 +34,11 @@ import sessionManagement.SessionManagement;
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	/**
-	 * InsertEmployee is used to insert the employee data using insert query
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int insertEmployee(double salary, String companyName, String designation, int experience, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Employee employee = new Employee(companyName, salary, experience,designation); 
@@ -55,33 +57,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	/**
-	 * ViewEmployee is used to view the employee details using select query
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List <Employee> viewEmployee() {
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		List <Employee> employeeList = session.createQuery("from Employee", Employee.class).getResultList();
 		return employeeList;
 	}
 
 	/**
-	 * EmployeeViewById is used to view employee in hibernate using id
+	 * {@inheritDoc}
 	 */
 	@Override 
 	public Employee employeeViewById(int employeeId) {
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Employee employee = session.get(Employee.class, employeeId);
 		return employee;
 	}
 
 	/**
-	 * IsDuplicate is used to check value already present in the Personal_details table or not
+	 * {@inheritDoc}
 	 */
 	@Override
 	public List<Integer> isDuplicate(long phoneNumber, String emailId) {
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		String mobileNumber = Long.toString(phoneNumber);
@@ -100,7 +102,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	/**
-	 * DeleteAddress is used to delete entries in Address table
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int deleteAddress(int employeeId, String addressType) {
@@ -111,10 +113,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Set <Address> addressSet = personalDetails.getAddressSet();
 		for (Address address_details : addressSet) {
 			if  (address_details.getAddressType().equals(addressType)) {
-			     address = address_details;
+				address = address_details;
 			}
 		}
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.remove(address);
@@ -124,12 +126,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	/**
-	 * DeleteEmployee is used to delete entries in Employee
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int deleteEmployee(int employeeId) {
 		int countEmployee = 0;
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Query deleteQuery = session.createQuery("update Employee employee set designation = null where employee.employeeId = :employeeId");
@@ -141,7 +143,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	/**
-	 * UpdatePersonalDetails is used to change the Personal_details values of emailId, phoneNumber
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int updatePersonalDetails(int employeeId, long phoneNumber, String emailId) {
@@ -149,7 +151,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Employee employee = employeeViewById(employeeId);
 		PersonalDetails personalDetails = employee.getPersonalDetails();
 		personalId = personalDetails.getPersonalId();
-		SessionFactory sessionFactory = SessionManagement.getSessionFactory();
+		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		String mobileNumber = Long.toString(phoneNumber);
@@ -161,5 +163,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		transaction.commit();
 		session.close();
 		return updateCount;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void addProjectEmployee(List <Integer> listId, int employeeId) {
+		SessionFactory sessionFactory = SessionManagement.getInstance();
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Employee employee = session.get(Employee.class, employeeId);
+		List <Project> project = session.createQuery("select project from Project project where project.projectId IN :listId").setParameter("listId", listId).getResultList();
+		System.out.println("employee list" + project);
+		Set<Project> projectSet = new HashSet <Project>(project);
+		employee.setProjectSet(projectSet);
+		session.save(employee);
+		transaction.commit();
+		session.close();
 	}
 }

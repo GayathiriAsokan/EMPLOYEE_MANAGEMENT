@@ -28,7 +28,7 @@ public interface ProjectDao {
 	 * @param actualEndDate String
 	 * @return int
 	 */
-    public int insertProject(String projectName, String technology,
+    public void insertProject(String projectName, String technology,
                              String projectManager, String projectType, String startDate, String endDate, String actualEndDate);
     /**
      * ViewProject is used to view all project details
@@ -50,5 +50,10 @@ public interface ProjectDao {
      * @return int
      */
     public int updateProject(int projectId, String actualEndDate, String technology);
+    
+    /**
+	 * AddProjectEmployee is used to add details in project and employee
+	 */
+	public void addProjectEmployee(List <Integer> listId, int projectId);
 }
 

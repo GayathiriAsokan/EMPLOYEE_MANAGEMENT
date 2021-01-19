@@ -25,12 +25,12 @@
 		<property name="show_sql">
 			true
 		</property>
-		<!-- <property name="format_sql">
+		<property name="format_sql">
 			true
 		</property>
 		<property name="use_sql_comments">
 			true
-		</property> -->
+		</property>
 		<mapping resource="resources/classes/Address.hbm.xml" />
 		<mapping resource="resources/classes/PersonalDetails.hbm.xml" />
 		<mapping resource="resources/classes/Employee.hbm.xml" />

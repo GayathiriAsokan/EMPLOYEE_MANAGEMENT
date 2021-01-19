@@ -95,45 +95,6 @@ public class Validator {
 	}
 
 	/**
-	 * CheckEmailId is used for validation and duplication check
-	 * @param emailId String - validate emailId
-	 * @return emailId String - used to check whether it is a proper emailId or not
-	 */ 
-	public String checkEmailId(String emailId) {
-		if (!(isEmailIdValid(emailId))) {
-			System.out.println("Not a valid email kindly change emailId");
-			emailId = null;
-		}
-		return emailId;    
-	}
-
-	/**
-	 * CheckphoneNumber is used  for validation and duplication check
-	 * @param phoneNumber long - validate phoneNumber
-	 * @return phoneNumber long - used to check whether it is a proper phoneNumber or not
-	 */ 
-	public Long checkPhoneNumber(Long phoneNumber) {
-		if (!(isPhoneNumberValid(phoneNumber))) {
-			System.out.println("Not a valid phone number kindly change phone number");
-			phoneNumber = (long) 0;
-		}
-		return phoneNumber;    
-	}
-
-	/**
-	 * CheckDate is used  for validation and duplication check
-	 * @param Date String - validate Date
-	 * @return String - used to check whether it is a proper Date or not
-	 */
-	public String checkDate(String date) {
-		if (!(isDateValid(date))) {
-			System.out.println("Not a Date valid  kindly change Date");
-			date = null;
-		}
-		return date;
-	}
-
-	/**
 	 * ProjectStatus gives the status of the project 
 	 * @param endDate String - property in project
 	 * @param actualEndDate  String - property in project
