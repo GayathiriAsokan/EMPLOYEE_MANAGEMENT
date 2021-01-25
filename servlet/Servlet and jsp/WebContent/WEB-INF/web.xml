@@ -18,12 +18,21 @@
  <url-pattern>/Insert/*</url-pattern>
  </servlet-mapping>
  
-  <servlet>
+ <servlet>
  <servlet-name>def</servlet-name>
  <servlet-class>com.ideas2it.AddEmployee</servlet-class>
  </servlet>
  <servlet-mapping>
  <servlet-name>def</servlet-name>
  <url-pattern>/Update</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
+ <servlet-name>ghi</servlet-name>
+ <servlet-class>com.ideas2it.ViewEmployee</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>ghi</servlet-name>
+ <url-pattern>/ViewEmployee</url-pattern>
  </servlet-mapping>
 </web-app>

@@ -3,36 +3,41 @@ package com.ideas2it;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 
+/**
+ * 
+ * @author GAYATHIRI
+ *
+ */
 public class AddEmployee extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		 PrintWriter out = res.getWriter(); 
+	/**
+	 * 
+	 */
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		PrintWriter out = res.getWriter(); 
 		 out.println("<html>\n"
 		 		+ "<head>\n"
 		 		+ "<title>INSERT EMPLOYEE DETAILS</title>\n"
 		 		+ "<script>\n");
-			/*
-			 * + "var request;\n" + "function sendInfo() { \n" +
-			 * "var EmployeeId=document.getElementById("EmployeeId").value;\n"
-			 */
-		 		/*
-					 * + "function addressFunction() {\n" +
-					 * "	if (document.getElementById(\"CurrentAddress\").checked) {\n" +
-					 * "		alert(document.getElementById(\"CurrentAddressDivision\").style.visibility='visible');\n"
-					 * +
-					 * "		alert(document.getElementById(\"PermanentAddressDivision\").style.visibility='hidden');\n"
-					 * + "	} else if (document.getElementById(\"PermanentAddress\").checked) {\n" +
-					 * "		alert(document.getElementById(\"PermanentAddressDivision\").style.visibility='visible');\n"
-					 * +
-					 * "		alert(document.getElementById(\"CurrentAddressDivision\").style.visibility='hidden');\n"
-					 * + "	}\n" + "}\n"
-					 */
+		        out.println("var XMLHttpRequest=new XMLHttpRequest();\n"
+		        		+ "function sendInfo() {\n"
+		        		+ "   XMLHttpRequest.open(\"Get\",\"/Demo1/ViewEmployee?EmployeeId=\"+document.getElementById(\"EmployeeId\").value,true);\n"
+		        		+ "   XMLHttpRequest.onreadystateChange=processEmployee;\n"
+		        		+ "   XMLHttpRequest.send(null);\n"
+		        		+ "}"
+		        		+ "function processEmployee() {\n"
+		        		+ "XMLHttpRequest.responseType='json'\n"
+		        		//+ "    if (XMLHttpRequest.readyState == 4 && XMLHttpRequest.status ==200) {\n"
+		        		+ "       var JSONTopicObject = XMLHttpRequest.response;\n"
+		        		+" document.getElementById(\"CompanyName\").value=\"JSONTopicObject\"\n"
+		        		+ " console.log(JSONTopicObject); "
+		        		//+ "  }\n"
+		        		+ "}");
 		 		out.println("function addressValuesFunction() {\n"
 		 		+ " if (document.getElementById( \"same\").checked) { \n"
 		 		+ "      document.getElementById(\"street2\").value =  document.getElementById(\"street1\").value; \n"
@@ -59,12 +64,12 @@ public class AddEmployee extends HttpServlet {
 		        	out.println("<label for=\"EmployeeId\">EmployeeId:\n"
 		    		 		+ "</label><br>\n"
 		    		 		+ "<input type=\"number\" id=\"EmployeeId\" name=\"EmployeeId\" required>\n"
-		    		 		+ "<br> <br>\n"
 		    		 		+ "<input type=\"button\" value=\"SEARCH\" onclick=\"sendInfo()\">\n\n");
 		        }
-		 		out.println("<label for=\"CompanyName\">CompanyName:\n"
+		 		out.println("<br> <br> "
+		 		+ "<label for=\"CompanyName\">CompanyName:\n"
 		 		+ "</label><br>\n"
-		 		+ "<input type=\"text\" name=\"CompanyName\" size=\"25\" required>\n"
+		 		+ "<input type=\"text\" id=\"CompanyName\" name=\"CompanyName\" size=\"25\" required>\n"
 		 		+ "<br> <br>\n"
 		 		+ "<label for=\"Salary\">Salary:\n"
 		 		+ "</label><br>\n"
