@@ -40,9 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
 		Address currentAddress = addAddressValues(currentAddressMap);
 		Address permanentAddress = addAddressValues(permanentAddressMap);
-		Set <Address> address = new HashSet <Address> ();
-		address.add(currentAddress);
-		address.add(permanentAddress);
 		Employee employee = new Employee(companyName, salary, experience, designation, status);
 		employeeDAO.insertEmployee(employee, personalDetails, currentAddress, permanentAddress);
 		return "INSERTED SUCCESSFULLY";
