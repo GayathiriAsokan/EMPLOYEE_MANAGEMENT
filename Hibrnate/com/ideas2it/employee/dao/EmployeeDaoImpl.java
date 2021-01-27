@@ -37,12 +37,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void insertEmployee(double salary, String companyName, String designation, int experience, String status, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
+	public void insertEmployee(Employee employee, PersonalDetails personalDetails, Address currentAddress, Address permanentAddress) {
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Employee employee = new Employee(companyName, salary, experience, designation, status); 
-		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, phoneNumber);
 		employee.setPersonalDetails(personalDetails);
 		currentAddress.setPersonalDetails(personalDetails); 
 		permanentAddress.setPersonalDetails(personalDetails);

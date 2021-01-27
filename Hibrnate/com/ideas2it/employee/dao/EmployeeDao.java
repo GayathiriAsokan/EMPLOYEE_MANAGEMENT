@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
+import com.ideas2it.employee.model.PersonalDetails;
 
 /**
  * @description EmployeeDaoImpl to communicate with EmployeeDao
@@ -26,7 +27,7 @@ public interface EmployeeDao {
 	 * @param companyName String
 	 * @return rowCount int - to find whether the employee data inserted or not
 	 */
-	public void insertEmployee(double salary, String companyName, String designation, int experience, String name, String status, String phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress);
+	public void insertEmployee(Employee employee, PersonalDetails personalDetails, Address currentAddress, Address permanentAddress) ;
 
 	/**
 	 * View values from database using hibernate

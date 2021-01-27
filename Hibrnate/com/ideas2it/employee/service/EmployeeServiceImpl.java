@@ -43,12 +43,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Set <Address> address = new HashSet <Address> ();
 		address.add(currentAddress);
 		address.add(permanentAddress);
-		personalDetails.setAddressSet(address);
 		Employee employee = new Employee(companyName, salary, experience, designation, status);
-		employee.setPersonalDetails(personalDetails);
-		employeeDAO.insertEmployee(employee.getSalary(), employee.getCompanyName(),
-				employee.getDesignation(), employee.getExperience(), employee.getStatus(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
-				personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
+		employeeDAO.insertEmployee(employee, personalDetails, currentAddress, permanentAddress);
 		return "INSERTED SUCCESSFULLY";
 	}
 
