@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>EMPLOYEE MANAGEMENT</title>
 <script>
 function employeeFunction() {
@@ -23,11 +26,11 @@ function employeeFunction() {
 <label for ="project">PROJECT DETAILS</label><br>
 <div id="EmployeeDivision">
 <h2>Employee Details</h2>
-<p><a href="/Demo1/Insert?mode=1">Insert</a>
-<p><a href="/Demo1/Update?mode=2">Update</a>
-<p><a href="/Demo1/Delete?mode=3">Delete</a>
+<p><a href="/Demo1/EmployeeController?mode=1">Insert</a>
+<p><a href="/Demo1/EmployeeController?mode=2">Update</a>
+<p><a href="/Demo1/EmployeeController?mode=3">Delete</a>
 <p><a href="/ViewEmployee">ViewEmployee</a>
-<p><a href="/Demo1/ViewEmployeeById?mode=5">ViewEmployeeById</a>
+<p><a href="/Demo1/EmployeeController?mode=5">ViewEmployeeById</a>
 </div>
 <div id="ProjectDivision" style="visibility: hidden;">
 <h2>Project Details</h2>

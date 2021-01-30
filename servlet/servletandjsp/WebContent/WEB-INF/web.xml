@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
  <servlet>
- <servlet-name>abc</servlet-name>
+ <servlet-name>EmployeeController</servlet-name>
  <servlet-class>com.ideas2it.AddEmployee</servlet-class>
  </servlet>
  <servlet-mapping>
- <servlet-name>abc</servlet-name>
- <url-pattern>/Insert</url-pattern>
+ <servlet-name>EmployeeController</servlet-name>
+ <url-pattern>/EmployeeController</url-pattern>
  </servlet-mapping>
  
  <servlet>
@@ -16,15 +16,6 @@
  <servlet-mapping>
  <servlet-name>pqr</servlet-name>
  <url-pattern>/Insert/*</url-pattern>
- </servlet-mapping>
- 
- <servlet>
- <servlet-name>def</servlet-name>
- <servlet-class>com.ideas2it.AddEmployee</servlet-class>
- </servlet>
- <servlet-mapping>
- <servlet-name>def</servlet-name>
- <url-pattern>/Update</url-pattern>
  </servlet-mapping>
  
   <servlet>
@@ -46,15 +37,6 @@
  <url-pattern>/UpdateEmployee</url-pattern>
  </servlet-mapping>
  
- <servlet>
- <servlet-name>delete</servlet-name>
- <servlet-class>com.ideas2it.AddEmployee</servlet-class>
- </servlet>
- <servlet-mapping>
- <servlet-name>delete</servlet-name>
- <url-pattern>/Delete</url-pattern>
- </servlet-mapping>
- 
   <servlet>
  <servlet-name>deleteStatus</servlet-name>
  <servlet-class>com.ideas2it.DeleteEmployee</servlet-class>
@@ -65,12 +47,4 @@
  <url-pattern>/DeleteEmployee</url-pattern>
  </servlet-mapping> 
  
- <servlet>
- <servlet-name>view</servlet-name>
- <servlet-class>com.ideas2it.AddEmployee</servlet-class>
- </servlet>
- <servlet-mapping>
- <servlet-name>view</servlet-name>
- <url-pattern>/ViewEmployeeById</url-pattern>
- </servlet-mapping>
 </web-app>
