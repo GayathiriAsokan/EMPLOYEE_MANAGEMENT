@@ -23,7 +23,6 @@ public class ViewEmployee extends HttpServlet {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId"));
 		if (employeeId != 0) {
 			response.setContentType("text/html");
-			// ObjectMapper objectMapper = new ObjectMapper();
 			employeeService.getEmployee(employeeId);
 			JSONArray arrayEmployeeValues = new JSONArray();
 			JSONObject employee = new JSONObject();

@@ -10,13 +10,13 @@
  </servlet-mapping>
  
  <servlet>
- <servlet-name>pqr</servlet-name>
- <servlet-class>com.ideas2it.EmployeeSubmission</servlet-class>
+ <servlet-name>submit</servlet-name>
+ <servlet-class>com.ideas2it.employee.controller.EmployeeSubmission</servlet-class>
  </servlet>
  <servlet-mapping>
- <servlet-name>pqr</servlet-name>
- <url-pattern>/Insert/*</url-pattern>
- </servlet-mapping>
+ <servlet-name>submit</servlet-name>
+ <url-pattern>/EmployeeSubmission</url-pattern>
+ </servlet-mapping> 
  
   <servlet>
  <servlet-name>ghi</servlet-name>
