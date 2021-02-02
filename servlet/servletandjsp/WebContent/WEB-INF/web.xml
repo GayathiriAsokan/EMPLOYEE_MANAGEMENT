@@ -2,12 +2,13 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
  <servlet>
  <servlet-name>EmployeeController</servlet-name>
- <servlet-class>com.ideas2it.AddEmployee</servlet-class>
+ <servlet-class>com.ideas2it.employee.controller.AddEmployee</servlet-class>
  </servlet>
  <servlet-mapping>
  <servlet-name>EmployeeController</servlet-name>
  <url-pattern>/EmployeeController</url-pattern>
  </servlet-mapping>
+ 
  
  <servlet>
  <servlet-name>submit</servlet-name>
@@ -19,32 +20,13 @@
  </servlet-mapping> 
  
   <servlet>
- <servlet-name>ghi</servlet-name>
+ <servlet-name>viewDetails</servlet-name>
  <servlet-class>com.ideas2it.ViewEmployee</servlet-class>
  </servlet>
  <servlet-mapping>
- <servlet-name>ghi</servlet-name>
+ <servlet-name>viewDetails</servlet-name>
  <url-pattern>/ViewEmployee</url-pattern>
- </servlet-mapping>
- 
- <servlet>
- <servlet-name>update</servlet-name>
- <servlet-class>com.ideas2it.UpdateEmployee</servlet-class>
- </servlet>
- 
- <servlet-mapping>
- <servlet-name>update</servlet-name>
- <url-pattern>/UpdateEmployee</url-pattern>
- </servlet-mapping>
- 
-  <servlet>
- <servlet-name>deleteStatus</servlet-name>
- <servlet-class>com.ideas2it.DeleteEmployee</servlet-class>
- </servlet>
- 
- <servlet-mapping>
- <servlet-name>deleteStatus</servlet-name>
- <url-pattern>/DeleteEmployee</url-pattern>
  </servlet-mapping> 
+ 
  
 </web-app>

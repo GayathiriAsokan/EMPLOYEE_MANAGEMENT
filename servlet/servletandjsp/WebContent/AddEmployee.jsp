@@ -11,11 +11,8 @@
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
 <script type="text/javascript">
 	$(function () {
-		alert("gf");
 		$('#same').click(function () {
-			alert("ids")
 			if (!($('#same').checked)) {
-				alert("fgjg");
 				$('#street2').val($('#street1').val());
 				$('#city2').val($('#city1').val());
 				$('#district2').val($('#district1').val());
@@ -29,6 +26,40 @@
 		    	$('#pincode2').val("");
 		}
 			});
+		$('#SEARCH').click(function () {
+			var employeeId = $('#EmployeeId');
+			console.log(employeeId);
+			$.ajax({
+				type:"GET",
+				url:"ViewEmployee",
+				data: employeeId,
+				success: function (response) {
+					var arrayEmployeeValues = response;
+					var employeeMap = arrayEmployeeValues[0];
+					$("#CompanyName").val(employeeMap.companyName);
+					$("#Salary").val(employeeMap.salary);
+					$("#Designation").val(employeeMap.designation);
+					$("#Experience").val(employeeMap.experience);
+					$("#Status").val(employeeMap.status);
+					$("#Name").val(employeeMap.name);
+					$("#PhoneNumber").val(employeeMap.phoneNumber);
+					$("#EmailId").val(employeeMap.emailId);
+					$("#DateOfBirth").val(employeeMap.dateOfBirth);
+					$("#street1").val(employeeMap.currentStreet);
+					$("#city1").val(employeeMap.currentCity);
+					$("#district1").val(employeeMap.currentDistrict);
+					$("#state1").val(employeeMap.currentState);
+					$("#pincode1").val(employeeMap.currentPinCode);
+					$("#AddressType1").val(employeeMap.currentAddressType);
+					$("#street2").val(employeeMap.permanentStreet);
+					$("#city2").val(employeeMap.permanentCity);
+					$("#district2").val(employeeMap.permanentDistrict);
+					$("#state2").val(employeeMap.permanentState);
+					$("#pincode2").val(employeeMap.permanentPinCode);
+					$("#AddressType2").val(employeeMap.permanentAddressType);
+				}
+			});
+		});
 		$('#submit').click(function () {
 			var postData = $('#commentForm').serializeArray();
 			var formURL=$('#commentForm').attr("action");
@@ -38,7 +69,8 @@
 				url:"EmployeeSubmission",
 				data: postData,
 				success: function (response) {
-		                alert(response);
+					    var employeeMap = response;
+		                alert(employeeMap.status);
 		            }
 			});
 			});
@@ -48,6 +80,16 @@
 <body>
     <form id="commentForm" name="commentForm" method="post">
 	<h1>INSERT EMPLOYEE DETAILS</h1>
+	  <% int mode = Integer.parseInt(request.getParameter("mode")); 
+          if (mode > 1) {%>
+	     <label for="EmployeeId">
+	     EmployeeId:
+	     </label><br>
+		  <input type="number" id="EmployeeId" name="EmployeeId" required>
+		  <input type="button" id ="SEARCH" value ="SEARCH"> 
+		  <% } %>
+		  <br>
+		  <br>
 	<label for="CompanyName">CompanyName: </label>
 	<br>
 	<input type="text" id="CompanyName" name="CompanyName" size="25" required>
@@ -139,7 +181,10 @@
 			name="PermanentAddressType" id="AddressType2" value="permanentAddress"
 			style="visibility: hidden;">
 	</div>
-	<input type="submit" id="submit" value="AddEmployee" />
+	<% mode = Integer.parseInt(request.getParameter("mode")); 
+          if (mode != 5 && mode != 4) {%>
+	<input type="submit" id="submit" value="AddEmployee"/>
+	<%} %>
 	</form>
 </body>
 </html>

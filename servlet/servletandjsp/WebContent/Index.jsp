@@ -18,7 +18,6 @@ function employeeFunction() {
 </script>
 </head>
 <body>
-<form method=get>
 <h1>EMPLOYEE MANAGEMENT</h1>
 <input type="radio" id ="employee" name="employeeApplication" checked="checked" onchange="employeeFunction()">
 <label for ="employee">EMPLOYEE DETAILS</label><br>
@@ -40,6 +39,5 @@ function employeeFunction() {
 <p><a href="/ViewProject">ViewProject</a>
 <p><a href="/ViewProjectById">ViewProjectById</a>
 </div>
-</form>
 </body>
 </html>
