@@ -4,8 +4,8 @@
  */
 package com.ideas2it.sessionManagement;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.SessionFactory;
 
 /**
  * @description used to get the session factory

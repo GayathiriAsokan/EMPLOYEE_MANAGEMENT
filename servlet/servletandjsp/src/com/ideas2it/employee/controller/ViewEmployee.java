@@ -1,4 +1,4 @@
-package com.ideas2it;
+package com.ideas2it.employee.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

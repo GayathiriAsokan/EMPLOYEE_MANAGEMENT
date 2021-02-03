@@ -28,16 +28,15 @@ function employeeFunction() {
 <p><a href="/Demo1/EmployeeController?mode=1">Insert</a>
 <p><a href="/Demo1/EmployeeController?mode=2">Update</a>
 <p><a href="/Demo1/EmployeeController?mode=3">Delete</a>
-<p><a href="/ViewEmployee">ViewEmployee</a>
+<p><a href="/Demo1/EmployeeController?mode=4">ViewEmployee</a>
 <p><a href="/Demo1/EmployeeController?mode=5">ViewEmployeeById</a>
 </div>
 <div id="ProjectDivision" style="visibility: hidden;">
 <h2>Project Details</h2>
-<p><a href="/Insert">Insert</a>
-<p><a href="/Update">Update</a>
-<p><a href="/Delete">Delete</a>
-<p><a href="/ViewProject">ViewProject</a>
-<p><a href="/ViewProjectById">ViewProjectById</a>
+<p><a href="/Demo1/ProjectController?mode=1">Insert</a>
+<p><a href="/Demo1/ProjectController?mode=2">Update</a>
+<p><a href="/Demo1/ProjectController?mode=3">ViewProject</a>
+<p><a href="/Demo1/ProjectController?mode=4">ViewProjectById</a>
 </div>
 </body>
 </html>

@@ -37,6 +37,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String insertEmployee(String companyName, double salary, String designation, int experience, String status,
 			String name, long phoneNumber, String dateOfBirth, String emailId, HashMap <String, Object> currentAddressMap , HashMap <String, Object> permanentAddressMap) {
 		String mobileNumber = Long.toString(phoneNumber);
+		String insertStatus = "";
+		List <Integer> employeeList = validateEmployeeData(phoneNumber, emailId); 
+		if (employeeList.get(0) != 0 && employeeList.get(1) != 0) {
+			insertStatus = "DUPLICATE PHONE NUMBER AND EMAILID";
+		} else if (employeeList.get(1) != 0) {
+			insertStatus = "DUPLICATE EMAILID"; 
+		} else if (employeeList.get(0) != 0) {
+			insertStatus = "DUPLICATE PHONE NUMBER";
+		} else {
 		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
 		Address currentAddress = addAddressValues(currentAddressMap);
 		Address permanentAddress = addAddressValues(permanentAddressMap);
@@ -49,7 +58,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDAO.insertEmployee(employee.getSalary(), employee.getCompanyName(),
 				employee.getDesignation(), employee.getExperience(), employee.getStatus(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
 				personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
-		return "INSERTED SUCCESSFULLY";
+		insertStatus = "INSERTED SUCCESSFULLY";
+		}
+		return insertStatus;
 	}
 
 	/**

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INSERT EMPLOYEE DETAILS</title>
+<title>EMPLOYEE DETAILS</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
@@ -62,15 +62,13 @@
 		});
 		$('#submit').click(function () {
 			var postData = $('#commentForm').serializeArray();
-			var formURL=$('#commentForm').attr("action");
 			console.log(postData);
 			$.ajax({
-				type:"POST",
+				type:"GET",
 				url:"EmployeeSubmission",
 				data: postData,
 				success: function (response) {
-					    var employeeMap = response;
-		                alert(employeeMap.status);
+		                alert(response);
 		            }
 			});
 			});
@@ -78,8 +76,8 @@
 </script>
 </head>
 <body>
-    <form id="commentForm" name="commentForm" method="post">
-	<h1>INSERT EMPLOYEE DETAILS</h1>
+    <form id="commentForm" name="commentForm" method="get" action="#">
+	<h1>EMPLOYEE DETAILS</h1>
 	  <% int mode = Integer.parseInt(request.getParameter("mode")); 
           if (mode > 1) {%>
 	     <label for="EmployeeId">

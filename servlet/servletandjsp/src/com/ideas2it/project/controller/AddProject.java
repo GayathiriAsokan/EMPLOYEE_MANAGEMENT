@@ -1,27 +1,30 @@
-package com.ideas2it.employee.controller;
+/**
+ * 
+ */
+package com.ideas2it.project.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * @author GAYATHIRI
+ * @author ubuntu
  *
  */
-public class AddEmployee extends HttpServlet {
+public class AddProject extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();
-        RequestDispatcher dispatcher = context.getRequestDispatcher("/AddEmployee.jsp");
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/AddProject.jsp");
         dispatcher.forward(request,response);
 	}
 }

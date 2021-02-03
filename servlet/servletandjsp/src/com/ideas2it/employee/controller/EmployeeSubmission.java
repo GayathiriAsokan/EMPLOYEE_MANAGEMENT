@@ -22,25 +22,25 @@ public class EmployeeSubmission extends HttpServlet {
 	/**
 	 * 
 	 */
-	public void doGET(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(request.getParameter("mode"));
 		int caseSubmit = Integer.parseInt(request.getParameter("mode")); 
 		switch (caseSubmit) { 
 		case 1:
 			String status = addEmployee(request);
-			response.setContentType("status/plain");
+			response.setContentType("text/plain");
 			response.getWriter().write(status); 
 			System.out.println(status);
 			break;
 		case 2:
 			status = updateEmployee(request);
-			response.setContentType("status/plain");
+			response.setContentType("text/plain");
 			response.getWriter().write(status); 
 			System.out.println(status);
 			break;
 		case 3:
 			status = deleteEmployee(request);
-			response.setContentType("status/plain");
+			response.setContentType("text/plain");
 			response.getWriter().write(status); 
 			System.out.println(status);
 			break;
@@ -85,11 +85,11 @@ public class EmployeeSubmission extends HttpServlet {
 	 * 
 	 */
 	public String updateEmployee(HttpServletRequest request) {
-		int employeeId = Integer.parseInt(request.getParameter("employeeId")); 
-		long phoneNumber = Long.parseLong(request.getParameter("phoneNumber"));
-		String emailId = request.getParameter("emailId");
+		System.out.println(request.getParameter("EmployeeId"));
+		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
+		long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
+		String emailId = request.getParameter("EmailId");
 		String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
-		System.out.println(status);
 		return status;
 	}
 
@@ -97,9 +97,8 @@ public class EmployeeSubmission extends HttpServlet {
 	 * 
 	 */
 	public String deleteEmployee(HttpServletRequest request) {
-		int employeeId = Integer.parseInt(request.getParameter("employeeId")); 
+		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
 		String status = employeeService.deleteEmployee(employeeId);
-		System.out.println(status);
 		return status;
 	}
 }
