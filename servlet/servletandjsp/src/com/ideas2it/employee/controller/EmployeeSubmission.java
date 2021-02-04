@@ -1,5 +1,5 @@
 /**
- * 
+ * Provide necessary to create servlet class in controller
  */
 package com.ideas2it.employee.controller;
 
@@ -13,14 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.ideas2it.employee.service.EmployeeServiceImpl;
 
 /**
- * @author ubuntu
+ * @description EmployeeSubmission is used to save the employee details
+ * It is used for crud operations employee details are saved in the database table using hibernate
+ * @author GAYATHIRI
  *
  */
 public class EmployeeSubmission extends HttpServlet {
 	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 
 	/**
-	 * 
+	 * This method is used to save the employee details using jsp file
+	 * By checking the mode crud operations are done
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(request.getParameter("mode"));
@@ -49,7 +52,7 @@ public class EmployeeSubmission extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * AddEmployee method is used to add employee details 
 	 */
 
 	public String addEmployee(HttpServletRequest request) {

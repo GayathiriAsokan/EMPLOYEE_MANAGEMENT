@@ -136,7 +136,7 @@ public class Project {
 		return "\n Project: ProjectId : " + getProjectId() + "\n ProjectName  : " + getProjectName() +
 				"\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : "
 				+ getProjectType()+  "\n EndDate : " +  getEndDate() +  "\n StartDate : " + getStartDate() + "\n ActualEndDate : " + 
-				getActualEndDate(); //+ " " + getEmployeeId();// + "\n PROJECT STATUS " + validator.projectStatus (endDate, actualEndDate);
+				getActualEndDate() + " " + getEmployeeId();// + "\n PROJECT STATUS " + validator.projectStatus (endDate, actualEndDate);
 	}
 
 }

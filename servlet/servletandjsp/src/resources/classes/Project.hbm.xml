@@ -11,11 +11,11 @@
 		<id name="projectId" type="int" column="project_id">
 			<generator class="increment"></generator>
 		</id>
-		<!-- <set name="employeeSet" table="project_employee" cascade="all">
+		<set name="employeeSet" table="project_employee" cascade="all">
 			<key column="project_id"></key>
 			<many-to-many column="employee_id"
 				class="com.ideas2it.employee.model.Employee" />
-		</set> -->
+		</set>
 		<property name="projectName" column="project_name"
 			type="string">
 		</property>

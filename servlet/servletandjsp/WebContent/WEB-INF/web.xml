@@ -2,6 +2,15 @@
 
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
  <servlet>
+ <servlet-name>JSP</servlet-name>
+ <jsp-file>/Index.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>JSP</servlet-name>
+ <url-pattern>/</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet>
  <servlet-name>EmployeeController</servlet-name>
  <servlet-class>com.ideas2it.employee.controller.AddEmployee</servlet-class>
  </servlet>
@@ -20,12 +29,21 @@
  </servlet-mapping> 
  
   <servlet>
- <servlet-name>viewDetails</servlet-name>
+ <servlet-name>viewEmployeeDetails</servlet-name>
  <servlet-class>com.ideas2it.employee.controller.ViewEmployee</servlet-class>
  </servlet>
  <servlet-mapping>
- <servlet-name>viewDetails</servlet-name>
+ <servlet-name>viewEmployeeDetails</servlet-name>
  <url-pattern>/ViewEmployee</url-pattern>
+ </servlet-mapping> 
+ 
+  <servlet>
+ <servlet-name>viewAllEmployee</servlet-name>
+ <servlet-class>com.ideas2it.employee.controller.ViewAllEmployee</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>viewAllEmployee</servlet-name>
+ <url-pattern>/ViewAllEmployee</url-pattern>
  </servlet-mapping> 
  
   <servlet>
@@ -45,7 +63,6 @@
  <servlet-name>ProjectSubmission</servlet-name>
  <url-pattern>/ProjectSubmission</url-pattern>
  </servlet-mapping> 
-
 
 <servlet>
  <servlet-name>viewProjectDetails</servlet-name>
