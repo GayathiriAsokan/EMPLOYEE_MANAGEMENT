@@ -24,7 +24,7 @@ public class AddEmployee extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/AddEmployee.jsp");
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/AddEmployee.jsp");
 		dispatcher.forward(request,response);
 	}
 }

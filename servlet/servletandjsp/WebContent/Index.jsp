@@ -35,7 +35,7 @@ function employeeFunction() {
 <h2>Project Details</h2>
 <p><a href="/Demo1/ProjectController?mode=1">Insert</a>
 <p><a href="/Demo1/ProjectController?mode=2">Update</a>
-<p><a href="/Demo1/ProjectController?mode=3">ViewAllProject</a>
+<p><a href="/Demo1/ViewAllProject">ViewAllProject</a>
 <p><a href="/Demo1/ProjectController?mode=4">ViewProject</a>
 </div>
 </body>

@@ -97,9 +97,14 @@
 		<input type="text" id="Designation" name="Designation" size="10"
 			required> <br> <br> <label for="Experience">Experience:
 		</label> <br> <input type="number" id="Experience" name="Experience"
-			required> <br> <br> <label for="Status">Status:
-		</label> <br> <input type="text" id="Status" name="Status" size="10"
-			required> <br> <br>
+			required> <br> <br> 
+			<label for="Choose A Status">Choose A Status: </label>
+	<br>
+	<select name = "Status" id ="Status" >
+	<option value="ACTIVE"> ACTIVE</option>
+	<option value="INACTIVE"> INACTIVE</option>
+	</select>
+			<br> <br>
 		<h2>PERSONAL DETAILS</h2>
 		<label for="Name">Name: </label> <br> <input type="text"
 			id="Name" name="Name" size="15" required> <br> <br>

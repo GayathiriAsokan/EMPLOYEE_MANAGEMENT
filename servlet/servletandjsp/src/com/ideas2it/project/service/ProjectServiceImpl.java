@@ -38,6 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
 	 */
 	@Override
 	public List<Project> viewProject() {
+		System.out.println(projectDao.viewProject());
 		return projectDao.viewProject();
 	}
 

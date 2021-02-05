@@ -72,5 +72,13 @@
  <servlet-name>viewProjectDetails</servlet-name>
  <url-pattern>/ViewProject</url-pattern>
  </servlet-mapping> 
- 
+
+   <servlet>
+ <servlet-name>ViewAllProject</servlet-name>
+ <servlet-class>com.ideas2it.project.controller.ViewAllProject</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>ViewAllProject</servlet-name>
+ <url-pattern>/ViewAllProject</url-pattern>
+ </servlet-mapping> 
  </web-app>
