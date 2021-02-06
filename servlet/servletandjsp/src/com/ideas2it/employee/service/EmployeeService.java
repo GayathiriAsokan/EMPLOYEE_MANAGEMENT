@@ -89,34 +89,11 @@ public interface EmployeeService {
 	public String updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
 
 	/**
-	 * IsEmailIdValid is used  for validation and duplication check
-	 * 
-	 * @param emailId String - validate emailId
-	 * @return boolean
-	 *
-	public boolean isEmailIdValid(String emailId);
-
-	/**
-	 * IsPhoneNumberValid is used  for validation and duplication check
-	 * 
-	 * @param phoneNumber long - validate phoneNumber
-	 * @return boolean
-	 *
-	public boolean isPhoneNumberValid(long phoneNumber);
-
-	/**
-	 * IsDateOfBirthValid is used  for validation 
-	 * 
-	 * @param DateOfBirth String - validate DateOfBirth
-	 * @return boolean
-	 
-	public boolean isDateOfBirthValid(String dateOfBirth);
-
-	/**
 	 * AddProjectEmployee is used to add project employee details
 	 * 
 	 * @param listId
 	 * @param employeeId
-	 *
-	public void addProjectEmployee(List <Integer> listId, int employeeId);*/
+	 * @return String
+	 */
+	public String addProjectEmployee(List <Integer> listId, int employeeId);
 }

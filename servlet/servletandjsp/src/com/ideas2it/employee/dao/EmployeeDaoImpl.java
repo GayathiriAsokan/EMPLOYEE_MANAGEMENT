@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
-//import com.ideas2it.project.model.Project;
+import com.ideas2it.project.model.Project;
 import com.ideas2it.sessionManagement.SessionManagement;
 
 /**
@@ -140,7 +140,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	/**
 	 * {@inheritDoc}
-
+	 */
 	@Override
 	public void addProjectEmployee(List <Integer> listId, int employeeId) {
 		SessionFactory sessionFactory = SessionManagement.getInstance();
@@ -154,5 +154,5 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		session.save(employee);
 		transaction.commit();
 		session.close();
-	}*/
+	}
 }

@@ -86,18 +86,18 @@ table, th, td {
 			<td><%=project.getStartDate()%></td>
 			<td><%=project.getEndDate()%></td>
 			<td><%=project.getActualEndDate()%></td>
-			<td><%=employeeList.get(index).getEmployeeId()%></td>
-			<td><%=employeeList.get(index).getCompanyName()%></td>
-			<td><%=employeeList.get(index).getDesignation()%></td>
-			<td><%=employeeList.get(index).getSalary()%></td>
-			<td><%=employeeList.get(index).getExperience()%></td>
-			<td><%=employeeList.get(index).getStatus()%></td>
-			<td><%=employeeList.get(index).getPersonalDetails().getName()%></td>
-			<td><%=employeeList.get(index).getPersonalDetails().getPhoneNumber()%></td>
-			<td><%=employeeList.get(index).getPersonalDetails().getEmailId()%></td>
-			<td><%=employeeList.get(index).getPersonalDetails().getDateOfBirth()%></td>
+			<td><%=employeeList.get(employeeIndex).getEmployeeId()%></td>
+			<td><%=employeeList.get(employeeIndex).getCompanyName()%></td>
+			<td><%=employeeList.get(employeeIndex).getDesignation()%></td>
+			<td><%=employeeList.get(employeeIndex).getSalary()%></td>
+			<td><%=employeeList.get(employeeIndex).getExperience()%></td>
+			<td><%=employeeList.get(employeeIndex).getStatus()%></td>
+			<td><%=employeeList.get(employeeIndex).getPersonalDetails().getName()%></td>
+			<td><%=employeeList.get(employeeIndex).getPersonalDetails().getPhoneNumber()%></td>
+			<td><%=employeeList.get(employeeIndex).getPersonalDetails().getEmailId()%></td>
+			<td><%=employeeList.get(employeeIndex).getPersonalDetails().getDateOfBirth()%></td>
 			<%
-				List<Address> addressList = new ArrayList<Address>(employeeList.get(index).getPersonalDetails().getAddressSet());
+				List<Address> addressList = new ArrayList<Address>(employeeList.get(employeeIndex).getPersonalDetails().getAddressSet());
 			%>
 			<td><%=addressList.get(0).getStreet()%></td>
 			<td><%=addressList.get(0).getCity()%></td>
@@ -114,18 +114,18 @@ table, th, td {
 		</tr>
 		<%}
 			else {  %>
-		<td><%=employeeList.get(index).getEmployeeId()%></td>
-		<td><%=employeeList.get(index).getCompanyName()%></td>
-		<td><%=employeeList.get(index).getDesignation()%></td>
-		<td><%=employeeList.get(index).getSalary()%></td>
-		<td><%=employeeList.get(index).getExperience()%></td>
-		<td><%=employeeList.get(index).getStatus()%></td>
-		<td><%=employeeList.get(index).getPersonalDetails().getName()%></td>
-		<td><%=employeeList.get(index).getPersonalDetails().getPhoneNumber()%></td>
-		<td><%=employeeList.get(index).getPersonalDetails().getEmailId()%></td>
-		<td><%=employeeList.get(index).getPersonalDetails().getDateOfBirth()%></td>
+		<td><%=employeeList.get(employeeIndex).getEmployeeId()%></td>
+		<td><%=employeeList.get(employeeIndex).getCompanyName()%></td>
+		<td><%=employeeList.get(employeeIndex).getDesignation()%></td>
+		<td><%=employeeList.get(employeeIndex).getSalary()%></td>
+		<td><%=employeeList.get(employeeIndex).getExperience()%></td>
+		<td><%=employeeList.get(employeeIndex).getStatus()%></td>
+		<td><%=employeeList.get(employeeIndex).getPersonalDetails().getName()%></td>
+		<td><%=employeeList.get(employeeIndex).getPersonalDetails().getPhoneNumber()%></td>
+		<td><%=employeeList.get(employeeIndex).getPersonalDetails().getEmailId()%></td>
+		<td><%=employeeList.get(employeeIndex).getPersonalDetails().getDateOfBirth()%></td>
 		<%
-			List<Address> addressList = new ArrayList<Address>(employeeList.get(index).getPersonalDetails().getAddressSet());
+			List<Address> addressList = new ArrayList<Address>(employeeList.get(employeeIndex).getPersonalDetails().getAddressSet());
 		%>
 		<td><%=addressList.get(0).getStreet()%></td>
 		<td><%=addressList.get(0).getCity()%></td>

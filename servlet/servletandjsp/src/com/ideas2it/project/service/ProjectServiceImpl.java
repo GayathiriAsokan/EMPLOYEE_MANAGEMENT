@@ -73,7 +73,8 @@ public class ProjectServiceImpl implements ProjectService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addProjectEmployee(List <Integer> listId, int projectId) {
+	public String addProjectEmployee(List <Integer> listId, int projectId) {
 		projectDao.addProjectEmployee(listId, projectId);
+		return "PROJECT EMPLOYEE DATA ADDED SUCCESSFULLY";
 	}
 }

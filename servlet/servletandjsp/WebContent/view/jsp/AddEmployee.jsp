@@ -161,7 +161,7 @@
 		</div>
 		<%
 			mode = Integer.parseInt(request.getParameter("mode"));
-		if (mode != 5 && mode != 4) {
+		if (mode != 4) {
 		%>
 		<input type="submit" id="submit" value="AddEmployee" />
 		<%

@@ -19,8 +19,6 @@ public class AddEmployee extends HttpServlet {
 
 	/**
 	 * This method is used to add employee details 
-	 * Here Get method is used
-	 * Response is send to jsp file 
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();

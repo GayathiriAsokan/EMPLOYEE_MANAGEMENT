@@ -4,7 +4,9 @@
 package com.ideas2it.employee.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +49,12 @@ public class EmployeeSubmission extends HttpServlet {
 			response.getWriter().write(status); 
 			System.out.println(status);
 			break;
+		case 5:
+			status = addEmployeeToProject(request);
+			response.setContentType("text/plain");
+			response.getWriter().write(status); 
+			System.out.println(status);
+			break;
 		}
 
 	}
@@ -85,7 +93,7 @@ public class EmployeeSubmission extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * UpdateEmployee method is used to update the employee details
 	 */
 	public String updateEmployee(HttpServletRequest request) {
 		System.out.println(request.getParameter("EmployeeId"));
@@ -97,11 +105,28 @@ public class EmployeeSubmission extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * DeleteEmployee is used to change the status of the employee
 	 */
 	public String deleteEmployee(HttpServletRequest request) {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
 		String status = employeeService.deleteEmployee(employeeId);
+		return status;
+	}
+
+	/**
+	 * AddEmployeeToProject is used to add employee and project Details
+	 * To insert and view the employee and project
+	 */
+	public String addEmployeeToProject(HttpServletRequest request) {
+		List <Integer> listProjectId = new ArrayList <Integer> ();
+		int employeeId = Integer.parseInt(request.getParameter("Employee"));
+		String [] project = request.getParameterValues("Project");
+		for (int index = 0; index < project.length ; index ++) {
+			System.out.println(project[index]);
+			listProjectId.add(Integer.parseInt(project[index]));
+		}
+		System.out.println(listProjectId);
+		String status = employeeService.addProjectEmployee(listProjectId, employeeId);
 		return status;
 	}
 }

@@ -47,6 +47,15 @@
  </servlet-mapping> 
  
   <servlet>
+ <servlet-name>Add Employee ProjectJSP</servlet-name>
+ <jsp-file>/view/jsp/EmployeeProject.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>Add Employee ProjectJSP</servlet-name>
+ <url-pattern>/AddEmployeeToProject</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
  <servlet-name>ProjectController</servlet-name>
  <servlet-class>com.ideas2it.project.controller.AddProject</servlet-class>
  </servlet>
@@ -80,5 +89,15 @@
  <servlet-mapping>
  <servlet-name>ViewAllProject</servlet-name>
  <url-pattern>/ViewAllProject</url-pattern>
- </servlet-mapping> 
+ </servlet-mapping>
+ 
+  <servlet>
+ <servlet-name>Add Project Employee JSP</servlet-name>
+ <jsp-file>/view/jsp/ProjectEmployee.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>Add Project Employee JSP</servlet-name>
+ <url-pattern>/AddProjectToEmployee</url-pattern>
+ </servlet-mapping>
+  
  </web-app>

@@ -60,8 +60,11 @@ public interface ProjectService {
 	//public boolean isDateValid(String dateValue);
 	
 	/**
-	 * AddProjectEmployee is used to add project employee details
+	 * Add project employee details
+	 * @param listId
+	 * @param projectId
+	 * @return String
 	 */
-	public void addProjectEmployee(List <Integer> listId, int projectId);
+	public String addProjectEmployee(List <Integer> listId, int projectId);
 }
 

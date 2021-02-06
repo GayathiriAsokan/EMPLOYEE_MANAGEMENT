@@ -70,12 +70,12 @@ public interface EmployeeDao {
 	 * @return updateCount int -to check the modification or done in a table or not
 	 */
 	public int updatePersonalDetails(int employeeId, long phoneNumber, String emailId);
-	
+
 	/**
 	 * AddProjectEmployee is used to add details in project and employee
 	 * 
 	 * @param listId
 	 * @param employeeId
-	 *
-	public void addProjectEmployee(List <Integer> listId, int employeeId);*/
+	 */
+	public void addProjectEmployee(List <Integer> listId, int employeeId);
 }

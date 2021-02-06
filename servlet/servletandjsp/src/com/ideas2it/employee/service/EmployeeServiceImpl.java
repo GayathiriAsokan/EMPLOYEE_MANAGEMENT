@@ -128,35 +128,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	/**
 	 * {@inheritDoc}
-	 
+	 */
 	@Override
-	public boolean isEmailIdValid(String emailId) {
-		//System.out.println(validator.isEmailIdValid(emailId));
-		return validator.isEmailIdValid(emailId);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 
-	@Override
-	public boolean isPhoneNumberValid(long phoneNumber) {
-		return validator.isPhoneNumberValid(phoneNumber);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 
-	@Override
-	public boolean isDateOfBirthValid(String dateOfBirth) {
-		return validator.isDateValid(dateOfBirth);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	@Override
-	public void addProjectEmployee(List <Integer> listId, int employeeId) {
+	public String addProjectEmployee(List <Integer> listId, int employeeId) {
 		employeeDAO.addProjectEmployee(listId, employeeId);
-	}*/
+		return "EMPLOYEE PROJECT DATA ADDED SUCCESSFULLY";
+	}
 }
 

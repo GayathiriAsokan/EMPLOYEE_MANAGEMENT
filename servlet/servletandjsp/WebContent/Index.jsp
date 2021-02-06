@@ -25,18 +25,21 @@ function employeeFunction() {
 <label for ="project">PROJECT DETAILS</label><br>
 <div id="EmployeeDivision">
 <h2>Employee Details</h2>
-<p><a href="/Demo1/EmployeeController?mode=1">Insert</a>
-<p><a href="/Demo1/EmployeeController?mode=2">Update</a>
-<p><a href="/Demo1/EmployeeController?mode=3">Delete</a>
-<p><a href="/Demo1/ViewAllEmployee">ViewAllEmployee</a>
-<p><a href="/Demo1/EmployeeController?mode=5">ViewEmployee</a>
+<p><a href="/Demo1/EmployeeController?mode=1">INSERT</a>
+<p><a href="/Demo1/EmployeeController?mode=2">UPDATE</a>
+<p><a href="/Demo1/EmployeeController?mode=3">DELETE</a>
+<p><a href="/Demo1/ViewAllEmployee">DISPLAY EMPLOYEE DETAILS</a>
+<p><a href="/Demo1/EmployeeController?mode=4">DISPLAY EMPLOYEE</a>
+<p><a href="/Demo1/AddEmployeeToProject?mode=5"> AddEmployeeToProject</a>
 </div>
 <div id="ProjectDivision" style="visibility: hidden;">
 <h2>Project Details</h2>
-<p><a href="/Demo1/ProjectController?mode=1">Insert</a>
-<p><a href="/Demo1/ProjectController?mode=2">Update</a>
-<p><a href="/Demo1/ViewAllProject">ViewAllProject</a>
-<p><a href="/Demo1/ProjectController?mode=4">ViewProject</a>
+<p><a href="/Demo1/ProjectController?mode=1">INSERT</a>
+<p><a href="/Demo1/ProjectController?mode=2">UPDATE</a>
+<p><a href="/Demo1/ProjectController?mode=3">DELETE</a>
+<p><a href="/Demo1/ViewAllProject">DISPLAY PROJECT DETAILS<</a>
+<p><a href="/Demo1/ProjectController?mode=4">DISPLAY PROJECT</a>
+<p><a href="/Demo1/AddProjectToEmployee?mode=5"> AddProjectToEmployee</a>
 </div>
 </body>
 </html>

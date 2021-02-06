@@ -95,8 +95,8 @@ public class ProjectDaoImpl implements ProjectDao {
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Project project = session.get(Project.class, projectId);
-		List <Employee> employee = session.createQuery("select emp from Employee emp where emp.employeeId IN :listId").setParameter("listId", listId).getResultList();
+		Project project = session.get(Project.class, projectId); 
+		List <Employee> employee = session.createQuery("select employee from Employee employee where employee.employeeId IN :listId").setParameter("listId", listId).getResultList();
 		System.out.println("employee list" + employee);
 		Set <Employee> employeeSet = new HashSet <Employee>(employee);
 		project.setEmployeeSet(employeeSet);

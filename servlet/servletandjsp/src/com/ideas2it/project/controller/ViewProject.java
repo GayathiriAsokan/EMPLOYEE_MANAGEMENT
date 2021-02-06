@@ -1,5 +1,5 @@
 /**
- * 
+ * Provide a class to create servlet in controller
  */
 package com.ideas2it.project.controller;
 
@@ -15,16 +15,14 @@ import org.json.JSONObject;
 import com.ideas2it.project.service.ProjectServiceImpl;
 
 /**
- * 
- * @author ubuntu
- *
+ * Display the details of the project
+ * @author GAYATHIRI
  */
 public class ViewProject extends HttpServlet {
-
 	ProjectServiceImpl projectService = new ProjectServiceImpl();
-	
+
 	/**
-	 * 
+	 * Display the details of the project to update,delete and view
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int projectId = Integer.parseInt(request.getParameter("ProjectId"));

@@ -1,24 +1,32 @@
+/**
+ * Provide a class necessary to create a servlet class in controller
+ */	
 package com.ideas2it.employee.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.service.EmployeeServiceImpl;
 
+/**
+ * @description Display the details of employee
+ * @author GAYATHIRI
+ *
+ */
 public class ViewEmployee extends HttpServlet {
 	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 
+	/**
+	 * Display the details of employee for update,delete and view 
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId"));
 		if (employeeId != 0) {
