@@ -4,12 +4,14 @@
 package com.ideas2it.project.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ideas2it.project.service.ProjectServiceImpl;
 
@@ -28,25 +30,23 @@ public class ProjectSubmission extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(request.getParameter("mode"));
+		PrintWriter out = response.getWriter();
 		int caseSubmit = Integer.parseInt(request.getParameter("mode")); 
 		switch (caseSubmit) { 
 		case 1:
 			String status = addProject(request);
 			response.setContentType("text/plain");
 			response.getWriter().write(status); 
-			System.out.println(status);
 			break;
 		case 2:
 			status = updateProject(request); 
 			response.setContentType("text/plain");
-			response.getWriter().write(status);
-			System.out.println(status);
+			response.getWriter().write(status); 
 			break;
 		case 5:
 			status = addEmployeeToProject(request); 
 			response.setContentType("text/plain");
-			response.getWriter().write(status);
-			System.out.println(status);
+			response.getWriter().write(status); 
 			break;
 		}
 	}
@@ -57,8 +57,8 @@ public class ProjectSubmission extends HttpServlet {
 	public String addProject(HttpServletRequest request) {
 		String projectName = request.getParameter("ProjectName");
 		String projectManager = request.getParameter("ProjectManager");
-		String technology = request.getParameter("Technology");
 		String projectType = request.getParameter("ProjectType");
+		String technology = request.getParameter("Technology");
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
 		String actualEndDate = request.getParameter("ActualEndDate");
@@ -81,7 +81,6 @@ public class ProjectSubmission extends HttpServlet {
 	 * AddEmployeeToProject is used to add employee and project Details
 	 */
 	public String addEmployeeToProject(HttpServletRequest request) {
-		List  <Integer> listId = new ArrayList <Integer> ();
 		int projectId = Integer.parseInt(request.getParameter("Project"));
 		List <Integer> listEmployeeId = new ArrayList <Integer> ();
 		String [] employee = request.getParameterValues("Employee");
@@ -90,7 +89,7 @@ public class ProjectSubmission extends HttpServlet {
 			listEmployeeId.add(Integer.parseInt(employee[index]));
 		}
 		System.out.println(listEmployeeId);
-		String status = projectService.addProjectEmployee(listId, projectId);
+		String status = projectService.addProjectEmployee(listEmployeeId, projectId);
 		return status;
 	}
 }

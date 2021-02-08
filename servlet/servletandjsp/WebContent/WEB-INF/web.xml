@@ -9,17 +9,19 @@
  <servlet-name>JSP</servlet-name>
  <url-pattern>/</url-pattern>
  </servlet-mapping>
- 
  <servlet>
  <servlet-name>EmployeeController</servlet-name>
- <servlet-class>com.ideas2it.employee.controller.AddEmployee</servlet-class>
+ <servlet-class>com.ideas2it.employee.controller.EmployeeController</servlet-class>
  </servlet>
  <servlet-mapping>
  <servlet-name>EmployeeController</servlet-name>
- <url-pattern>/EmployeeController</url-pattern>
+ <url-pattern>/EmployeeController/Insert</url-pattern>
  </servlet-mapping>
- 
- <servlet>
+ <servlet-mapping>
+ <servlet-name>EmployeeController</servlet-name>
+ <url-pattern>/EmployeeController/Insert/submit</url-pattern>
+ </servlet-mapping>
+<servlet>
  <servlet-name>submit</servlet-name>
  <servlet-class>com.ideas2it.employee.controller.EmployeeSubmission</servlet-class>
  </servlet>
@@ -99,5 +101,4 @@
  <servlet-name>Add Project Employee JSP</servlet-name>
  <url-pattern>/AddProjectToEmployee</url-pattern>
  </servlet-mapping>
-  
  </web-app>

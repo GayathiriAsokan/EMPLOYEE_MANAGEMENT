@@ -4,6 +4,7 @@
 package com.ideas2it.employee.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +28,9 @@ public class EmployeeSubmission extends HttpServlet {
 	 * This method is used to save the employee details using jsp file
 	 * By checking the mode crud operations are done
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println(request.getParameter("mode"));
+		PrintWriter out = response.getWriter();
 		int caseSubmit = Integer.parseInt(request.getParameter("mode")); 
 		switch (caseSubmit) { 
 		case 1:
@@ -38,7 +40,8 @@ public class EmployeeSubmission extends HttpServlet {
 			System.out.println(status);
 			break;
 		case 2:
-			status = updateEmployee(request);
+			//status = updateEmployee(request);
+			status="gbfg";
 			response.setContentType("text/plain");
 			response.getWriter().write(status); 
 			System.out.println(status);

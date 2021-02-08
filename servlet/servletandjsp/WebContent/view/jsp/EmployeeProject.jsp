@@ -34,6 +34,7 @@
 </script>
 </head>
 	<body>
+	<p><a href="/Demo1/Index.jsp"> HOME</a>
 <form id="commentForm" name="commentForm" method="get" action="#">
 <label for="EmployeeProject"> Choose A Employee </label>
 <select name="Employee" id ="Employee">

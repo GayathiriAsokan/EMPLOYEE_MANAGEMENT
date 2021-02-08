@@ -20,6 +20,7 @@ table, th, td {
 <title>EMPLOYEE MANAGEMENT DETAILS</title>
 </head>
 <body>
+<p><a href="/Demo1/Index.jsp"> HOME></a>
 	<h1>EMPLOYEE MANAGEMENT DETAILS</h1>
 </head>
 <body>

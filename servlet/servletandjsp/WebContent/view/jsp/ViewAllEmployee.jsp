@@ -18,6 +18,7 @@ border: 1px solid black;
 <title>EMPLOYEE MANAGEMENT DETAILS</title>
 </head>
 <body>
+<p><a href="/Demo1/Index.jsp"> HOME</a>
 <h1>EMPLOYEE MANAGEMENT DETAILS</h1>
 <table>
 <tr>
