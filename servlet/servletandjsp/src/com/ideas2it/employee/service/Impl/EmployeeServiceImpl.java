@@ -5,7 +5,7 @@
  * @version 1.1
  * @since 1.0
  */
-package com.ideas2it.employee.service;
+package com.ideas2it.employee.service.Impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +13,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.ideas2it.employee.dao.EmployeeDaoImpl;
+import com.ideas2it.employee.dao.Impl.EmployeeDaoImpl;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
 //import com.ideas2it.util.Validator;
+import com.ideas2it.employee.service.EmployeeService;
 
 /**
  * @description EmployeeService used to hold PersonalDetails,Address,Employee

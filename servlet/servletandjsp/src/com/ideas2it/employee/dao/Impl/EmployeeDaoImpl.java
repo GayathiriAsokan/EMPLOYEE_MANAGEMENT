@@ -5,7 +5,7 @@
  * @version 1.0
  * @since 1.0
  */
-package com.ideas2it.employee.dao;
+package com.ideas2it.employee.dao.Impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import com.ideas2it.employee.dao.EmployeeDao;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;

@@ -5,7 +5,7 @@
  * @version 1.0
  * @since 1.0
  */
-package com.ideas2it.project.dao;
+package com.ideas2it.project.dao.Impl;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +18,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ideas2it.employee.model.Employee;
+import com.ideas2it.project.dao.ProjectDao;
 import com.ideas2it.project.model.Project;
 import com.ideas2it.sessionManagement.SessionManagement;
 

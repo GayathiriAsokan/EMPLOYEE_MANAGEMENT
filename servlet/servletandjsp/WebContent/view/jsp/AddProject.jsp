@@ -19,18 +19,6 @@ $(function () {
 		$("#EndDate").attr("readonly", true);
 		$("#ActualEndDate").attr("readonly", true);
 	}
-	$('#submit').click(function () {
-		var postData = $('#commentForm').serializeArray();
-		console.log(postData);
-		$.ajax({
-			type:"GET",
-			url:"ProjectSubmission",
-			data: postData,
-			success: function (response) {
-	                alert(response);
-	            }
-		});
-		});
 	$('#SEARCH').click(function () {
 		if ($('#mode').val() == "2") {
 			 view_only();
@@ -42,7 +30,7 @@ $(function () {
 		console.log(ProjectId);
 		$.ajax({
 			type:"GET",
-			url:"ViewProject",
+			url:"Update/ajax",
 			data: ProjectId,
 			success: function (response) {
 				var arrayProjectValues = response;
@@ -62,11 +50,23 @@ $(function () {
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp"> HOME</a>
- <form id="commentForm" name="commentForm" method="get" action="#">
+ <form id="commentForm" name="commentForm" method="post" 
+ <% 
+	 int mode = Integer.parseInt(request.getParameter("mode"));
+	 if (mode == 1) {%>
+	 action= /Demo1/ProjectController/Insert/submit
+	 <%} 
+        else if (mode == 2)  {%>
+		 action= /Demo1/ProjectController/Update/submit
+		 <%}
+        else if (mode ==3) { %>
+        action= /Demo1/ProjectController/Delete/submit
+        <%} %>
+        >
  <div id="project" style="position: absolute;
     left: 419px;">
 	<h1>PROJECT DETAILS</h1>
-	  <% int mode = Integer.parseInt(request.getParameter("mode")); 
+	  <%  mode = Integer.parseInt(request.getParameter("mode")); 
           if (mode > 1) {%>
 	     <label for="ProjectId">
 	     ProjectId:

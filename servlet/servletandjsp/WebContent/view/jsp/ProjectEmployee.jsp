@@ -3,8 +3,8 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.ideas2it.employee.model.Employee"%>
-<%@ page import="com.ideas2it.employee.service.EmployeeServiceImpl"%>
-<%@ page import="com.ideas2it.project.service.ProjectServiceImpl"%>
+<%@ page import="com.ideas2it.employee.service.Impl.EmployeeServiceImpl"%>
+<%@ page import="com.ideas2it.project.service.Impl.ProjectServiceImpl"%>
 <%@ page import="com.ideas2it.project.model.Project"%>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp" > HOME</a>
-	<form id="commentForm" name="commentForm" method="get" action="#">
+	<form id="commentForm" name="commentForm" method="post" action="/Demo1/EmployeeController/AddProject/submit">
 		<label for="EmployeeProject"> Choose A Project</label> 
 		<select name="Project" id="Project">
 			<%

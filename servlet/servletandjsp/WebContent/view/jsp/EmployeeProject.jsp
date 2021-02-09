@@ -3,8 +3,8 @@
     <%@ page import = "java.util.ArrayList" %>
     <%@ page import = "java.util.List" %>
     <%@ page import = "com.ideas2it.employee.model.Employee" %>
-    <%@ page import = "com.ideas2it.employee.service.EmployeeServiceImpl" %>
-    <%@ page import="com.ideas2it.project.service.ProjectServiceImpl"%>
+    <%@ page import = "com.ideas2it.employee.service.Impl.EmployeeServiceImpl" %>
+    <%@ page import="com.ideas2it.project.service.Impl.ProjectServiceImpl"%>
     <%@ page import="com.ideas2it.project.model.Project"%>
     
 <!DOCTYPE html>
@@ -12,30 +12,10 @@
 <head>
 <meta charset="UTF-8">
 <title>EMPLOYEE PROJECT MANAGEMENT</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#submit').click(function() {
-			var postData = $('#commentForm').serializeArray();
-			console.log(postData);
-			$.ajax({
-				type : "GET",
-				url : "EmployeeSubmission",
-				data : postData,
-				success : function(response) {
-					alert(response);
-				}
-			});
-		});
-	});
-</script>
 </head>
 	<body>
 	<p><a href="/Demo1/Index.jsp"> HOME</a>
-<form id="commentForm" name="commentForm" method="get" action="#">
+<form id="commentForm" name="commentForm" method="post" action="/Demo1/EmployeeController/AddProject/submit">
 <label for="EmployeeProject"> Choose A Employee </label>
 <select name="Employee" id ="Employee">
 <% EmployeeServiceImpl employeeService = new EmployeeServiceImpl();

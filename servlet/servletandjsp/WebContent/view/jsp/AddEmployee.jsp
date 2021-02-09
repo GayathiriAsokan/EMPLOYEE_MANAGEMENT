@@ -71,7 +71,7 @@ background-color: ghostwhite;
 			console.log(employeeId);
 			$.ajax({
 				type : "GET",
-				url : "ViewEmployee",
+				url : "Update/ajax",
 				data : employeeId,
 				success : function(response) {
 					var arrayEmployeeValues = response;
@@ -105,19 +105,31 @@ background-color: ghostwhite;
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp" > HOME</a>
-	 <form id="commentForm" name="commentForm" method="post" action=/Demo1/EmployeeController/Insert/submit>
+	 <form id="commentForm" name="commentForm" method="post" 
+	 <% 
+	 int mode = Integer.parseInt(request.getParameter("mode"));
+	 if (mode == 1) {%>
+	 action= /Demo1/EmployeeController/Insert/submit
+	 <%} 
+        else if (mode == 2)  {%>
+		 action= /Demo1/EmployeeController/Update/submit
+		 <%}
+        else if (mode ==3) { %>
+        action= /Demo1/EmployeeController/Delete/submit
+        <%} %>
+        >
 		<div id="Employee" style="position: absolute; left: 171px;">
 			<h1>EMPLOYEE DETAILS</h1>
-		<%-- 	<%
-			int mode = Integer.parseInt(request.getParameter("mode"));
+			<%
+			 mode = Integer.parseInt(request.getParameter("mode"));
 		if (mode > 1) {
-		%> --%>
-			<!-- <label for="EmployeeId"> EmployeeId: </label><br> <input
+		%>
+			<label for="EmployeeId"> EmployeeId: </label><br> <input
 				type="number" id="EmployeeId" name="EmployeeId" required> <input
-				type="button" id="SEARCH" value="SEARCH"> -->
-		<%-- 	<%
+				type="button" id="SEARCH" value="SEARCH">
+			<%
 			}
-		%> --%>
+		%>
 			<br> <br> <label for="CompanyName">CompanyName: </label> <br>
 			<input type="text" id="CompanyName" name="CompanyName" size="25" class = "non_editable"
 				required> <br> <br> <label for="Salary">Salary:
@@ -140,10 +152,10 @@ background-color: ghostwhite;
 			<input type="email" id="EmailId" name="EmailId" size="10" required>
 			<br> <br> <label for="DateOfBirth">DateOfBirth: </label> <br>
 			<input type="date" id="DateOfBirth" name="DateOfBirth" size="10" class = "non_editable"
-				required> <br> <br> <br> <%-- <input type="text"
+				required> <br> <br> <br> <input type="text"
 				name="mode" id="mode" name="mode"
 				value="<%=request.getParameter("mode")%>"
-				style="visibility: hidden;"> <br> <br> --%>
+				style="visibility: hidden;"> <br> <br>
 		</div>
 		<div id="Address" style="position: absolute; left: 756px; top: 90px;">
 			<h3>ADDRESS DETAILS</h3>
@@ -199,10 +211,10 @@ background-color: ghostwhite;
 				id="AddressType2" value="permanentAddress" class = "non_editable"
 				style="visibility: hidden;">
 		</div>
-		<%-- <%
+		<%
 			mode = Integer.parseInt(request.getParameter("mode"));
 		if (mode != 4) {
-		%> --%>
+		%>
 		<div id="submit division"
 			style="
 			 position: absolute;
@@ -212,9 +224,9 @@ background-color: ghostwhite;
 			 font-size: medium !important;
              ">
 			<input type="submit" id="submit" value="ADD EMPLOYEE DETAILS" />
-			<%-- <%
+			<%
 			}
-		%> --%>
+		%>
 		</div>
 </form>	
 </body>

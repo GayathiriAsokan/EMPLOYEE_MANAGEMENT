@@ -49,12 +49,12 @@ position: absolute;
     left: 441px;
     font-size: x-large;">
 <h2>Employee Details</h2>
-<p><a href="/Demo1/EmployeeController/Insert">INSERT</a>
-<p><a href="/Demo1/EmployeeController/Update">UPDATE</a>
-<p><a href="/Demo1/EmployeeController/Delete">DELETE</a>
-<p><a href="/Demo1/ViewAllEmployee/ViewAll">DISPLAY EMPLOYEE DETAILS</a>
-<p><a href="/Demo1/EmployeeController/View">DISPLAY EMPLOYEE</a>
-<p><a href="/Demo1/AddEmployeeToProject/AddProject"> ADD EMPLOYEE TO PROJECT</a>
+<p><a href="/Demo1/EmployeeController/Insert?mode=1">INSERT</a>
+<p><a href="/Demo1/EmployeeController/Update?mode=2">UPDATE</a>
+<p><a href="/Demo1/EmployeeController/Delete?mode=3">DELETE</a>
+<p><a href="/Demo1/EmployeeController/ViewAll">DISPLAY EMPLOYEE DETAILS</a>
+<p><a href="/Demo1/EmployeeController/View?mode=4">DISPLAY EMPLOYEE</a>
+<p><a href="/Demo1/EmployeeController/AddProject?mode=5"> ADD EMPLOYEE TO PROJECT</a>
 </div>
 <div id="ProjectDivision" style="
     visibility: hidden;
@@ -63,12 +63,11 @@ position: absolute;
     left: 441px;
     font-size: x-large;">
 <h2>Project Details</h2>
-<p><a href="/Demo1/ProjectController?mode=1">INSERT</a>
-<p><a href="/Demo1/ProjectController?mode=2">UPDATE</a>
-<p><a href="/Demo1/ProjectController?mode=3">DELETE</a>
-<p><a href="/Demo1/ViewAllProject">DISPLAY PROJECT DETAILS</a>
-<p><a href="/Demo1/ProjectController?mode=4">DISPLAY PROJECT</a>
-<p><a href="/Demo1/AddProjectToEmployee?mode=5">ADD PROJECT TO EMPLOYEE</a>
+<p><a href="/Demo1/ProjectController/Insert?mode=1">INSERT</a>
+<p><a href="/Demo1/ProjectController/Update?mode=2">UPDATE</a>
+<p><a href="/Demo1/ProjectController/ViewAllProject">DISPLAY PROJECT DETAILS</a>
+<p><a href="/Demo1/ProjectController/View?mode=4">DISPLAY PROJECT</a>
+<p><a href="/Demo1/ProjectController/AddEmployee?mode=5">ADD PROJECT TO EMPLOYEE</a>
 </div>
 </body>
 </html>

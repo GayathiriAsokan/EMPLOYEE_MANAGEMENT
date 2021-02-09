@@ -5,13 +5,14 @@
  * @version 1.1
  * @since 1.0
  */
-package com.ideas2it.project.service;
+package com.ideas2it.project.service.Impl;
 
 import java.util.List;
 
-import com.ideas2it.project.dao.ProjectDaoImpl;
+import com.ideas2it.project.dao.Impl.ProjectDaoImpl;
 import com.ideas2it.project.model.Project;
 //import com.ideas2it.util.Validator;
+import com.ideas2it.project.service.ProjectService;
 
 
 /**
