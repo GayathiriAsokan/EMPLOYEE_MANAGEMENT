@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>EMPLOYEE DETAILS</title>
 <style>
+body {
+background-image: url('/WebContent/view/jsp/Work.jpg'); 
+  background-color: #cccccc; 
+  height: 500px; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover; 
+}
 .view_only{
 background-color: ghostwhite;
 }

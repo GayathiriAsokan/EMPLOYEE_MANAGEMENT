@@ -88,15 +88,10 @@ public class ProjectController extends HttpServlet {
 		String endDate = request.getParameter("EndDate");
 		String actualEndDate = request.getParameter("ActualEndDate");
 		String status = projectService.insertProject(projectName, projectManager, projectType, technology, startDate, endDate, actualEndDate);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT PROJECT DETAILS</title>\n"
-				+ "<p><a href=\"\"/Demo1/ProjectController/Update?mode=2\">UPDATE</a>"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>"
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 
 	/**
@@ -111,28 +106,25 @@ public class ProjectController extends HttpServlet {
 	/**
 	 * Update the values in project
 	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	public void updateProject(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void updateProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		int projectId = Integer.parseInt(request.getParameter("ProjectId"));
 		String actualEndDate = request.getParameter("ActualEndDate");
 		String technology = request.getParameter("Technology");
 		String status = projectService.updateProject(projectId, actualEndDate, technology);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT PROJECT DETAILS</title>\n"
-				+ "<p><a href=\"\"/Demo1/ProjectController/View?mode=4\">DISPLAY PROJECT</a>"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>"
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 
 	/**
 	 * AddEmployeeToProject is used to add employee to project Details
 	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	public void addEmployeeToProject(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void addEmployeeToProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		int projectId = Integer.parseInt(request.getParameter("Project"));
 		List <Integer> listEmployeeId = new ArrayList <Integer> ();
 		String [] employee = request.getParameterValues("Employee");
@@ -142,14 +134,10 @@ public class ProjectController extends HttpServlet {
 		}
 		System.out.println(listEmployeeId);
 		String status = projectService.addProjectEmployee(listEmployeeId, projectId);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT PROJECT DETAILS</title>\n"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>" 
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 
 	/**

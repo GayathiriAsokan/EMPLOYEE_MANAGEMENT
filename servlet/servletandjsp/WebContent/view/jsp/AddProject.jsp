@@ -5,6 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>PROJECT DETAILS</title>
+<style>
+.view_only{
+background-color: ghostwhite;
+}
+body {
+background-image: url("Work.jpg"); 
+  background-color: #cccccc; 
+  height: 500px; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover; 
+}
+</style>
 <script
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
@@ -17,7 +30,6 @@ $(function () {
 		$("#ProjectType").attr("readonly", true);
 		$("#StartDate").attr("readonly", true);
 		$("#EndDate").attr("readonly", true);
-		$("#ActualEndDate").attr("readonly", true);
 	}
 	$('#SEARCH').click(function () {
 		if ($('#mode').val() == "2") {

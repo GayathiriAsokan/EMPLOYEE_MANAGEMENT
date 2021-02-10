@@ -46,7 +46,7 @@ display:none;
 <th>Designation</th>
 <th>Salary</th>
 <th>Experience</th>
-<th>Status</th>
+<th class="display view ">Status</th>
 <th>EmployeeName</th>
 <th>PhoneNumber</th>
 <th>EmailId</th>
@@ -82,7 +82,7 @@ for (int index = 0 ; index < employeeList.size() ; index ++) {
 	<td> <%= employee.getDesignation() %></td>
     <td> <%= employee.getSalary() %></td>
     <td> <%= employee.getExperience() %></td>
-    <td> <%= employee.getStatus() %></td>
+    <td class="display view "> <%= employee.getStatus() %></td>
 	<td> <%= employee.getPersonalDetails().getName() %></td>
 	<td> <%= employee.getPersonalDetails().getPhoneNumber() %></td>
 	<td> <%= employee.getPersonalDetails().getEmailId() %></td>

@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Employee</title>
 </head>
 <body>
-<%String status = request.getParameter("status");
-%>
-<p><%= status%></p>
+<p><%= request.getAttribute("status")%></p>
+<p><a href="/Demo1/EmployeeController/Insert?mode=1">INSERT</a>
+<p><a href="/Demo1/EmployeeController/Update?mode=2">UPDATE</a>
+<p><a href="/Demo1/EmployeeController/Delete?mode=3">DELETE</a>
+<p><a href="/Demo1/EmployeeController/ViewAll">DISPLAY EMPLOYEE DETAILS</a>
+<p><a href="/Demo1/EmployeeController/View?mode=4">DISPLAY EMPLOYEE</a>
 </body>
 </html>

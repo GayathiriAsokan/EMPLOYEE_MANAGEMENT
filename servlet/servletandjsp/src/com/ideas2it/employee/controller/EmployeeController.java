@@ -132,9 +132,10 @@ public class EmployeeController extends HttpServlet {
 		String insertStatus = employeeService.insertEmployee(companyName, salary, designation, experience, status,
 				name, phoneNumber, dateOfBirth, emailId, currentAddressMap, permanentAddressMap);
 		System.out.println(insertStatus);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println(insertStatus);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
+		request.setAttribute("status", insertStatus);
+		dispatcher.forward(request,response);
 	}
 
 	/**
@@ -182,39 +183,31 @@ public class EmployeeController extends HttpServlet {
 	/**
 	 * UpdateEmployee method is used to update the employee details
 	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println(request.getParameter("EmployeeId"));
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
 		long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
 		String emailId = request.getParameter("EmailId");
 		String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT EMPLOYEE DETAILS</title>\n"
-				+ "<p><a href=\"/Demo1/EmployeeController/Delete?mode=3\">UPDATE</a>"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>"
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 
 	/**
 	 * DeleteEmployee is used to change the status of the employee
+	 * @throws ServletException 
 	 */
-	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
 		String status = employeeService.deleteEmployee(employeeId);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT EMPLOYEE DETAILS</title>\n"
-				+ "<p><a href=\"/Demo1/EmployeeController/View?mode=4\">Display Employee</a>"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>"
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 
 	/**
@@ -240,14 +233,10 @@ public class EmployeeController extends HttpServlet {
 		}
 		System.out.println(listProjectId);
 		String status = employeeService.addProjectEmployee(listProjectId, employeeId);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter(); 
-		out.println("<html>\n"
-				+ "<head>\n"
-				+ "<title>INSERT EMPLOYEE DETAILS</title>\n"
-				+ "<p><a href=\"/Demo1/Index.jsp\" > HOME</a>"
-				+ "<br> <br>\n");
-		out.println(status);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
+		request.setAttribute("status", status);
+		dispatcher.forward(request,response);
 	}
 }
 
