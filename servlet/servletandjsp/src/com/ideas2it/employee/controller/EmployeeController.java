@@ -4,7 +4,6 @@
 package com.ideas2it.employee.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +16,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import com.ideas2it.Exception.EmployeeIdNotExist;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.service.Impl.EmployeeServiceImpl;
 
@@ -28,7 +28,7 @@ public class EmployeeController extends HttpServlet {
 	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 
 	/**
-	 * This method is used to save the project details using jsp file
+	 * This method is used to do crud operations for project details using jsp file
 	 * By checking the mode crud operations are done
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -43,7 +43,11 @@ public class EmployeeController extends HttpServlet {
 			addEmployee(request, response);
 			break;
 		case "/Update/ajax" :
-			viewEmployee(request, response);
+			try {
+				viewEmployee(request, response);
+			} catch (EmployeeIdNotExist e) {
+				e.printStackTrace();
+			}
 			break;
 		case "/ViewAll" :
 			displayEmployee(request, response);
@@ -140,43 +144,59 @@ public class EmployeeController extends HttpServlet {
 
 	/**
 	 * Display the details of employee for update,delete and view 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 * @throws EmployeeIdNotExist 
 	 */
-	public void viewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void viewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, EmployeeIdNotExist {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId"));
-		if (employeeId != 0) {
-			response.setContentType("text/html");
-			employeeService.getEmployee(employeeId);
-			JSONArray arrayEmployeeValues = new JSONArray();
-			JSONObject employee = new JSONObject();
-			employee.put("companyName", employeeService.getEmployee(employeeId).getCompanyName());
-			employee.put("salary", employeeService.getEmployee(employeeId).getSalary());
-			employee.put("designation", employeeService.getEmployee(employeeId).getDesignation());
-			employee.put("experience", employeeService.getEmployee(employeeId).getExperience());
-			employee.put("status", employeeService.getEmployee(employeeId).getStatus());
-			employee.put("name",employeeService.getEmployee(employeeId).getPersonalDetails().getName());
-			employee.put("phoneNumber",
-					employeeService.getEmployee(employeeId).getPersonalDetails().getPhoneNumber());
-			employee.put("emailId",
-					employeeService.getEmployee(employeeId).getPersonalDetails().getEmailId());
-			String dateString = employeeService.getEmployee(employeeId).getPersonalDetails().getDateOfBirth().replace("/", "-");
-			employee.put("dateOfBirth", dateString);
-			List <Address> addressList = new ArrayList <Address> (employeeService.getEmployee(employeeId).getPersonalDetails().getAddressSet());
-			employee.put("currentStreet",addressList.get(0).getStreet());
-			employee.put("currentCity",addressList.get(0).getCity());
-			employee.put("currentDistrict",addressList.get(0).getDistrict());
-			employee.put("currentState",addressList.get(0).getState());
-			employee.put("currentPinCode",addressList.get(0).getPinCode());
-			employee.put("currentAddressType",addressList.get(0).getAddressType());
-			employee.put("permanentStreet",addressList.get(1).getStreet());
-			employee.put("permanentCity",addressList.get(1).getCity());
-			employee.put("permanentDistrict",addressList.get(1).getDistrict());
-			employee.put("permanentState",addressList.get(1).getState());
-			employee.put("permanentPinCode",addressList.get(1).getPinCode());
-			employee.put("permanentAddressType",addressList.get(1).getAddressType());
-			System.out.println(employee);
-			arrayEmployeeValues.put(employee);
-			response.setContentType("application/json");
-			response.getWriter().write(arrayEmployeeValues.toString());
+		try {
+			if (employeeId != 0 && employeeId <= 23) {
+				response.setContentType("text/html");
+				employeeService.getEmployee(employeeId);
+				JSONArray arrayEmployeeValues = new JSONArray();
+				JSONObject employee = new JSONObject();
+				employee.put("companyName", employeeService.getEmployee(employeeId).getCompanyName());
+				employee.put("salary", employeeService.getEmployee(employeeId).getSalary());
+				employee.put("designation", employeeService.getEmployee(employeeId).getDesignation());
+				employee.put("experience", employeeService.getEmployee(employeeId).getExperience());
+				employee.put("status", employeeService.getEmployee(employeeId).getStatus());
+				employee.put("name",employeeService.getEmployee(employeeId).getPersonalDetails().getName());
+				employee.put("phoneNumber",
+						employeeService.getEmployee(employeeId).getPersonalDetails().getPhoneNumber());
+				employee.put("emailId",
+						employeeService.getEmployee(employeeId).getPersonalDetails().getEmailId());
+				String dateString = employeeService.getEmployee(employeeId).getPersonalDetails().getDateOfBirth().replace("/", "-");
+				employee.put("dateOfBirth", dateString);
+				List <Address> addressList = new ArrayList <Address> (employeeService.getEmployee(employeeId).getPersonalDetails().getAddressSet());
+				employee.put("currentStreet",addressList.get(0).getStreet());
+				employee.put("currentCity",addressList.get(0).getCity());
+				employee.put("currentDistrict",addressList.get(0).getDistrict());
+				employee.put("currentState",addressList.get(0).getState());
+				employee.put("currentPinCode",addressList.get(0).getPinCode());
+				employee.put("currentAddressType",addressList.get(0).getAddressType());
+				employee.put("permanentStreet",addressList.get(1).getStreet());
+				employee.put("permanentCity",addressList.get(1).getCity());
+				employee.put("permanentDistrict",addressList.get(1).getDistrict());
+				employee.put("permanentState",addressList.get(1).getState());
+				employee.put("permanentPinCode",addressList.get(1).getPinCode());
+				employee.put("permanentAddressType",addressList.get(1).getAddressType());
+				System.out.println(employee);
+				arrayEmployeeValues.put(employee);
+				response.setContentType("application/json");
+				response.getWriter().write(arrayEmployeeValues.toString());
+			} 
+			else {
+				throw new EmployeeIdNotExist("Employee Id Does Not Exist");
+			}
+		} catch (EmployeeIdNotExist e) {
+			System.out.println(e.getMessage());
+			/*
+			 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
+			 * context.getRequestDispatcher("/view/jsp/Error.jsp");
+			 * request.setAttribute("status", "e"); dispatcher.forward(request,response);
+			 */
+
 		}
 	}
 
@@ -186,19 +206,19 @@ public class EmployeeController extends HttpServlet {
 	 * @throws ServletException 
 	 */
 	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println(request.getParameter("EmployeeId"));
-		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
-		long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
-		String emailId = request.getParameter("EmailId");
-		String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
-		request.setAttribute("status", status);
-		dispatcher.forward(request,response);
+			int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
+				long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
+				String emailId = request.getParameter("EmailId");
+				String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
+				ServletContext context = getServletContext();
+				RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/EmployeeSubmission.jsp");
+				request.setAttribute("status", status);
+				dispatcher.forward(request,response);
 	}
 
 	/**
 	 * DeleteEmployee is used to change the status of the employee
+	 * @throws IOException 
 	 * @throws ServletException 
 	 */
 	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -212,6 +232,8 @@ public class EmployeeController extends HttpServlet {
 
 	/**
 	 * Display the details of the employee
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	public void displayEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();
@@ -222,6 +244,8 @@ public class EmployeeController extends HttpServlet {
 	/**
 	 * AddEmployeeToProject is used to add employee and project Details
 	 * To insert and view the employee and project
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 	public void addEmployeeToProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		List <Integer> listProjectId = new ArrayList <Integer> ();

@@ -12,26 +12,6 @@
 <head>
 <meta charset="UTF-8">
 <title>EMPLOYEE PROJECT MANAGEMENT</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#submit').click(function() {
-			var postData = $('#commentForm').serializeArray();
-			console.log(postData);
-			$.ajax({
-				type : "GET",
-				url : "ProjectSubmission",
-				data : postData,
-				success : function(response) {
-					alert(response);
-				}
-			});
-		});
-	});
-</script>
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp" > HOME</a>

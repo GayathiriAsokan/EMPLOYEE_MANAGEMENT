@@ -38,8 +38,8 @@ display:none;
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp"> HOME</a>
-<input type="button" id="display" value="Display All Project"/>
-<input type="button" id="view" value="Display Project"/>
+<input type="button" id="display" value="Display All Project with Employee Details"/>
+<input type="button" id="view" value="Display All Project"/>
 	<h1>EMPLOYEE MANAGEMENT DETAILS</h1>
 </head>
 <body>
@@ -63,18 +63,6 @@ display:none;
 			<th class="display view ">PhoneNumber</th>
 			<th class="display view ">EmailId</th>
 			<th class="display view ">DateOfBirth</th>
-			<th class="display view ">Street</th>
-			<th class="display view ">City</th>
-			<th class="display view ">District</th>
-			<th class="display view ">State</th>
-			<th class="display view ">PinCode</th>
-			<th class="display view ">AddressType</th>
-			<th class="display view ">PermanentStreet</th>
-			<th class="display view ">PermanentCity</th>
-			<th class="display view ">PermanentDistrict</th>
-			<th class="display view ">PermanentState</th>
-			<th class="display view ">PermanentPinCode</th>
-			<th class="display view ">PermanentAddressType</th>
 		</tr>
 		<%
 			ProjectServiceImpl projectService = new ProjectServiceImpl();
@@ -96,7 +84,6 @@ display:none;
 			for (int employeeIndex = 0; employeeIndex < employeeList.size(); employeeIndex ++) {
 				if (employeeIndex > 0) {
 			%>
-		</tr>
 		<tr>
 			<td class="display view "><%=project.getProjectId()%></td>
 			<td class="display view "><%=project.getProjectName()%></td>
@@ -116,21 +103,6 @@ display:none;
 			<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getPhoneNumber()%></td>
 			<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getEmailId()%></td>
 			<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getDateOfBirth()%></td>
-			<%
-				List<Address> addressList = new ArrayList<Address>(employeeList.get(employeeIndex).getPersonalDetails().getAddressSet());
-			%>
-			<td class="display view "><%=addressList.get(0).getStreet()%></td>
-			<td class="display view "><%=addressList.get(0).getCity()%></td>
-			<td class="display view "><%=addressList.get(0).getDistrict()%></td>
-			<td class="display view "><%=addressList.get(0).getState()%></td>
-			<td class="display view "><%=addressList.get(0).getPinCode()%></td>
-			<td class="display view "><%=addressList.get(0).getAddressType()%></td>
-			<td class="display view "><%=addressList.get(1).getStreet()%></td>
-			<td class="display view "><%=addressList.get(1).getCity()%></td>
-			<td class="display view "><%=addressList.get(1).getDistrict()%></td>
-			<td class="display view "><%=addressList.get(1).getState()%></td>
-			<td class="display view "><%=addressList.get(1).getPinCode()%></td>
-			<td class="display view "><%=addressList.get(1).getAddressType()%></td>
 		</tr>
 		<%}
 			else {  %>
@@ -144,26 +116,10 @@ display:none;
 		<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getPhoneNumber()%></td>
 		<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getEmailId()%></td>
 		<td class="display view "><%=employeeList.get(employeeIndex).getPersonalDetails().getDateOfBirth()%></td>
-		<%
-			List<Address> addressList = new ArrayList<Address>(employeeList.get(employeeIndex).getPersonalDetails().getAddressSet());
-		%>
-		<td class="display view "><%=addressList.get(0).getStreet()%></td>
-		<td class="display view "><%=addressList.get(0).getCity()%></td>
-		<td class="display view "><%=addressList.get(0).getDistrict()%></td>
-		<td class="display view "><%=addressList.get(0).getState()%></td>
-		<td class="display view "><%=addressList.get(0).getPinCode()%></td>
-		<td class="display view "><%=addressList.get(0).getAddressType()%></td>
-		<td class="display view "><%=addressList.get(1).getStreet()%></td>
-		<td class="display view "><%=addressList.get(1).getCity()%></td>
-		<td class="display view "><%=addressList.get(1).getDistrict()%></td>
-		<td class="display view "><%=addressList.get(1).getState()%></td>
-		<td class="display view "><%=addressList.get(1).getPinCode()%></td>
-		<td class="display view "><%=addressList.get(1).getAddressType()%></td>
 		</tr>
 		<%
+			}	}
 			}
-		}
-		}
 		%>
 	</table>
 </body>

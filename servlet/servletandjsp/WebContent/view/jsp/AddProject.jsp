@@ -127,7 +127,12 @@ $(function () {
 	<br>
 	<input type="date" id="ActualEndDate" name="ActualEndDate" size="10" required>
 	<br>
-	<br>
+     <br> <br> <label for="Choose A ProjectStatus">Choose
+				A ProjectStatus: </label> <br> <select name="ProjectStatus" id="ProjectStatus" >
+				<option value="PROJECT NOT YET COMPLETED">PROJECT NOT YET COMPLETED</option>
+				<option value="PROJECT IN PROGRSS">PROJECT IN PROGRSS</option>
+				<option value="PROJECT COMPLETED">PROJECT COMPLETED</option>
+			</select>
 	<input type="text" name="mode" id="mode" name="mode"
 			value="<%= request.getParameter("mode")%>" style="visibility: hidden;"> <br>
 		<br>

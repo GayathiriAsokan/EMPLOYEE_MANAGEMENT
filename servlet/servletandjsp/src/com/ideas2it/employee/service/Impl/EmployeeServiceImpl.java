@@ -17,8 +17,9 @@ import com.ideas2it.employee.dao.Impl.EmployeeDaoImpl;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
-//import com.ideas2it.util.Validator;
+import com.ideas2it.util.Validator;
 import com.ideas2it.employee.service.EmployeeService;
+
 
 /**
  * @description EmployeeService used to hold PersonalDetails,Address,Employee
@@ -28,7 +29,7 @@ import com.ideas2it.employee.service.EmployeeService;
  * @version 1.2
  */
 public class EmployeeServiceImpl implements EmployeeService {
-	//Validator validator = new Validator();
+    Validator validator = new Validator();
 	EmployeeDaoImpl employeeDAO = new EmployeeDaoImpl();
 
 	/**

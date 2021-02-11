@@ -35,11 +35,11 @@ public class ProjectDaoImpl implements ProjectDao {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void insertProject(String projectName, String technology, String projectManager, String projectType, String startDate, String endDate, String actualEndDate) {
+	public void insertProject(String projectName, String technology, String projectManager, String projectType, String startDate, String endDate, String actualEndDate, String projectStatus) {
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Project project = new Project(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate);
+		Project project = new Project(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate, projectStatus);
 		int rowCount = 0;
 		session.save(project);
 		System.out.println(rowCount);

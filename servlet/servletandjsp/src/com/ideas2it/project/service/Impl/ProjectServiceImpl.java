@@ -29,8 +29,8 @@ public class ProjectServiceImpl implements ProjectService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate) {
-		projectDao.insertProject(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate);
+	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate, String projectStatus) {
+		projectDao.insertProject(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate, projectStatus);
 		return "PROJECT DATA ADDED SUCCESSFULLY";
 	}
 

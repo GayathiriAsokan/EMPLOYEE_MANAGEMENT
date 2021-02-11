@@ -29,7 +29,7 @@ public interface ProjectDao {
 	 * @return int
 	 */
     public void insertProject(String projectName, String technology,
-                             String projectManager, String projectType, String startDate, String endDate, String actualEndDate);
+                             String projectManager, String projectType, String startDate, String endDate, String actualEndDate, String projectStatus);
     /**
      * ViewProject is used to view all project details
      * @return List<Project>

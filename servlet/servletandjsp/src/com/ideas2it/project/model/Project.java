@@ -19,7 +19,6 @@ import com.ideas2it.employee.model.Employee;
  * @version 1.0
  */
 public class Project {
-	//Validator validator = new Validator();
 	private int projectId;
 	private String projectName;
 	private String technology;
@@ -29,6 +28,7 @@ public class Project {
 	private String endDate;
 	private String actualEndDate;
 	private Set <Employee>  employeeSet = new HashSet <Employee>();
+	private String projectStatus;
 
 	/**
 	 * Default Constructor which creates an empty object of Address
@@ -40,7 +40,7 @@ public class Project {
 	 * Parameterized constructor with parameters projectName, projectManager, projectType, startDate, endDate
 	 * Asigning values using this keyword    
 	 */
-	public Project(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate) {
+	public Project(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate, String projectStatus) {
 		this.projectName = projectName;
 		this.technology = technology;
 		this.projectManager = projectManager;
@@ -48,6 +48,7 @@ public class Project {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.actualEndDate = actualEndDate;
+		this.projectStatus = projectStatus;
 	}
 
 	public void setProjectType(String projectType) {
@@ -130,13 +131,21 @@ public class Project {
 	public void setActualEndDate(String actualEndDate) {
 		this.actualEndDate = actualEndDate;
 	}
+	
+	public String getProjectStatus() {
+		return projectStatus;
+	}
+
+	public void setProjectStatus(String projectStatus) {
+		this.projectStatus = projectStatus;
+	}
 
 	@Override
 	public String toString() {
 		return "\n Project: ProjectId : " + getProjectId() + "\n ProjectName  : " + getProjectName() +
 				"\n Technology  : " + getTechnology() + "\n ProjectManager : " + getProjectManager() + "\n ProjectType : "
 				+ getProjectType()+  "\n EndDate : " +  getEndDate() +  "\n StartDate : " + getStartDate() + "\n ActualEndDate : " + 
-				getActualEndDate() + " " + getEmployeeId();// + "\n PROJECT STATUS " + validator.projectStatus (endDate, actualEndDate);
+				getActualEndDate() + " " + getEmployeeId() + "\n PROJECT STATUS " + getProjectStatus ();
 	}
 
 }

@@ -4,7 +4,6 @@
 package com.ideas2it.project.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -16,13 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.ideas2it.Exception.EmployeeIdNotExist;
 import com.ideas2it.project.service.Impl.ProjectServiceImpl;
 
 /**
  * @description ProjectController is used to save the project details
  * It is used for crud operations project details 
  * @author GAYATHIRI
- *
  */
 public class ProjectController extends HttpServlet {
 	ProjectServiceImpl projectService = new ProjectServiceImpl();
@@ -30,6 +29,8 @@ public class ProjectController extends HttpServlet {
 	/**
 	 * This method is used to save the project details using jsp file
 	 * By checking the mode crud operations are done
+	 * @throws IOException 
+	 * @throws ServletException
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println(request.getServletPath());
@@ -49,7 +50,6 @@ public class ProjectController extends HttpServlet {
 			displayProject(request, response);
 			break; 
 		case "/AddEmployee" : 
-			System.out.println("fdfhj");
 			insertProjectToEmployee(request, response);
 			break;
 		}
@@ -58,6 +58,8 @@ public class ProjectController extends HttpServlet {
 	/**
 	 * This method is used to save the project details using jsp file
 	 * By checking the mode crud operations are done
+	 * @throws IOException 
+	 * @throws ServletException
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println(request.getServletPath());
@@ -78,6 +80,8 @@ public class ProjectController extends HttpServlet {
 
 	/**
 	 * AddProject is used to get the values from the user
+	 * @throws IOException 
+	 * @throws ServletException
 	 */
 	public void addProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String projectName = request.getParameter("ProjectName");
@@ -87,7 +91,8 @@ public class ProjectController extends HttpServlet {
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
 		String actualEndDate = request.getParameter("ActualEndDate");
-		String status = projectService.insertProject(projectName, projectManager, projectType, technology, startDate, endDate, actualEndDate);
+		String projectStatus = request.getParameter("ProjectStatus");
+		String status = projectService.insertProject(projectName, projectManager, projectType, technology, startDate, endDate, actualEndDate, projectStatus);
 		ServletContext context = getServletContext();
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectSubmission.jsp");
 		request.setAttribute("status", status);
@@ -96,6 +101,8 @@ public class ProjectController extends HttpServlet {
 
 	/**
 	 * This method is used to add insert Project details 
+	 * @throws IOException 
+	 * @throws ServletException
 	 */
 	public void insertProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();
@@ -142,24 +149,32 @@ public class ProjectController extends HttpServlet {
 
 	/**
 	 * Display the details of the project to update,delete and view
+	 * @throws IOException 
 	 */
 	public void viewProject(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int projectId = Integer.parseInt(request.getParameter("ProjectId"));
-		if (projectId != 0) {
-			response.setContentType("text/html");
-			projectService.viewSingleProject(projectId);
-			JSONArray arrayProjectValues = new JSONArray();
-			JSONObject project = new JSONObject();
-			project.put("ProjectName", projectService.viewSingleProject(projectId).getProjectName());
-			project.put("ProjectManager", projectService.viewSingleProject(projectId).getProjectManager());
-			project.put("Technology", projectService.viewSingleProject(projectId).getTechnology());
-			project.put("ProjectType", projectService.viewSingleProject(projectId).getProjectType());
-			project.put("StartDate", projectService.viewSingleProject(projectId).getStartDate());
-			project.put("EndDate", projectService.viewSingleProject(projectId).getEndDate());
-			project.put("ActualEndDate", projectService.viewSingleProject(projectId).getActualEndDate());
-			arrayProjectValues.put(project);
-			response.setContentType("application/json");
-			response.getWriter().write(arrayProjectValues.toString());
+		try {
+			if (projectId != 0 && projectId <= 14) {	
+				response.setContentType("text/html");
+				projectService.viewSingleProject(projectId);
+				JSONArray arrayProjectValues = new JSONArray();
+				JSONObject project = new JSONObject();
+				project.put("ProjectName", projectService.viewSingleProject(projectId).getProjectName());
+				project.put("ProjectManager", projectService.viewSingleProject(projectId).getProjectManager());
+				project.put("Technology", projectService.viewSingleProject(projectId).getTechnology());
+				project.put("ProjectType", projectService.viewSingleProject(projectId).getProjectType());
+				project.put("StartDate", projectService.viewSingleProject(projectId).getStartDate());
+				project.put("EndDate", projectService.viewSingleProject(projectId).getEndDate());
+				project.put("ActualEndDate", projectService.viewSingleProject(projectId).getActualEndDate());
+				arrayProjectValues.put(project);
+				response.setContentType("application/json");
+				response.getWriter().write(arrayProjectValues.toString());
+			} 
+			else {
+				throw new EmployeeIdNotExist("Project Id Does Not Exist");
+			}
+		} catch (EmployeeIdNotExist e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

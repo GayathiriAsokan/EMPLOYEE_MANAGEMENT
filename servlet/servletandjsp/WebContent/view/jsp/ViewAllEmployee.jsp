@@ -36,8 +36,8 @@ display:none;
 </head>
 <body>
 <p><a href="/Demo1/Index.jsp"> HOME</a>
-<input type="button" id="display" value="Display All Employee"/>
-<input type="button" id="view" value="Display Employee"/>
+<input type="button" id="display" value="Display Employees with their projects"/>
+<input type="button" id="view" value="Display All Employee"/>
 <h1>EMPLOYEE MANAGEMENT DETAILS</h1>
 <table>
 <tr>
@@ -65,12 +65,6 @@ display:none;
 <th class="display view">PermanentAddressType</th>
 <th class="display view">ProjectID</th>
 <th class="display view">ProjectName</th>
-<th class="display view">ProjectManager</th>
-<th class="display view">Technology</th>
-<th class="display view">ProjectType</th>
-<th class="display view">StartDate</th>
-<th class="display view">EndDate</th>
-<th class="display view">ActualEndDate</th>
 </tr>
 <% EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 List <Employee> employeeList = employeeService.getAllEmployee();
@@ -102,9 +96,7 @@ for (int index = 0 ; index < employeeList.size() ; index ++) {
 	<td class="display view"> <%= addressList.get(1).getAddressType()%> </td>
 	<% List <Project> projectList = new ArrayList <Project> (employee.getProjectSet()); 
 	for (int projectIndex = 0 ; projectIndex < projectList.size(); projectIndex ++) {
-	if(projectIndex > 0 ) {%>
- </tr>
-<tr>
+	 if(projectIndex > 0 ) { %>
 <td class="display view"> <%= employee.getEmployeeId() %></td>
 	<td class="display view"> <%= employee.getCompanyName() %></td>
 	<td class="display view"> <%= employee.getDesignation() %></td>
@@ -129,25 +121,14 @@ for (int index = 0 ; index < employeeList.size() ; index ++) {
 	<td class="display view"> <%= addressList.get(1).getAddressType()%> </td>
     <td class="display view"> <%= projectList.get(projectIndex).getProjectId() %> </td>
 	<td class="display view"><%= projectList.get(projectIndex).getProjectName() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getProjectManager() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getTechnology() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getProjectType() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getStartDate() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getEndDate() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getActualEndDate() %> </td>
 	</tr>
 <% }
  else{ %>
     <td class="display view"> <%= projectList.get(projectIndex).getProjectId() %> </td>
 	<td class="display view"><%= projectList.get(projectIndex).getProjectName() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getProjectManager() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getTechnology() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getProjectType() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getStartDate() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getEndDate() %> </td>
-	<td class="display view"><%= projectList.get(projectIndex).getActualEndDate() %> </td>
 	</tr>
-	<% } } }%>
+	<%}} }%>
+	<%-- <% } } }%> --%>
 </table>
 </body>
 </html>

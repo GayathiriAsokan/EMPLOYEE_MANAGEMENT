@@ -28,5 +28,7 @@
 		<property name="endDate" column="end_date" type="string" />
 		<property name="actualEndDate" column="actual_end_date"
 			type="string" />
+			<property name="projectStatus" column="project_status"
+			type="string" />
 	</class>
 </hibernate-mapping>

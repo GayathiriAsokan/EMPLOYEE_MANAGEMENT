@@ -29,7 +29,7 @@ public interface ProjectService {
 	 * @return String
 	 */
 	public String insertProject(String projectName, String projectManager,
-			String projectType, String technology, String startDate, String endDate, String actualEndDate);
+			String projectType, String technology, String startDate, String endDate, String actualEndDate, String projectStatus);
 
 	/**
 	 * View the list of project

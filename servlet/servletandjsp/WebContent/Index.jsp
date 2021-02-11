@@ -3,16 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-background-image: url("Office.jpg"); 
-  background-color: #cccccc; 
-  height: 500px; 
-  background-position: center;
-  background-repeat: no-repeat; 
-  background-size: cover; 
-}
-</style>
 <meta charset="UTF-8">
 <title>EMPLOYEE PROJECT MANAGEMENT</title>
 <script>
