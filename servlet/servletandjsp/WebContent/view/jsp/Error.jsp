@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-console.log(request.getAttribute("status"));
-alert(request.getAttribute("status"));
+console.log(request.getAttribute("Error Message"));
+alert(request.getAttribute("Error Message"));
 </body>
 </html>

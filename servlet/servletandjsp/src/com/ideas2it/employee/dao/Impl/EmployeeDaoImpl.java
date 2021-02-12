@@ -10,6 +10,8 @@ package com.ideas2it.employee.dao.Impl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Set;
 
 import org.hibernate.query.Query;
@@ -32,12 +34,14 @@ import com.ideas2it.sessionManagement.SessionManagement;
  * @version 1.0
  */
 public class EmployeeDaoImpl implements EmployeeDao {
-
+	Logger logger = Logger.getLogger(EmployeeDaoImpl.class.getName());
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void insertEmployee(double salary, String companyName, String designation, int experience, String status, String name, String  phoneNumber, String emailId, String dateOfBirth, Address currentAddress, Address permanentAddress) {
+		logger.log(Level.INFO, "Insert for employee method");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -59,6 +63,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public List <Employee> viewEmployee() {
+		logger.log(Level.INFO, "View all employee method");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		List <Employee> employeeList = session.createQuery("from Employee", Employee.class).getResultList();
@@ -70,6 +75,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override 
 	public Employee employeeViewById(int employeeId) {
+		logger.log(Level.INFO, "View By Id for employee method");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Employee employee = session.get(Employee.class, employeeId);
@@ -81,6 +87,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public List<Integer> isDuplicate(long phoneNumber, String emailId) {
+		logger.log(Level.INFO, "Duplicate checking for employee method");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -104,6 +111,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public int deleteEmployee(int employeeId) {
+		logger.log(Level.INFO, "Delete employee method");
 		int countEmployee = 0;
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
@@ -121,6 +129,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public int updatePersonalDetails(int employeeId, long phoneNumber, String emailId) {
+		logger.log(Level.INFO, "Update employee method");
 		int updateCount = 0, personalId = 0;
 		Employee employee = employeeViewById(employeeId);
 		PersonalDetails personalDetails = employee.getPersonalDetails();
@@ -144,6 +153,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public void addProjectEmployee(List <Integer> listId, int employeeId) {
+		logger.log(Level.INFO, "Add project to employee method");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();

@@ -171,6 +171,10 @@ public class ProjectController extends HttpServlet {
 				response.getWriter().write(arrayProjectValues.toString());
 			} 
 			else {
+				JSONObject errorStatus = new JSONObject();
+				errorStatus.put("status", "Project Id Does Not Exist");
+				response.setContentType("application/json");
+				response.getWriter().write(errorStatus.toString());
 				throw new EmployeeIdNotExist("Project Id Does Not Exist");
 			}
 		} catch (EmployeeIdNotExist e) {

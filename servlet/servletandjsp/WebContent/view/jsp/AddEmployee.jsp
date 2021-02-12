@@ -8,15 +8,16 @@
 <title>EMPLOYEE DETAILS</title>
 <style>
 body {
-background-image: url('/WebContent/view/jsp/Work.jpg'); 
-  background-color: #cccccc; 
-  height: 500px; 
-  background-position: center;
-  background-repeat: no-repeat; 
-  background-size: cover; 
+	background-image: url('/WebContent/view/jsp/Work.jpg');
+	background-color: #cccccc;
+	height: 500px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-.view_only{
-background-color: ghostwhite;
+
+.view_only {
+	background-color: ghostwhite;
 }
 </style>
 <script
@@ -82,6 +83,7 @@ background-color: ghostwhite;
 				url : "Update/ajax",
 				data : employeeId,
 				success : function(response) {
+					if (response.status == null) {
 					var arrayEmployeeValues = response;
 					var employeeMap = arrayEmployeeValues[0];
 					$("#CompanyName").val(employeeMap.companyName);
@@ -105,6 +107,10 @@ background-color: ghostwhite;
 					$("#state2").val(employeeMap.permanentState);
 					$("#pincode2").val(employeeMap.permanentPinCode);
 					$("#AddressType2").val(employeeMap.permanentAddressType);
+				} else {
+					var errorStatus = response;
+					alert(errorStatus.status);
+				}
 				}
 			});
 		});
@@ -112,20 +118,19 @@ background-color: ghostwhite;
 </script>
 </head>
 <body>
-<p><a href="/Demo1/Index.jsp" > HOME</a>
-	 <form id="commentForm" name="commentForm" method="post" 
-	 <% 
+	<p>
+		<a href="/Demo1/Index.jsp"> HOME</a>
+	<form id="commentForm" name="commentForm" method="post"
+		<% 
 	 int mode = Integer.parseInt(request.getParameter("mode"));
 	 if (mode == 1) {%>
-	 action= /Demo1/EmployeeController/Insert/submit
-	 <%} 
+		action=/Demo1/EmployeeController/Insert/submit
+		<%} 
         else if (mode == 2)  {%>
-		 action= /Demo1/EmployeeController/Update/submit
-		 <%}
+		action=/Demo1/EmployeeController/Update/submit
+		<%}
         else if (mode ==3) { %>
-        action= /Demo1/EmployeeController/Delete/submit
-        <%} %>
-        >
+		action=/Demo1/EmployeeController/Delete/submit <%} %>>
 		<div id="Employee" style="position: absolute; left: 171px;">
 			<h1>EMPLOYEE DETAILS</h1>
 			<%
@@ -139,29 +144,31 @@ background-color: ghostwhite;
 			}
 		%>
 			<br> <br> <label for="CompanyName">CompanyName: </label> <br>
-			<input type="text" id="CompanyName" name="CompanyName" size="25" class = "non_editable"
-				required> <br> <br> <label for="Salary">Salary:
-			</label> <br> <input type="number" id="Salary" name="Salary" class = "non_editable" required>
-			<br> <br> <label for="Designation">Designation: </label> <br>
-			<input type="text" id="Designation" name="Designation" size="10" class = "non_editable"
-				required> <br> <br> <label for="Experience">Experience:
-			</label> <br> <input type="number" id="Experience" name="Experience" class = "non_editable"
-				required> <br> <br> <label for="Choose A Status">Choose
-				A Status: </label> <br> <select name="Status" id="Status" >
+			<input type="text" id="CompanyName" name="CompanyName" size="25"
+				class="non_editable" required> <br> <br> <label
+				for="Salary">Salary: </label> <br> <input type="number"
+				id="Salary" name="Salary" class="non_editable" required> <br>
+			<br> <label for="Designation">Designation: </label> <br> <input
+				type="text" id="Designation" name="Designation" size="10"
+				class="non_editable" required> <br> <br> <label
+				for="Experience">Experience: </label> <br> <input type="number"
+				id="Experience" name="Experience" class="non_editable" required>
+			<br> <br> <label for="Choose A Status">Choose A
+				Status: </label> <br> <select name="Status" id="Status">
 				<option value="ACTIVE">ACTIVE</option>
 				<option value="INACTIVE">INACTIVE</option>
 			</select> <br> <br>
 			<h2>PERSONAL DETAILS</h2>
 			<label for="Name">Name: </label> <br> <input type="text"
-				id="Name" name="Name" size="15" class = "non_editable" required> <br> <br>
-			<label for="PhoneNumber">PhoneNumber: </label> <br> <input
-				type="number" id="PhoneNumber" name="PhoneNumber" required>
+				id="Name" name="Name" size="15" class="non_editable" required>
+			<br> <br> <label for="PhoneNumber">PhoneNumber: </label> <br>
+			<input type="number" id="PhoneNumber" name="PhoneNumber" required>
 			<br> <br> <label for="EmailId">EmailId: </label> <br>
 			<input type="email" id="EmailId" name="EmailId" size="10" required>
 			<br> <br> <label for="DateOfBirth">DateOfBirth: </label> <br>
-			<input type="date" id="DateOfBirth" name="DateOfBirth" size="10" class = "non_editable"
-				required> <br> <br> <br> <input type="text"
-				name="mode" id="mode" name="mode"
+			<input type="date" id="DateOfBirth" name="DateOfBirth" size="10"
+				class="non_editable" required> <br> <br> <br>
+			<input type="text" name="mode" id="mode" name="mode"
 				value="<%=request.getParameter("mode")%>"
 				style="visibility: hidden;"> <br> <br>
 		</div>
@@ -173,50 +180,47 @@ background-color: ghostwhite;
 				name="AddressDetails"> <label for="PermanentAddress">PermanentAddress</label>
 			<br>
 		</div>
-		<div id="CurrentAddressDivision" style="position: absolute;
-    left: 741px;
-    top: 215px;">
+		<div id="CurrentAddressDivision"
+			style="position: absolute; left: 741px; top: 215px;">
 			<h2>CURRENT ADDRESS</h2>
 			<label for="Street">Street: </label><br> <input type="text"
-				name="Street" id="street1" size="15" class = "non_editable" required> 
-			<label for="City">City: </label><input type="text"
-				name="City" id="city1" size="15" class = "non_editable" required> <br> <br>
-			<label for="District">District: </label><br> <input type="text"
-				name="District" id="district1" size="15" class = "non_editable" required> 
-				<label for="State">State: </label> <input
-				type="text" name="State" id="state1" size="15" class = "non_editable" required> <br>
-			<br> <label for="PinCode">PinCode: </label><br> <input
-				type="number" name="PinCode" id="pincode1" class = "non_editable" required> <br>
-			<br> <input type="text" name="AddressType" id="AddressType1"
-				value="currentAddress" class = "non_editable" style="visibility: hidden;"> <br>
-			<br>
+				name="Street" id="street1" size="15" class="non_editable" required>
+			<label for="City">City: </label><input type="text" name="City"
+				id="city1" size="15" class="non_editable" required> <br>
+			<br> <label for="District">District: </label><br> <input
+				type="text" name="District" id="district1" size="15"
+				class="non_editable" required> <label for="State">State:
+			</label> <input type="text" name="State" id="state1" size="15"
+				class="non_editable" required> <br> <br> <label
+				for="PinCode">PinCode: </label><br> <input type="number"
+				name="PinCode" id="pincode1" class="non_editable" required>
+			<br> <br> <input type="text" name="AddressType"
+				id="AddressType1" value="currentAddress" class="non_editable"
+				style="visibility: hidden;"> <br> <br>
 		</div>
-		<div id="AddressRadio" style="position: absolute;
-    left: 741px;
-    top: 470px;"/>
-		<input type="checkbox" id="same" name="same" >
-		 <label for="same" >
-			If Permanent Address same select this box. </label>
-			</div>
+		<div id="AddressRadio"
+			style="position: absolute; left: 741px; top: 470px;" />
+		<input type="checkbox" id="same" name="same"> <label
+			for="same"> If Permanent Address same select this box. </label>
+		</div>
 		<div id="PermanentAddressDivision"
-		style="position: absolute;
-    left: 741px;
-    top: 500px;">
+			style="position: absolute; left: 741px; top: 500px;">
 			<h2>PERMANENT ADDRESS</h2>
 			<label for="PermanentStreet">Street </label><br> <input
-				type="text" name="PermanentStreet" id="street2" class = "non_editable" size="15" required>
-			 <label for="PermanentCity">City:</label>
-			<input type="text" name="PermanentCity" id="city2" size="15" class = "non_editable" required>
-			<br> <br> <label for="PermanentDistrict">District:
-			</label><br> <input type="text" name="PermanentDistrict" id="district2"
-				size="15" class = "non_editable" required> <label
-				for="PermanentState">State:</label>
-				<input type="text"
-				name="PermanentState" id="state2" size="15" class = "non_editable" required> <br>
-			<br> <label for="PermanentPinCode">PinCode: </label><br> <input
-				type="number" name="PermanentPinCode" id="pincode2" class = "non_editable" required>
-			<br> <br> <input type="text" name="PermanentAddressType"
-				id="AddressType2" value="permanentAddress" class = "non_editable"
+				type="text" name="PermanentStreet" id="street2" class="non_editable"
+				size="15" required> <label for="PermanentCity">City:</label>
+			<input type="text" name="PermanentCity" id="city2" size="15"
+				class="non_editable" required> <br> <br> <label
+				for="PermanentDistrict">District: </label><br> <input
+				type="text" name="PermanentDistrict" id="district2" size="15"
+				class="non_editable" required> <label for="PermanentState">State:</label>
+			<input type="text" name="PermanentState" id="state2" size="15"
+				class="non_editable" required> <br> <br> <label
+				for="PermanentPinCode">PinCode: </label><br> <input
+				type="number" name="PermanentPinCode" id="pincode2"
+				class="non_editable" required> <br> <br> <input
+				type="text" name="PermanentAddressType" id="AddressType2"
+				value="permanentAddress" class="non_editable"
 				style="visibility: hidden;">
 		</div>
 		<%
@@ -224,18 +228,12 @@ background-color: ghostwhite;
 		if (mode != 4) {
 		%>
 		<div id="submit division"
-			style="
-			 position: absolute;
-			 top: 730px; 
-			 left: 366px;
-			 color: darkblue !important;
-			 font-size: medium !important;
-             ">
+			style="position: absolute; top: 730px; left: 366px; color: darkblue !important; font-size: medium !important;">
 			<input type="submit" id="submit" value="ADD EMPLOYEE DETAILS" />
 			<%
 			}
 		%>
 		</div>
-</form>	
+	</form>
 </body>
 </html>

@@ -150,11 +150,11 @@ public class EmployeeController extends HttpServlet {
 	 */
 	public void viewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, EmployeeIdNotExist {
 		int employeeId = Integer.parseInt(request.getParameter("EmployeeId"));
+		JSONArray arrayEmployeeValues = new JSONArray();
 		try {
 			if (employeeId != 0 && employeeId <= 23) {
 				response.setContentType("text/html");
 				employeeService.getEmployee(employeeId);
-				JSONArray arrayEmployeeValues = new JSONArray();
 				JSONObject employee = new JSONObject();
 				employee.put("companyName", employeeService.getEmployee(employeeId).getCompanyName());
 				employee.put("salary", employeeService.getEmployee(employeeId).getSalary());
@@ -187,16 +187,14 @@ public class EmployeeController extends HttpServlet {
 				response.getWriter().write(arrayEmployeeValues.toString());
 			} 
 			else {
+				JSONObject errorStatus = new JSONObject();
+				errorStatus.put("status", "Employee Id Does Not Exist");
+				response.setContentType("application/json");
+				response.getWriter().write(errorStatus.toString());
 				throw new EmployeeIdNotExist("Employee Id Does Not Exist");
 			}
 		} catch (EmployeeIdNotExist e) {
 			System.out.println(e.getMessage());
-			/*
-			 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
-			 * context.getRequestDispatcher("/view/jsp/Error.jsp");
-			 * request.setAttribute("status", "e"); dispatcher.forward(request,response);
-			 */
-
 		}
 	}
 

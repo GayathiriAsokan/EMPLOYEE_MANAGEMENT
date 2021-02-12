@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+//import org.apache.log4j.Logger;
+/*import java.util.logging.Level;
+import java.util.logging.Logger;*/
 import com.ideas2it.employee.dao.Impl.EmployeeDaoImpl;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
@@ -31,6 +33,7 @@ import com.ideas2it.employee.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
     Validator validator = new Validator();
 	EmployeeDaoImpl employeeDAO = new EmployeeDaoImpl();
+	Logger logger = Logger.getLogger(EmployeeDaoImpl.class.getName());
 
 	/**
 	 * {@inheritDoc}
@@ -43,10 +46,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List <Integer> employeeList = validateEmployeeData(phoneNumber, emailId); 
 		if (employeeList.get(0) != 0 && employeeList.get(1) != 0) {
 			insertStatus = "DUPLICATE PHONE NUMBER AND EMAILID";
+			logger.log(Level.WARNING, "DUPLICATE PHONE NUMBER AND EMAILID");
 		} else if (employeeList.get(1) != 0) {
 			insertStatus = "DUPLICATE EMAILID"; 
+			logger.log(Level.WARNING, "DUPLICATE EMAILID");
 		} else if (employeeList.get(0) != 0) {
 			insertStatus = "DUPLICATE PHONE NUMBER";
+			
 		} else {
 		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
 		Address currentAddress = addAddressValues(currentAddressMap);
@@ -124,6 +130,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			employeeDAO.updatePersonalDetails(employeeId, phoneNumber, emailId);
 			return "UPDATED SUCCESSFULLY";
 		} else {
+			logger.log(Level.WARNING, "ALREADY EXIXTS  DUPLICATE VALUE");
 			return "ALREADY EXIXTS  DUPLICATE VALUE";
 		}
 	}

@@ -45,6 +45,7 @@ $(function () {
 			url:"Update/ajax",
 			data: ProjectId,
 			success: function (response) {
+				if (response.status == null) {
 				var arrayProjectValues = response;
 				var projectMap = arrayProjectValues[0];
 				$("#ProjectName").val(projectMap.ProjectName);
@@ -54,6 +55,10 @@ $(function () {
 				$("#StartDate").val(projectMap.StartDate);
 				$("#EndDate").val(projectMap.EndDate);
 				$("#ActualEndDate").val(projectMap.ActualEndDate);
+				} else {
+					var errorStatus = response;
+					alert(errorStatus.status);
+				}
 			}
 		});
 	});
