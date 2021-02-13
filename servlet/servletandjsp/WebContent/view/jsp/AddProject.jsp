@@ -76,7 +76,7 @@ $(function () {
         else if (mode == 2)  {%>
 		 action= /Demo1/ProjectController/Update/submit
 		 <%}
-        else if (mode ==3) { %>
+        else if (mode == 6) { %>
         action= /Demo1/ProjectController/Delete/submit
         <%} %>
         >

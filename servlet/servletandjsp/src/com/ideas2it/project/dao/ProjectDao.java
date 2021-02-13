@@ -55,5 +55,12 @@ public interface ProjectDao {
 	 * AddProjectEmployee is used to add details in project and employee
 	 */
 	public void addProjectEmployee(List <Integer> listId, int projectId);
+	
+	/**
+	 * Change the status of the project
+	 * @param projectId int
+	 * @return int
+	 */
+	public int deleteProject(int projectId);
 }
 

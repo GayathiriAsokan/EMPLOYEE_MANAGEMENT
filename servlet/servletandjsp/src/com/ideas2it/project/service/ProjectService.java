@@ -66,5 +66,12 @@ public interface ProjectService {
 	 * @return String
 	 */
 	public String addProjectEmployee(List <Integer> listId, int projectId);
+	
+	/**
+	 * Change the status of the project
+	 * @param projectId int
+	 * @return String
+	 */
+	public String deleteProject(int projectId);
 }
 

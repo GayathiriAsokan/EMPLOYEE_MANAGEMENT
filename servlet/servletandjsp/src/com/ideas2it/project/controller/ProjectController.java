@@ -70,7 +70,10 @@ public class ProjectController extends HttpServlet {
 			break;
 		case "/Update/submit" :
 			updateProject(request, response);
-			break;		 
+			break;	
+		case "/Delete/submit" :
+			deleteProject(request, response);
+			break;	
 		case "/AddProject/submit" :
 			System.out.println("ok");
 			addEmployeeToProject(request, response);
@@ -200,6 +203,20 @@ public class ProjectController extends HttpServlet {
 	public void insertProjectToEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ServletContext context = getServletContext();
 		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectEmployee.jsp");
+		dispatcher.forward(request,response);
+	}
+
+	/**
+	 * Change the status of the project
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	public void deleteProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		int projectId = Integer.parseInt(request.getParameter("ProjectId"));
+		String status = projectService.deleteProject(projectId);
+		ServletContext context = getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/view/jsp/ProjectSubmission.jsp");
+		request.setAttribute("status", status);
 		dispatcher.forward(request,response);
 	}
 }

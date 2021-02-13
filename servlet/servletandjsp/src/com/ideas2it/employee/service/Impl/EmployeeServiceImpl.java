@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-//import org.apache.log4j.Logger;
-/*import java.util.logging.Level;
-import java.util.logging.Logger;*/
+
 import com.ideas2it.employee.dao.Impl.EmployeeDaoImpl;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.employee.model.PersonalDetails;
-import com.ideas2it.util.Validator;
 import com.ideas2it.employee.service.EmployeeService;
+import com.ideas2it.Constants.Constants;
+import com.ideas2it.Logger.LoggerClass;
+import com.ideas2it.util.Validator;
 
 
 /**
@@ -31,9 +31,9 @@ import com.ideas2it.employee.service.EmployeeService;
  * @version 1.2
  */
 public class EmployeeServiceImpl implements EmployeeService {
-    Validator validator = new Validator();
+	Validator validator = new Validator();
 	EmployeeDaoImpl employeeDAO = new EmployeeDaoImpl();
-	Logger logger = Logger.getLogger(EmployeeDaoImpl.class.getName());
+	LoggerClass logger = new LoggerClass();
 
 	/**
 	 * {@inheritDoc}
@@ -44,29 +44,29 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String mobileNumber = Long.toString(phoneNumber);
 		String insertStatus = "";
 		List <Integer> employeeList = validateEmployeeData(phoneNumber, emailId); 
-		if (employeeList.get(0) != 0 && employeeList.get(1) != 0) {
-			insertStatus = "DUPLICATE PHONE NUMBER AND EMAILID";
-			logger.log(Level.WARNING, "DUPLICATE PHONE NUMBER AND EMAILID");
-		} else if (employeeList.get(1) != 0) {
-			insertStatus = "DUPLICATE EMAILID"; 
-			logger.log(Level.WARNING, "DUPLICATE EMAILID");
-		} else if (employeeList.get(0) != 0) {
-			insertStatus = "DUPLICATE PHONE NUMBER";
-			
+		if (employeeList.get(0) != Constants.ZERO && employeeList.get(1) != Constants.ZERO) {
+			logger.loggerError(Constants.DUPLICATE_ERROR_MESSAGE);
+			insertStatus = Constants.DUPLICATE_ERROR_MESSAGE;
+		} else if (employeeList.get(1) != Constants.ZERO) {
+			logger.loggerError(Constants.DUPLICATE_EMAILID_MESSAGE);
+			insertStatus = Constants.DUPLICATE_EMAILID_MESSAGE; 
+		} else if (employeeList.get(0) != Constants.ZERO) {
+			logger.loggerError(Constants.DUPLICATE_PHONENUMBER_MESSAGE);
+			insertStatus = Constants.DUPLICATE_PHONENUMBER_MESSAGE;
 		} else {
-		PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
-		Address currentAddress = addAddressValues(currentAddressMap);
-		Address permanentAddress = addAddressValues(permanentAddressMap);
-		Set <Address> address = new HashSet <Address> ();
-		address.add(currentAddress);
-		address.add(permanentAddress);
-		personalDetails.setAddressSet(address);
-		Employee employee = new Employee(companyName, salary, experience, designation, status);
-		employee.setPersonalDetails(personalDetails);
-		employeeDAO.insertEmployee(employee.getSalary(), employee.getCompanyName(),
-				employee.getDesignation(), employee.getExperience(), employee.getStatus(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
-				personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
-		insertStatus = "INSERTED SUCCESSFULLY";
+			PersonalDetails personalDetails = new PersonalDetails(name, emailId, dateOfBirth, mobileNumber);
+			Address currentAddress = addAddressValues(currentAddressMap);
+			Address permanentAddress = addAddressValues(permanentAddressMap);
+			Set <Address> address = new HashSet <Address> ();
+			address.add(currentAddress);
+			address.add(permanentAddress);
+			personalDetails.setAddressSet(address);
+			Employee employee = new Employee(companyName, salary, experience, designation, status);
+			employee.setPersonalDetails(personalDetails);
+			employeeDAO.insertEmployee(employee.getSalary(), employee.getCompanyName(),
+					employee.getDesignation(), employee.getExperience(), employee.getStatus(), personalDetails.getName(), personalDetails.getPhoneNumber(), personalDetails.getEmailId(), 
+					personalDetails.getDateOfBirth(), currentAddress, permanentAddress);
+			insertStatus = Constants.INSERT_MESSAGE;
 		}
 		return insertStatus;
 	}
@@ -93,7 +93,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public String deleteEmployee(int employeeId) {
 		employeeDAO.deleteEmployee(employeeId);
-		return "DELETED SUCCESSFULLY";
+		return Constants.DELETE_MESSAGE;
 	}
 
 	/**
@@ -128,10 +128,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeList = validateEmployeeData(phoneNumber, emailId);
 		if (employeeList.get(0) == 0 && employeeList.get(1) == 0) {
 			employeeDAO.updatePersonalDetails(employeeId, phoneNumber, emailId);
-			return "UPDATED SUCCESSFULLY";
+			return Constants.UPDATE_MESSAGE;
 		} else {
-			logger.log(Level.WARNING, "ALREADY EXIXTS  DUPLICATE VALUE");
-			return "ALREADY EXIXTS  DUPLICATE VALUE";
+			logger.loggerError(Constants.DUPLICATE_EMPLOYEE_MESSAGE);
+			return Constants.DUPLICATE_EMPLOYEE_MESSAGE;
 		}
 	}
 
@@ -141,7 +141,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public String addProjectEmployee(List <Integer> listId, int employeeId) {
 		employeeDAO.addProjectEmployee(listId, employeeId);
-		return "EMPLOYEE PROJECT DATA ADDED SUCCESSFULLY";
+		return Constants.ASSIGN_PROJECT;
 	}
 }
 

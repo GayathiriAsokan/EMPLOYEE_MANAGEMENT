@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.ideas2it.Logger.LoggerClass;
 import com.ideas2it.employee.model.Employee;
 import com.ideas2it.project.dao.ProjectDao;
 import com.ideas2it.project.model.Project;
@@ -30,19 +31,19 @@ import com.ideas2it.sessionManagement.SessionManagement;
  * @author GAYATHIRI
  */
 public class ProjectDaoImpl implements ProjectDao {
-
+     LoggerClass logger = new LoggerClass();
+     
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void insertProject(String projectName, String technology, String projectManager, String projectType, String startDate, String endDate, String actualEndDate, String projectStatus) {
+		logger.loggerInfo("Inserting values for project");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		Project project = new Project(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate, projectStatus);
-		int rowCount = 0;
 		session.save(project);
-		System.out.println(rowCount);
 		transaction.commit();
 		session.close();
 	}
@@ -52,6 +53,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public List<Project> viewProject() {
+		logger.loggerInfo("Display all for project");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		List<Project> projectlist = session.createQuery("from Project", Project.class).getResultList();
@@ -63,6 +65,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public Project projectViewById(int projectId) {
+		logger.loggerInfo("Display for project");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Project project = session.get(Project.class, projectId);
@@ -74,6 +77,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public int updateProject(int projectId, String actualEndDate, String technology) {
+		logger.loggerInfo("Update values for project");
 		int updateCount = 0;
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
@@ -93,6 +97,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	 */
 	@Override
 	public void addProjectEmployee(List <Integer> listId, int projectId) {
+		logger.loggerInfo("Add Employee values for project");
 		SessionFactory sessionFactory = SessionManagement.getInstance();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -104,5 +109,22 @@ public class ProjectDaoImpl implements ProjectDao {
 		session.save(project);
 		transaction.commit();
 		session.close();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int deleteProject(int projectId) {
+		int countEmployee = 0;
+		SessionFactory sessionFactory = SessionManagement.getInstance();
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		Query deleteQuery = session.createQuery("update Project project set projectStatus = 'PROJECT COMPLETED' where project.projectId = :projectId");
+		deleteQuery.setParameter("projectId", projectId);
+		countEmployee =  deleteQuery.executeUpdate();
+		transaction.commit();
+		session.close();
+		return countEmployee;
 	}
 }

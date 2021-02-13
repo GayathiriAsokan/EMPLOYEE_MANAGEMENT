@@ -9,10 +9,11 @@ package com.ideas2it.project.service.Impl;
 
 import java.util.List;
 
+import com.ideas2it.Constants.Constants;
 import com.ideas2it.project.dao.Impl.ProjectDaoImpl;
 import com.ideas2it.project.model.Project;
-//import com.ideas2it.util.Validator;
 import com.ideas2it.project.service.ProjectService;
+import com.ideas2it.util.Validator;
 
 
 /**
@@ -23,7 +24,7 @@ import com.ideas2it.project.service.ProjectService;
  */
 public class ProjectServiceImpl implements ProjectService {
 	ProjectDaoImpl projectDao = new ProjectDaoImpl();
-	//Validator validator = new Validator();
+	Validator validator = new Validator();
 
 	/**
 	 * {@inheritDoc}
@@ -31,7 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String insertProject(String projectName, String projectManager, String projectType, String technology, String startDate, String endDate, String actualEndDate, String projectStatus) {
 		projectDao.insertProject(projectName, technology, projectManager, projectType, startDate, endDate, actualEndDate, projectStatus);
-		return "PROJECT DATA ADDED SUCCESSFULLY";
+		return Constants.INSERT_MESSAGE;
 	}
 
 	/**
@@ -53,21 +54,14 @@ public class ProjectServiceImpl implements ProjectService {
 
 	/**
 	 * {@inheritDoc}
-	 *
-	@Override
-	public boolean isDateValid(String dateValue) {
-		return //validator.isDateValid(dateValue);
-	}*/
-
-	/**
-	 * {@inheritDoc}
 	 */
 	@Override
 	public String updateProject (int projectId, String actualEndDate, String technology) {
-		if (projectDao.updateProject(projectId, actualEndDate, technology) == 1) { 
-			return "UPDATED SUCCESSFULLY"; 
+		if (projectDao.updateProject(projectId, actualEndDate, technology) == Constants.ONE) { 
+			return Constants.UPDATE_MESSAGE; 
 		} else { 
-			return "CANNOT UPDATE GIVE VALID DATE KINDLY CHECK IT"; }
+			return "CANNOT UPDATE GIVE VALID DATE KINDLY CHECK IT"; 
+		}
 	}
 
 	/**
@@ -76,6 +70,15 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String addProjectEmployee(List <Integer> listId, int projectId) {
 		projectDao.addProjectEmployee(listId, projectId);
-		return "PROJECT EMPLOYEE DATA ADDED SUCCESSFULLY";
+		return Constants.ASSIGN_EMPLOYEE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String deleteProject(int projectId) {
+		projectDao.deleteProject(projectId);
+		return Constants.DELETE_MESSAGE;
 	}
 }
