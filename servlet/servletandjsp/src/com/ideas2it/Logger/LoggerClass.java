@@ -7,7 +7,7 @@ import org.jboss.logging.Logger;
 
 /**
  * @description Logger class is used for sent the information and error messages
- * @author ubuntu
+ * @author GAYATHIRI
  *
  */
 public class LoggerClass {
@@ -26,4 +26,12 @@ public class LoggerClass {
 	 public void loggerInfo(String message) {
 		 logger.info(message);
 	 }
+     
+	 /**
+	  * 
+	  */
+      public void loggerFatal(String message) {
+    	  logger.fatal(message);
+      }
 }
+

@@ -17,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import com.ideas2it.Exception.EmployeeIdNotExist;
+import com.ideas2it.Logger.LoggerClass;
 import com.ideas2it.employee.model.Address;
 import com.ideas2it.employee.service.Impl.EmployeeServiceImpl;
 
@@ -26,7 +27,8 @@ import com.ideas2it.employee.service.Impl.EmployeeServiceImpl;
  */
 public class EmployeeController extends HttpServlet {
 	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-
+	LoggerClass logger = new LoggerClass();
+	
 	/**
 	 * This method is used to do crud operations for project details using jsp file
 	 * By checking the mode crud operations are done
@@ -194,7 +196,9 @@ public class EmployeeController extends HttpServlet {
 				throw new EmployeeIdNotExist("Employee Id Does Not Exist");
 			}
 		} catch (EmployeeIdNotExist e) {
-			System.out.println(e.getMessage());
+			logger.loggerFatal(e.getMessage());
+			e.printStackTrace();
+			
 		}
 	}
 

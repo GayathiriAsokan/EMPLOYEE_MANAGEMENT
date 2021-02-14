@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String mobileNumber = Long.toString(phoneNumber);
 		String insertStatus = "";
 		List <Integer> employeeList = validateEmployeeData(phoneNumber, emailId); 
-		if (employeeList.get(0) != Constants.ZERO && employeeList.get(1) != Constants.ZERO) {
+		if (Constants.ZERO!=  employeeList.get(0) &&  Constants.ZERO != employeeList.get(1) ) {
 			logger.loggerError(Constants.DUPLICATE_ERROR_MESSAGE);
 			insertStatus = Constants.DUPLICATE_ERROR_MESSAGE;
 		} else if (employeeList.get(1) != Constants.ZERO) {

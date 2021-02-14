@@ -57,7 +57,7 @@ public class ProjectServiceImpl implements ProjectService {
 	 */
 	@Override
 	public String updateProject (int projectId, String actualEndDate, String technology) {
-		if (projectDao.updateProject(projectId, actualEndDate, technology) == Constants.ONE) { 
+		if (Constants.ONE == projectDao.updateProject(projectId, actualEndDate, technology)) { 
 			return Constants.UPDATE_MESSAGE; 
 		} else { 
 			return "CANNOT UPDATE GIVE VALID DATE KINDLY CHECK IT"; 

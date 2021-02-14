@@ -5,7 +5,7 @@ package com.ideas2it.Constants;
 
 /**
  * @description Constants class is used to create a common variable declaration
- * @author ubuntu
+ * @author GAYATHIRI
  *
  */
 public class Constants {

@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.ideas2it.Exception.EmployeeIdNotExist;
+import com.ideas2it.Logger.LoggerClass;
 import com.ideas2it.project.service.Impl.ProjectServiceImpl;
 
 /**
@@ -25,7 +26,8 @@ import com.ideas2it.project.service.Impl.ProjectServiceImpl;
  */
 public class ProjectController extends HttpServlet {
 	ProjectServiceImpl projectService = new ProjectServiceImpl();
-
+    LoggerClass logger = new LoggerClass();
+    
 	/**
 	 * This method is used to save the project details using jsp file
 	 * By checking the mode crud operations are done
@@ -181,7 +183,8 @@ public class ProjectController extends HttpServlet {
 				throw new EmployeeIdNotExist("Project Id Does Not Exist");
 			}
 		} catch (EmployeeIdNotExist e) {
-			System.out.println(e.getMessage());
+			logger.loggerFatal(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
