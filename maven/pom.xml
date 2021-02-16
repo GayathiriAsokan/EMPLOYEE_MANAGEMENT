@@ -17,70 +17,46 @@
  * specific language governing permissions and limitations
  * under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com</groupId>
   <artifactId>ideas2it</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>Demo Webapp for Apache Shindig</name>
-  <url>http://shindig.apache.org</url>
-  <build>
-    <finalName>shindig-sample</finalName>
-
-    <plugins>
-
-      <plugin>
-	    <groupId>org.mortbay.jetty</groupId>
-	    <artifactId>maven-jetty-plugin</artifactId>
-	    <configuration>
-		  <tempDirectory>/home/jenkins/workspace/forked-dependencies/wso2-shindig/target/checkout/java/sample-maven-archetype/target/work</tempDirectory>
-		  <contextPath>/</contextPath>
-	    </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <webResources>
-            <resource>
-              <directory>/home/jenkins/workspace/forked-dependencies/wso2-shindig/target/checkout/java/sample-maven-archetype/src/main/webresources</directory>
-            </resource>
-          </webResources>
-        </configuration>
-      </plugin>
-
-    </plugins>
-  </build>
-
+  <name>sample-webapp Maven Webapp</name>
+<url>http://www.example.com</url>
+<build>
+<plugins>
+<plugin>
+ <groupId>org.apache.tomcat.maven</groupId>
+  <artifactId>tomcat8.5-maven-plugin</artifactId>
+<version>2.2</version>
+ <configuration>
+<port>8080</port>
+<path>/</path>
+ </configuration>
+</plugin>
+<plugin>            
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-war-plugin</artifactId>
+  <configuration>
+    <webXml>WebContent\WEB-INF\web.xml</webXml>        
+  </configuration>
+</plugin>
+</plugins>
+</build>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
   <dependencies>
-    <dependency>
-      <groupId>org.wso2.org.apache.shindig</groupId>
-      <artifactId>shindig-features</artifactId>
-      <version>2.5.2-wso2v15</version>
+   <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.wso2.org.apache.shindig</groupId>
-      <artifactId>shindig-common</artifactId>
-      <version>2.5.2-wso2v15</version>
-    </dependency>
-    <dependency>
-      <groupId>org.wso2.org.apache.shindig</groupId>
-      <artifactId>shindig-gadgets</artifactId>
-      <version>2.5.2-wso2v15</version>
-    </dependency>
-    <dependency>
-      <groupId>org.wso2.org.apache.shindig</groupId>
-      <artifactId>shindig-social-api</artifactId>
-      <version>2.5.2-wso2v15</version>
-    </dependency>
-    <dependency>
-      <groupId>org.wso2.org.apache.shindig</groupId>
-      <artifactId>shindig-extras</artifactId>
-      <version>2.5.2-wso2v15</version>
-    </dependency>
-    
 <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 <dependency>
     <groupId>javax.servlet</groupId>
