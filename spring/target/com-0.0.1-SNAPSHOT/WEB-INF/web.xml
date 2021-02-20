@@ -4,6 +4,19 @@
  <servlet-name>JSP</servlet-name>
  <jsp-file>/Index.jsp</jsp-file>
  </servlet>
+ <servlet-mapping>
+ <servlet-name>JSP</servlet-name>
+ <url-pattern></url-pattern>
+ </servlet-mapping>
+ <servlet>
+ <servlet-name>spring</servlet-name>
+ <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+ <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+<servlet-name>spring</servlet-name>
+<url-pattern>/</url-pattern>
+</servlet-mapping>
 <servlet>
 <servlet-name>EmployeeController</servlet-name>
 <servlet-class>main.java.com.ideas2it.employee.controller.EmployeeController</servlet-class>

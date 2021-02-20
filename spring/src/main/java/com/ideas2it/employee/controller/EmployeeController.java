@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,15 +25,17 @@ import javax.servlet.ServletException;
 import main.java.com.ideas2it.Exception.EmployeeIdNotExist;
 import main.java.com.ideas2it.Logger.LoggerClass;
 import main.java.com.ideas2it.employee.model.Address;
+import main.java.com.ideas2it.employee.service.EmployeeService;
 import main.java.com.ideas2it.employee.service.Impl.EmployeeServiceImpl;
 
 /**
  * @description AddEmployee is used to add employee values 
  * @author GAYATHIRI
  */
-@controller
+@Controller
 public class EmployeeController extends HttpServlet {
-	EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+	@Autowired
+	private EmployeeService employeeService;
 	LoggerClass logger = new LoggerClass();
 	
 	/**
@@ -90,13 +98,14 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-
-  @RequestMapping("/Insert")     
-	public void addEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/AddEmployee.jsp");
-		dispatcher.forward(request,response);
+	 @RequestMapping(value = "/EmployeeController/Insert")  
+	public ModelAndView addEmployee() {
+		/*
+		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
+		 * context.getRequestDispatcher("/AddEmployee.jsp");
+		 * dispatcher.forward(request,response);
+		 */
+		 return new ModelAndView("redirect:AddEmployee.jsp");
 	}
 
 	/**
@@ -104,10 +113,14 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	public void insertEmployeeToProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-  ModelAndView model = new ModelAndView();
-  model.setViewName("EmployeeProject.jsp");
-		ServletContext context = getServletContext();
+	 @RequestMapping(value = "/EmployeeController/AddProject", method = RequestMethod.GET)  
+	public ModelAndView insertEmployeeToProject() {
+		return new ModelAndView("redirect:EmployeeProject.jsp");
+		/*
+		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
+		 * context.getRequestDispatcher("/EmployeeProject.jsp");
+		 * dispatcher.forward(request,response);
+		 */
 	}
 
 	/**
@@ -241,10 +254,14 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	public void displayEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/ViewAllEmployee.jsp");
-		dispatcher.forward(request,response);
+	 @RequestMapping(value = "/EmployeeController/ViewAll", method = RequestMethod.GET)  
+	public ModelAndView displayEmployee() {
+		 return new ModelAndView("redirect:ViewAllEmployee.jsp");
+		/*
+		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
+		 * context.getRequestDispatcher("/ViewAllEmployee.jsp");
+		 * dispatcher.forward(request,response);
+		 */
 	}
 
 	/**
