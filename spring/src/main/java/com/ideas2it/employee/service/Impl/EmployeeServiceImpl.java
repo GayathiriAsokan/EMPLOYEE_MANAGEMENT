@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import main.java.com.ideas2it.employee.dao.Impl.EmployeeDaoImpl;
 import main.java.com.ideas2it.employee.model.Address;
 import main.java.com.ideas2it.employee.model.Employee;
@@ -30,6 +32,7 @@ import main.java.com.ideas2it.util.Validator;
  * @author GAYATHIRI
  * @version 1.2
  */
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 	Validator validator = new Validator();
 	EmployeeDaoImpl employeeDAO = new EmployeeDaoImpl();

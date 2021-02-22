@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +16,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.cj.xdevapi.JsonArray;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -34,63 +41,18 @@ import main.java.com.ideas2it.employee.service.Impl.EmployeeServiceImpl;
  */
 @Controller
 public class EmployeeController extends HttpServlet {
+
 	@Autowired
 	private EmployeeService employeeService;
 	LoggerClass logger = new LoggerClass();
-	
-	/**
-	 * This method is used to do crud operations for project details using jsp file
-	 * By checking the mode crud operations are done
-	 *
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println(request.getServletPath());
-		String urlMapping=request.getServletPath().split("/EmployeeController")[1]; 
-		System.out.println(urlMapping);
-		switch(urlMapping) {
-		case "/Insert" :
-		case "/Update" :
-		case "/Delete":
-		case "/View" :
-			addEmployee(request, response);
-			break;
-		case "/Update/ajax" :
-			try {
-				viewEmployee(request, response);
-			} catch (EmployeeIdNotExist e) {
-				e.printStackTrace();
-			}
-			break;
-		case "/ViewAll" :
-			displayEmployee(request, response);
-			break;
-		case "/AddProject" :
-			insertEmployeeToProject(request, response);
-			break;
-		}
-	}
-
-	/**
-	 * This method is used to save the project details using jsp file
-	 * By checking the mode crud operations are done
-	 *
-	 *
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println(request.getServletPath());
-		String urlMapping=request.getServletPath().split("/EmployeeController")[1];
-		switch(urlMapping) {
-		case "/Insert/submit" :
-			insertEmployee(request, response);
-			break;
-		case "/Update/submit" :
-			updateEmployee(request, response);
-			break;
-		case "/Delete/submit" :
-			deleteEmployee(request, response) ;
-			break;
-		case "/AddProject/submit" :
-			addEmployeeToProject(request, response) ;
-			break;
-		}
+  	/**
+	 * AddEmployee method is used to add employee details 
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	@RequestMapping("/")  
+	public String Index() {
+		return "Index";
 	}
 
 	/**
@@ -98,67 +60,55 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	 @RequestMapping(value = "/EmployeeController/Insert")  
-	public ModelAndView addEmployee() {
-		/*
-		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
-		 * context.getRequestDispatcher("/AddEmployee.jsp");
-		 * dispatcher.forward(request,response);
-		 */
-		 return new ModelAndView("redirect:AddEmployee.jsp");
+	@RequestMapping({ "/EmployeeController/Insert", "/EmployeeController/Update", "/EmployeeController/Delete", 
+	"/EmployeeController/View" })  
+	public String addEmployee() {
+		return "AddEmployee";
 	}
 
 	/**
 	 * InsertEmployeeToProject method is used to add project to employee
-	 * @throws IOException 
-	 * @throws ServletException 
 	 */
-	 @RequestMapping(value = "/EmployeeController/AddProject", method = RequestMethod.GET)  
-	public ModelAndView insertEmployeeToProject() {
-		return new ModelAndView("redirect:EmployeeProject.jsp");
-		/*
-		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
-		 * context.getRequestDispatcher("/EmployeeProject.jsp");
-		 * dispatcher.forward(request,response);
-		 */
+	@RequestMapping("/EmployeeController/AddProject")  
+	public String insertEmployeeToProject() {
+		return "EmployeeProject.jsp";
 	}
 
 	/**
 	 * InsertEmployee method is used to add employee details 
-	 * @throws IOException 
-	 * @throws ServletException 
 	 */
-	public void insertEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String companyName = request.getParameter("CompanyName");
-		double salary = Double.parseDouble(request.getParameter("Salary"));
-		String designation = request.getParameter("Designation");
-		int experience = Integer.parseInt(request.getParameter("Experience"));
-		String status = request.getParameter("Status");
-		String name = request.getParameter("Name");
-		long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
-		String emailId = request.getParameter("EmailId");
-		String dateOfBirth = request.getParameter("DateOfBirth");
+	@RequestMapping("/EmployeeController/Insert/submit")  
+	public String insertEmployee(@RequestParam Map<String, String> allRequestParam, Model model) {
+		System.out.println(allRequestParam);
+		String companyName = allRequestParam.get("CompanyName"); 
+		double salary = Double.parseDouble(allRequestParam.get("Salary"));
+		String designation = allRequestParam.get("Designation"); 
+		int experience = Integer.parseInt(allRequestParam.get("Experience"));
+		String status = allRequestParam.get("Status"); String name = allRequestParam.get("Name");
+		long phoneNumber = Long.parseLong(allRequestParam.get("PhoneNumber"));
+		String emailId = allRequestParam.get("EmailId"); 
+		String dateOfBirth = allRequestParam.get("DateOfBirth"); 
 		HashMap <String, Object> currentAddressMap = new HashMap <String, Object>();
-		currentAddressMap.put("Street", request.getParameter("Street"));
-		currentAddressMap.put("City", request.getParameter("City"));
-		currentAddressMap.put("District", request.getParameter("District"));
-		currentAddressMap.put("PinCode", Integer.parseInt(request.getParameter("PinCode")));
-		currentAddressMap.put("State", request.getParameter("State"));
-		currentAddressMap.put("AddressType", request.getParameter("AddressType"));
-		HashMap <String, Object> permanentAddressMap = new HashMap <String, Object>();
-		permanentAddressMap.put("Street", request.getParameter("PermanentStreet"));
-		permanentAddressMap.put("City", request.getParameter("PermanentCity"));
-		permanentAddressMap.put("District", request.getParameter("PermanentDistrict"));
-		permanentAddressMap.put("PinCode", Integer.parseInt(request.getParameter("PermanentPinCode")));
-		permanentAddressMap.put("State", request.getParameter("PermanentState"));
-		permanentAddressMap.put("AddressType", request.getParameter("PermanentAddressType"));
-		String insertStatus = employeeService.insertEmployee(companyName, salary, designation, experience, status,
-				name, phoneNumber, dateOfBirth, emailId, currentAddressMap, permanentAddressMap);
+		currentAddressMap.put("Street", allRequestParam.get("Street"));
+		currentAddressMap.put("City", allRequestParam.get("City"));
+		currentAddressMap.put("District", allRequestParam.get("District"));
+		currentAddressMap.put("PinCode", Integer.parseInt(allRequestParam.get("PinCode")));
+		currentAddressMap.put("State", allRequestParam.get("State"));
+		currentAddressMap.put("AddressType", allRequestParam.get("AddressType"));
+		HashMap <String, Object> permanentAddressMap = new HashMap <String, Object>(); 
+		permanentAddressMap.put("Street",	allRequestParam.get("PermanentStreet")); 
+		permanentAddressMap.put("City", allRequestParam.get("PermanentCity"));
+		permanentAddressMap.put("District", allRequestParam.get("PermanentDistrict"));
+		permanentAddressMap.put("PinCode", Integer.parseInt(allRequestParam.get("PermanentPinCode")));
+		permanentAddressMap.put("State", allRequestParam.get("PermanentState"));
+		permanentAddressMap.put("AddressType",
+				allRequestParam.get("PermanentAddressType")); 
+		String insertStatus = employeeService.insertEmployee(companyName, salary, designation, experience,
+				status, name, phoneNumber, dateOfBirth, emailId, currentAddressMap,
+				permanentAddressMap);
+		model.addAttribute("status", insertStatus);
 		System.out.println(insertStatus);
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/EmployeeSubmission.jsp");
-		request.setAttribute("status", insertStatus);
-		dispatcher.forward(request,response);
+		return "EmployeeSubmission";
 	}
 
 	/**
@@ -167,12 +117,13 @@ public class EmployeeController extends HttpServlet {
 	 * @throws ServletException 
 	 * @throws EmployeeIdNotExist 
 	 */
-	public void viewEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, EmployeeIdNotExist {
-		int employeeId = Integer.parseInt(request.getParameter("EmployeeId"));
+	@RequestMapping("/EmployeeController/Update/ajax")  
+	@ResponseBody
+	public String viewEmployee(@RequestParam String EmployeeId) throws EmployeeIdNotExist {
+		int employeeId = Integer.parseInt(EmployeeId);
 		JSONArray arrayEmployeeValues = new JSONArray();
 		try {
 			if (employeeId != 0 && employeeId <= 23) {
-				response.setContentType("text/html");
 				employeeService.getEmployee(employeeId);
 				JSONObject employee = new JSONObject();
 				employee.put("companyName", employeeService.getEmployee(employeeId).getCompanyName());
@@ -202,21 +153,16 @@ public class EmployeeController extends HttpServlet {
 				employee.put("permanentAddressType",addressList.get(1).getAddressType());
 				System.out.println(employee);
 				arrayEmployeeValues.put(employee);
-				response.setContentType("application/json");
-				response.getWriter().write(arrayEmployeeValues.toString());
+				return arrayEmployeeValues.toString();
 			} 
 			else {
-				JSONObject errorStatus = new JSONObject();
-				errorStatus.put("status", "Employee Id Does Not Exist");
-				response.setContentType("application/json");
-				response.getWriter().write(errorStatus.toString());
 				throw new EmployeeIdNotExist("Employee Id Does Not Exist");
 			}
 		} catch (EmployeeIdNotExist e) {
 			logger.loggerFatal(e.getMessage());
 			e.printStackTrace();
-			
 		}
+		return arrayEmployeeValues.toString();
 	}
 
 	/**
@@ -224,15 +170,15 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	public void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-			int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
-				long phoneNumber = Long.parseLong(request.getParameter("PhoneNumber"));
-				String emailId = request.getParameter("EmailId");
-				String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
-				ServletContext context = getServletContext();
-				RequestDispatcher dispatcher = context.getRequestDispatcher("/EmployeeSubmission.jsp");
-				request.setAttribute("status", status);
-				dispatcher.forward(request,response);
+	@RequestMapping("/EmployeeController/Update/submit")  
+	public String updateEmployee(@RequestParam Map<String, String> allRequestParam, Model model) {
+		int employeeId = Integer.parseInt(allRequestParam.get("EmployeeId")); 
+		long phoneNumber = Long.parseLong(allRequestParam.get("PhoneNumber"));
+		String emailId = "EmailId";
+		String status = employeeService.updatePersonalDetails(employeeId, phoneNumber, emailId);
+		model.addAttribute("status", status);
+		System.out.println(status);
+		return "EmployeeSubmission";
 	}
 
 	/**
@@ -240,13 +186,13 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	public void deleteEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		int employeeId = Integer.parseInt(request.getParameter("EmployeeId")); 
+	@RequestMapping("/EmployeeController/Delete/submit")  
+	public String deleteEmployee(@RequestParam Map<String, String> allRequestParam, Model model) {
+		int employeeId = Integer.parseInt(allRequestParam.get("EmployeeId")); 
 		String status = employeeService.deleteEmployee(employeeId);
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/EmployeeSubmission.jsp");
-		request.setAttribute("status", status);
-		dispatcher.forward(request,response);
+		model.addAttribute("status", status);
+		System.out.println(status);
+		return "EmployeeSubmission";
 	}
 
 	/**
@@ -254,14 +200,9 @@ public class EmployeeController extends HttpServlet {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-	 @RequestMapping(value = "/EmployeeController/ViewAll", method = RequestMethod.GET)  
-	public ModelAndView displayEmployee() {
-		 return new ModelAndView("redirect:ViewAllEmployee.jsp");
-		/*
-		 * ServletContext context = getServletContext(); RequestDispatcher dispatcher =
-		 * context.getRequestDispatcher("/ViewAllEmployee.jsp");
-		 * dispatcher.forward(request,response);
-		 */
+	@RequestMapping("/EmployeeController/ViewAll")  
+	public String displayEmployee() {
+		return "ViewAllEmployee";
 	}
 
 	/**
@@ -269,21 +210,21 @@ public class EmployeeController extends HttpServlet {
 	 * To insert and view the employee and project
 	 * @throws IOException 
 	 * @throws ServletException 
-	 */
-	public void addEmployeeToProject(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	 *
+	@RequestMapping("/EmployeeController/AddProject/submit")
+	public String addEmployeeToProject(@RequestParam Map <String, String> allRequestParam, Model model) {
 		List <Integer> listProjectId = new ArrayList <Integer> ();
-		int employeeId = Integer.parseInt(request.getParameter("Employee"));
-		String [] project = request.getParameterValues("Project");
+		int employeeId = Integer.parseInt(allRequestParam.get("Employee"));
+		String [] project = allRequestParam.get("Project");
 		for (int index = 0; index < project.length ; index ++) {
 			System.out.println(project[index]);
 			listProjectId.add(Integer.parseInt(project[index]));
 		}
 		System.out.println(listProjectId);
 		String status = employeeService.addProjectEmployee(listProjectId, employeeId);
-		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/EmployeeSubmission.jsp");
-		request.setAttribute("status", status);
-		dispatcher.forward(request,response);
-	}
+		model.addAttribute("status", status);
+		System.out.println(status);
+		return "EmployeeSubmission";
+	}*/
 }
 

@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
- <servlet>
+<!--  <servlet>
  <servlet-name>JSP</servlet-name>
  <jsp-file>/Index.jsp</jsp-file>
  </servlet>
  <servlet-mapping>
  <servlet-name>JSP</servlet-name>
  <url-pattern></url-pattern>
- </servlet-mapping>
-<!--  <servlet>
+ </servlet-mapping> -->
+ <servlet>
  <servlet-name>spring</servlet-name>
  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+ <init-param>
+ <param-name>context</param-name>
+ <param-value>/webapp/WEB-INF/spring-servlet.xml</param-value>
+ </init-param>
  <load-on-startup>1</load-on-startup>
  </servlet>
  <servlet-mapping>
 <servlet-name>spring</servlet-name>
 <url-pattern>/</url-pattern>
-</servlet-mapping> -->
-<servlet>
+</servlet-mapping>
+<!-- <servlet>
 <servlet-name>EmployeeController</servlet-name>
 <servlet-class>main.java.com.ideas2it.employee.controller.EmployeeController</servlet-class>
 </servlet>
@@ -68,8 +72,8 @@
 <servlet-mapping>
 <servlet-name>EmployeeController</servlet-name>
 <url-pattern>/EmployeeController/AddProject/submit</url-pattern>
-</servlet-mapping>
-<servlet>
+</servlet-mapping> -->
+<!-- <servlet>
 <servlet-name>ProjectController</servlet-name>
 <servlet-class>main.java.com.ideas2it.project.controller.ProjectController</servlet-class>
 </servlet>
@@ -120,5 +124,5 @@
 <servlet-mapping>
 <servlet-name>ProjectController</servlet-name>
 <url-pattern>/ProjectController/AddProject/submit</url-pattern>
-</servlet-mapping>
+</servlet-mapping> -->
   </web-app>
