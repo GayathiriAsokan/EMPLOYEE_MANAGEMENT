@@ -7,60 +7,51 @@
     background-color: blue;
     border-radius: 50%;
     left: 325;
-    width: "80";
-    height: "110";
 }
 p10 {
     position: absolute;
-    top: 349px;
-    left: 622px;
-    font-size: 9px;
+    top: 362px;
+    left: 644px;
+    font-size: 13px;
     color: #002e58;
-    opacity: 0.5;
 }
 p11 {
     position: absolute;
-    top: 409px;
-    font-size: 9;
-    left: 623px;
-    color: #002e58;
-    opacity: 0.5;
+    top: 413px;
+    font-size: 13px;
+    left: 642px;color: #002e58;
 }
 p12 {
      position: absolute;
-    top: 350px;
-    left: 687px;
+    top: 362px;
+    left: 741px;
     color: #002e58;
-    font-size: 9px;
-    opacity: 0.5;
+    font-size: 13px;
 }
 p19 {
     position: absolute;
-    top: 635px;
-    left: 626px;
+    top: 608px;
+    left: 632px;
     color: #002e58;
-    font-size: 9;
-    opacity: 0.5;
+    font-size: 13px;
 }
 p13 {
     position: absolute;
-    top: 409px;
-    left: 688px;
-    font-size: 9;
-    opacity: 0.5;
+    top: 422px;
+    left: 742px;
+    font-size: 13px;
     color: #002e58;
 }
 p15 {
     position: absolute;
-    top: 350px;
-    left: 962px;
-    font-size: 9px;
+    top: 357px;
+    left: 970px;
+    font-size: 13px;
     color: #002e58;
-    opacity: 0.5;
 }
 h5  {
     position: absolute;
-    top: 524px;
+    top: 480;
     left: 600;
     font-size: 20px;
     font-family: Times New Roman;
@@ -69,35 +60,31 @@ h5  {
 }
 p20 {
     position: absolute;
-    top: 469px;
-    font-size: 9;
-    left: 689px;
-    opacity: 0.5;
+    top: 481px;
+    font-size: 13px;
+    left: 742px;
     color: #002e58;
 }
 p14 {
     position: absolute;
-    top: 470px;
-    font-size: 9;
-    left: 622px;
-    color: #002e58;
-    opacity: 0.5;
+    top: 476px;
+    font-size: 13px;    
+    left: 642px;
+color: #002e58;
 }
 p17 {
     position: absolute;
-    top: 410px;
-    left: 963px;
-    font-size: 9;
-    opacity: 0.5;
-    color: #002e58;
+    top: 420px;
+    left: 962px;
+    font-size: 13px;
+color: #002e58;
 }
 p16 {
     position: absolute;
-    top: 471px;
-    font-size: 9;
-    left: 963px;
-    color: #002e58;
-    opacity: 0.5;
+    top: 476px;
+    font-size: 13px;
+    left: 962px;
+color: #002e58;
 }
 h1 {
     position: absolute;
@@ -115,51 +102,52 @@ h2 {
     font-family: Times New Roman;
     font-size: 18px;
     font-weight: bold;
-    left: 337px;
+    left: 300;
 }
 h3 {
     position: absolute;
     top: 250px;
     color: #002e58;
-    font-size: 10px;
-    left: 334px;
+    font-size: 14px;
+    left: 300px;
     right: 800px;
 }
 p1 {
     position: absolute;
     left: 600;
-    right: 156px;
+    right: 168px;
     top: 115px;
     font-size: 15px;
     color: #002e58;
 }
 p18 {
     position: absolute;
-    top: 630px;
-    font-size: 9;
+    top: 606px;
+    font-size: 13px;
     left: 963px;
-    color: #002e58;
-    opacity: 0.5;
+color: #002e58;
+}
+p19 {
+    position: absolute;
+    top: 604px;
+    left: 632px;
+    font-size: 13px;
+color: #002e58;
 }
 .map {
     position: absolute;
     top: 366px;
-    left: 315px;
-    width: 8;
-    opacity: 0.5;
-    height: 7px;
+    left: 310px;
 }
 .mail {
     position: absolute;
     top: 325px;
-    left: 317px;
-    width: 10px;
-    height: 10px;
+    left: 307px;
 }
 p2 {
     position: absolute;
     top: 359px;
-    left: 328px;
+    left: 330px;
     right: 400px;
     font-size: 13px;
     color: #002e58;
@@ -173,32 +161,35 @@ p3 {
     color: #002e58;
 }
 p4 {
-   position: absolute;
-    left: 328px;
+    position: absolute;
+    left: 342px;
     font-size: 14px;
     color: #002e58;
-    top: 399px;
+    top: 401px;
 }
 .fulltime {
     position: absolute;
-    left: 311px;
+    left: 304px;
     top: 398px;
-    width: 15px;
-    height: 15px;
 }
 .contact {
-  position: absolute;
+    position: absolute;
     top: 434px;
-    left: 316px;
-    width: 8;
-    height: 7;
+    left: 311px;
 }
 p5 {
-       position: absolute;
+    position: absolute;
     top: 430px;
     font-size: 14px;
     color: #002e58;
-    left: 328px;
+    left: 340;
+}
+p9 {
+    position: absolute;
+    top: 570;
+    left: 600;
+    font-size: 14px;
+    color: #002e58;
 }
 .button {
   background-color: dodgerblue;
@@ -210,8 +201,8 @@ p5 {
     padding: 10px;
 }
 h4 {
-   position: absolute;
-    top: 253px;
+    position: absolute;
+    top: 250;
     left: 600;
     font-size: 20px;
     font-family: Times New Roman;
@@ -244,18 +235,15 @@ p8 {
 }
 p9 {
     position: absolute;
-    top: 600;
+    top: 570;
     left: 600;
-    font-size: 15px;
+    font-size: 18;
     color: #002e58;
 }
 .date {
    position: absolute;
-    top: 31px;
-    left: 351px;
-    width: 9;
-    height: 9;
-    opacity: 0.5;
+    top: 37px;
+    left: 346px;
 }
 mark {
     background-color: #a0d6b4;
@@ -266,19 +254,4 @@ mark {
   text-decoration: none;
   font-size: 13px;
   border-radius: 5px;
-}
-.t {
- width: 15px;
-    height: 15px;
-}
-.m {
- width: 10px;
-    height: 7px;
-}
-.line  {
-    width: 40%;
-    position: relative;
-    top: 3px;
-    right: 206px;
-    opacity: 0.5;
 }
