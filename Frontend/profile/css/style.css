@@ -1,7 +1,7 @@
 body {
     background-color: black;
 }
-.page_size {
+.page-size {
     position: absolute;
     border: 1px;
     background-color: white;
@@ -9,21 +9,28 @@ body {
     width: 57%;
     height: 108%;
 }
-.left_position {
+#education {
+    top: 450px;
+}
+#list-position {
+    top: 486px;
+}
+.left-position {
     padding-left: 45px;
     width: 207px;
 }
 pre {
     position: absolute;
-    top: 141px;
+    top: 117px;
     right: 573px;
     font-size: 16;
-    color: #3a4c84;
+    color: #002e58;
+    font-family: 'Rubik', sans-serif;
 }
 pre p {
     position: absolute;
-    left: 143px;
-    top: 32px;
+    left: 55px;
+    top: 50px;
     color: #002e58;
     font-size: 12;
 }
@@ -32,7 +39,7 @@ pre p {
     height: 100;
     top: 31px;
     width: 100;
-    background-color: blue;
+    background-color:#4bcafe;
     border-radius: 50%;
 }
 ul {
@@ -45,26 +52,32 @@ ul img {
     width: 13px;
 }
 ul li{
-    font-size:12px;
+    font-size: 10px;
     color: #3D4F85;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    opacity: 0.7;
 }
 .button {
     background-color: #367cff;
     position: absolute;
-    top: 405px;
+    top: 375px;
     left: 36px;
-    font-size: 16px;
+    font-size: 9px;
     border-radius: 72;
-    padding: 7px;
-    border-radius: 500px;
+    color: white;
+    padding: 10px;
+    vertical-align: middle;
+    font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
     border-color: azure;
-  }
-right-position {
-    position: absolute;
-    left: 218px;
-    top: 24px;
+    width: 116px;
+    height: 34px;
+    border: none;
   }
 .summary {
+    font-family: 'Rubik', sans-serif;
     position: absolute;
     left: 270px;
     color: #002e58;
@@ -73,15 +86,145 @@ right-position {
   }
 .content {
     position: absolute;
-    left: 132px;
-    top: 45px;
-    font-size: 14;
+    left: 226px;
+    top: 57px;
+    font-size: 12;
+    color: #3D4F85;
+    opacity: 0.7;
 }
 h {
+    font-family: 'Rubik', sans-serif;
     position: absolute;
     left: 270px;
-    top: 213px;
+    top: 206px;
     color: #002e58;
     font-weight: bold;
     font-size: 20;  
+}
+ol {
+    list-style-type: none;
+    position: absolute;
+    top: 239px;
+    left: 229px;
+}
+spam {
+    background-color: #d7ffe0;
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 6px;
+    text-decoration: none;
+    width: 55px;
+    font-size: 11px;
+    border-radius: 8px;
+    position: relative;
+    left: 103px;
+}
+li {
+    font-family: 'Rubik', sans-serif;
+    color: #3D4F85;
+    font-size: 12px;
+    opacity: 0.7;
+}
+li img {
+    width: 8px;
+}
+li p {
+    font-size: 8px;
+    opacity: 0.5;
+    position: absolute;
+    top: 21px;
+    left: 48px;
+}
+.position {
+    padding-left: 55px;
+}
+.value {
+    padding-left: 41px;
+}
+.date {
+    position: relative;
+    left: 248px;
+    top: 4px;
+    opacity: 0.5;
+}
+.employee-date {
+    position: relative;
+    left: 324px;
+    top: 16px;
+}
+.full-time {
+    position: absolute;
+    left: 353px;
+    top: 53px;
+}
+.line {
+    position: absolute;
+    top: 41px;
+    opacity: 0.5;
+    width: 378px;
+}
+.employee {
+    position: absolute;
+    top: 73px;
+}
+.date-position {
+    left: 266px;
+    top: 21px;
+}
+.date-location {
+    left: 190px;
+    top: 0px;;
+}
+.row {
+    top: 98px;
+}
+.employe-position {
+    top: 137px;
+}
+.full-work {
+    top: 8px;
+    left: 122px;
+}
+#graduate {
+    position: absolute;
+    top: 28px;
+    width: 12px;
+    left: 39px;
+}
+.place {
+    padding-left: 3px;
+}
+.date-spot {
+    position: relative;
+    left: 253px;
+    top: 5px;
+}
+.date-place {
+    top: 12px;
+    left: 241px;
+}
+#school {
+    position: absolute;
+    top: 64px;
+}
+.school-position {
+    padding-top: 42px;
+    width: 12px;
+    padding-left: 0px;;
+}
+.school-spot {
+    padding-top: 64px;
+    left: 54px;
+}
+.date-field {
+    padding-left: 227px;
+    opacity: 0.5;
+}
+.date-field-position {
+    left: 253px;
+    top: 20px;
+}
+.horizontal-line {
+    opacity: 0.5;
 }
