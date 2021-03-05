@@ -8,26 +8,8 @@
       <div class ="calculator">
       <div class = "inner-design">
         <input type="textarea" id="result-value" class="header-design"/>
-        <input type="textarea" id="final-result" class="answer" />
-        <div class="calc-button">
-        <input type="button" value="%" id="remainder" class="button" onclick="getOperation('%');"/>
-        <input type="button" value="+/-" id="signs" class="button" onclick="getValue();"/>
-        <input type="button" value="c" id="remove" class="button" onclick="getClear();"/>
-        <input type="button" value="/" id="quotient" class="button color" onclick="getOperation('/');"/>
-        <input type="button" value="7" id="seven" class="button calc-position" onclick="getOperation('7');"/> 
-        <input type="button" value="8" id="eight" class="button calc-position" onclick="getOperation('8');" />
-        <input type="button" value="9"  id="nine" class="button calc-position" onclick="getOperation('9');"/> 
-        <input type="button" value="*" id="multiply" class="button calc-position color" onclick="getOperation('*');"/>
-        <input type="button" value="4" id="four" class="button calc-position" onclick="getOperation('4');"/> 
-        <input type="button" value="5"  id="five" class="button calc-position" onclick="getOperation('5');"/> 
-        <input type="button" value="6" id="six" class="button calc-position" onclick="getOperation('6');"/>
-        <input type="button" value="-" id="minus" class="button calc-position color" onclick="getOperation('-');"/>
-        <input type="button" value="1" id="one" class="button calc-position" onclick="getOperation('1');"/> 
-        <input type="button" value="2" id="two" class="button calc-position" onclick="getOperation('2')"/> 
-        <input type="button" value="3" id="three" class="button calc-position" onclick="getOperation('3')"/>
-        <input type="button" value="+" id="plus" class="button calc-position color" onclick="getOperation('+');"/>
-        <input type="button" value="0" id="zero" class="button calc-position button-corner"  onclick="getOperation('0');"/> 
-        <input type="button" value="," id="comma" class="button calc-position" onclick="getCommaa();"/>
+        <input type="textarea" id="final-result" class="answer"/>
+        <div class="calc-button" id ="div-button">
       </div>
       <input type="button" value="=" id="equal-to" class="equal-position"  onclick="getResult();"/>
       </div>
