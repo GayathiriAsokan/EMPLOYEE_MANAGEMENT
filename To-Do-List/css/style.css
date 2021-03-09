@@ -1,0 +1,48 @@
+body {
+    margin: 0px;
+}
+.header-design {
+    height: 50px;
+    width: 100%;
+    background-color: #006fdb;
+}
+.center {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.left-position {
+    width: 25%;
+    background-color: #f4f4f4;
+    height: 558px;
+}
+.right-position {
+    background-color: #ffffff;
+    width: 80%;
+    height: 558px;
+}
+.color {
+    color: white;
+}
+.To-do {
+    padding-left: 63px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.search-box {
+    margin-left: 24%;
+    width: 31%;
+    height: 66%;
+    text-align: left;
+    background-color: #c3dbf8;
+    border: 1px #c3dbf8;
+    border-radius: 3px;
+}
+.fa-search {
+    color: blue;
+}
+.fa-gear {
+    margin-left: 314px;
+    font-size: 18px;
+    color: whitesmoke;
+}
