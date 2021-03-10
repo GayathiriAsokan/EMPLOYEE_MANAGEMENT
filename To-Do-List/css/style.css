@@ -46,3 +46,69 @@ body {
     font-size: 18px;
     color: whitesmoke;
 }
+.fa-question {
+   padding-left: 27px;
+   font-size: 19px;
+   
+   color: white;
+}
+.circle {
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+    font: 12px Arial, sans-serif;
+    padding: 12px;
+    padding-bottom: 8px;
+    padding-top: 10px;
+    margin-left: 62px;
+}
+/* .material-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+} */
+.bars {
+    width: 35px;
+    height: 5px;
+    background-color: blue;
+    margin: 6px 0;
+}
+ol {
+    list-style-type: none;
+    margin-top: 38px;
+    padding-left: 37px;
+}
+.list-task{    
+    margin-top: 9px;
+    height: 29px;
+}
+.add-icon {
+
+}
+.fa-bars {
+    color: #465efc;
+    margin-left: 32px;
+    display: inline-block;
+    margin-top: 28px;
+}
+li i{
+    font-size: 19px;
+    opacity: 0.7;
+    margin-right: 12px;
+}
+.material-icons {
+    color:#3459c1;
+}
+.search-icon {
+    transform: rotate(90deg);
+}
